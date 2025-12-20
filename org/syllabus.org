@@ -1,0 +1,172 @@
+#+TITLE:CSC 420 Spring 2026 Syllabus
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Operating Systems (CSC 420) Spring 2026
+#+options: toc:nil
+#+startup: overview indent hideblocks
+#+attr_html: :width 400px :float nil:
+
+* General Course Information
+
+- Meeting Times: Monday-Wednesday-Friday 13:00-13:50 hrs
+- Meeting place: Derby Science Center room 209 (Computer lab)
+- Professor: Marcus Birkenkrahe
+- Office: Derby Science Building 210
+- Phone: (870) 307-7254 (office) / (501 422-4725 (private)
+- Office hours: Mon/Wed/Fri 1500-1600, Tue/Thu 1600-1700 hrs
+- The following textbooks were used to prepare this course:
+  1. The Linux Command Line (2e) by Shotts, NoStarch, 2019.
+  2. Operating Systems Concepts (10e) by Silberschatz et al,
+     Wiley, 2018.
+  3. Operating Systems Foundations with Linux on the Raspberry Pi, by
+     Vanderbauwhede/Singer. ARM Education Media, 2019.
+  4. Operating Systems: Three Easy Pieces, by Arpaci-Dusseau, Gum
+     Road 2018.
+  5. Operating Systems: Principles and Practice, by
+     Anderson/Dahlinger, Recursive Books, 2015.
+  6. How Linux Works (3e) by Ward. NoStarch, 2021.
+  7. Wicked Cool Shell Scripts (2e) by Taylor/Perry. NoStarch 2016.
+
+* Standard and course policies
+
+*Standard Lyon College Policies* are incorporated into this syllabus
+and can be found at: [[http://www.lyon.edu/standard-course-policies][lyon.edu/standard-course-policies]].
+
+The *Assignments and Honor Code* and the *Attendance Policy* are
+incorporated into this syllabus also and can be found at:
+[[https://tinyurl.com/LyonPolicy][tinyurl.com/LyonPolicy]].
+
+* Objectives
+
+Operating systems provide the abstraction layer between hardware and
+applications, coordinating resources such as CPU, memory, storage,
+and I/O while supporting concurrency, isolation, and security. In
+this course, we study operating systems *through the concrete lens of
+Linux*, using Brian Ward’s /How Linux Works/ as the primary text.
+
+Rather than treating OS concepts abstractly, we examine how they are
+implemented and observed on real systems: processes and threads,
+filesystems, devices, boot loaders, init systems, networking, and
+virtualization. Emphasis is placed on understanding *how things
+actually work*, how to inspect system behavior, and how user space and
+kernel space interact.
+
+By the end of the course, students should feel confident navigating,
+inspecting, configuring, and reasoning about a modern Linux system,
+and understand the core principles that generalize to other operating
+systems.
+
+* Student Learning Outcomes
+
+Students who complete CSC 420 "Operating Systems (OS)", will be
+able to:
+
+- Explain the role of the operating system as a resource manager and
+  abstraction layer
+- Describe Linux system architecture, including kernel, user space,
+  and hardware interfaces
+- Inspect and reason about processes, threads, and resource usage
+- Understand Linux boot processes, init systems, and service
+  management
+- Work with filesystems, storage devices, and memory (including swap)
+- Explain how Linux handles devices, networking, and IPC mechanisms
+- Use standard Linux tools to trace system calls and monitor system
+  behavior
+- Understand core concepts behind containers, virtualization, and
+  isolation
+- Relate practical Linux mechanisms to general operating systems
+  principles
+
+* Course requirements
+
+Some knowledge of, and experience with computers is useful but not
+critical: we will start from basic concepts. Curiosity and personal
+discipline are essential. You will gain data literacy skills by
+taking this course. The course will prepare you for further studies
+in computer and data science, or in other disciplines that use
+modern computing, i.e. every discipline, from accounting to
+zoology).
+
+For a deeper understanding of the concepts, familiarity with basic
+data structures, computer architecture, and a high-level language,
+such as C or Java, is useful.
+
+Formal prerequisites according to the Lyon College 2023/24 catalog:
+CSC 265 (algorithms).
+
+* Grading system
+
+| WHAT                    | WEIGHT |
+|-------------------------+--------|
+| Assignments             |    25% |
+| Project                 |    25% |
+| Tests                   |    25% |
+| Final exam (optional)   |    25% |
+
+*Notes:*
+- To pass: 60% of all available points.
+- Assignments include
+- Tests: weekly online quizzes, which are previewed and reviewed in
+  class.
+- Final exam: selection of the most challenging weekly quiz questions
+  either as a written or as an oral exam. You only have to write the
+  final exam if you want to improve your grade at the end of the
+  course. If the final exam result is below your final grade average
+  up to this point, it will be ignored.
+- There will be numerous (optional) bonus assignments to improve your
+  midterm and final grades.
+
+* Grading table
+
+This table is used to convert completion rates into letter grades. for
+the midterm results, letter grades still carry signs, while for the
+term results, only straight letters are given (by rounding up). This
+table is also used in Canvas to compute your grades. Transitions
+between letter grades are rounded (e.g. 89.5% to 90%).
+
+|------------------+------------------|
+| Percentage       | LETTER GRADE*    |
+|------------------+------------------|
+| 100% to 89.5%    | A (very good)    |
+|------------------+------------------|
+| < 89.5% to 79.5% | B (good)         |
+|------------------+------------------|
+| < 79.5% to 69.5% | C (satisfactory) |
+|------------------+------------------|
+| < 69.5% to 59.5% | D (passed)       |
+|------------------+------------------|
+| < 59.5% to 0%    | F (FAILED)       |
+|------------------+------------------|
+
+* Schedule and session content
+
+For *important dates*, see the 2025-2026 Academic Calendar at:
+[[https://catalog.lyon.edu/202526-academic-calendar][catalog.lyon.edu/202526-academic-calendar]]
+
+The course meets for *15 weeks*, *3 sessions per week*, *50 minutes per
+session* (45 sessions total). Each week corresponds roughly to one
+major topic cluster from the textbook.
+
+| WEEK | TOPIC                             | SESSION CONTENT (3 × 50 min)                            |
+|------+-----------------------------------+---------------------------------------------------------|
+|    1 | The Big Picture                   | OS role; abstraction layers; kernel vs. user space      |
+|    2 | Commands & Directory Hierarchy    | Shell basics; processes; permissions; filesystem layout |
+|    3 | Devices                           | Device files; udev; sysfs; hardware abstraction         |
+|    4 | Disks & Filesystems I             | Partitions; filesystems; mounting; buffering            |
+|    5 | Disks & Filesystems II            | Inodes; links; swap; LVM                                |
+|    6 | Kernel Boot Process               | Boot loaders; GRUB; kernel initialization; UEFI         |
+|    7 | User Space Startup                | init; systemd; services; shutdown                       |
+|    8 | System Configuration & Users      | Logging; users; permissions; PAM; cron                  |
+|    9 | Processes/Resource Utilization I  | Process tracking; signals; threads; priorities          |
+|   10 | Processes/Resource Utilization II | strace; lsof; monitoring; cgroups                       |
+|   11 | Networking Fundamentals           | IP; routing; interfaces; DNS; TCP/UDP                   |
+|   12 | Network Applications & Services   | SSH; sockets; servers; diagnostics; security            |
+|   13 | Shell Scripts & Automation        | Shell scripting; control flow; automation               |
+|   14 | DevTools & Software Installation  | Compilers; make; libraries; building from source        |
+|   15 | Virtualization & Containers       | VMs; containers; Docker; isolation; course synthesis    |
+
+*Typical weekly workload (3-credit course)*:
+- Class time: 3 × 50 min ≈ 2.5 hours
+- Reading & review: 2–2.5 hours
+- Assignments / exercises / quizzes: 1.5–2 hours
+
+*Total*: approximately *6–7 hours per week*.
