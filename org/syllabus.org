@@ -115,6 +115,22 @@ CSC 265 (algorithms).
 - There will be numerous (optional) bonus assignments to improve your
   midterm and final grades.
 
+
+* Use of AI Tools
+
+Students may use AI-based tools (e.g., ChatGPT, Copilot) as assistive
+systems for generating shell commands, scripts, or
+explanations. However, all AI-generated material must be treated as
+unverified output. This course emphasizes understanding how operating
+systems actually behave, and students are responsible for testing,
+validating, and explaining any AI-assisted work. In particular,
+students must be able to explain why a command or script works, under
+what conditions it may fail, and how it interacts with the operating
+system (processes, permissions, files, resources). Submitting
+AI-generated output without understanding or attribution is not
+acceptable. The ability to critically evaluate AI output is considered
+part of operating systems literacy.
+
 * Grading table
 
 This table is used to convert completion rates into letter grades. for
