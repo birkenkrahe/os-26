@@ -4,7 +4,8 @@
 #+options: toc:nil
 #+startup: overview indent hideblocks
 #+attr_html: :width 400px :float nil:
-
+#+attr_html: :width 400px :float nil:
+[[../img/cover24.png]]
 * General Course Information
 
 - Meeting Times: Monday-Wednesday-Friday 13:00-13:50 hrs
@@ -114,7 +115,6 @@ CSC 265 (algorithms).
   up to this point, it will be ignored.
 - There will be numerous (optional) bonus assignments to improve your
   midterm and final grades.
-
 
 * Use of AI Tools
 
