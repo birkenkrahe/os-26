@@ -1,0 +1,53 @@
+#+TITLE:Agenda and overview 
+#+AUTHOR:Marcus Birkenkrahe
+#+SUBTITLE:CSC 420 Operating Systems (Lyon College, Spring 2026)
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+#+PROPERTY: header-args:python :session *Python* :results output :exports both :noweb yes
+#+PROPERTY: header-args:C :main yes :includes <stdio.h> :results output :exports both :noweb yes
+#+PROPERTY: header-args:C++ :main yes :includes <iostream> :results output :exports both :noweb yes
+* Course overview
+#+attr_html: :width 400px :float nil: 
+[[../img/cover.png]]
+
+- [ ] Syllabus walk-through
+- [ ] Why Linux?
+- [ ] OS fundamentals (lecture)
+
+** Syllabus walk-through
+#+attr_html: :width 400px :float nil:
+[[../img/overview.png]]
+
+- I originally planned to redevelop this course around the book by
+  Brian Ward, How Linux Works. But when I looked at my material I
+  thought it was good.
+
+- To have full control over our Operating System, we will use the
+  Raspberry Pi 500, which runs Raspbian Linux.
+
+- There is a plethora of books available, ranging from very
+  theoretical and abstract to very hands-on system programming. All of
+  them are very weighty (because there is a lot to know).
+
+** Why Linux?
+
+- Linux lets you see what the operating system is doing, instead of
+  hiding it behind graphical interfaces.
+
+- The tools you use in Linux make it possible to observe processes,
+  memory use, files, and networking directly.
+
+- Linux is the operating system behind most servers, cloud systems,
+  and embedded devices, so the skills you learn transfer beyond this
+  course.
+
+- Working in Linux helps you understand how programs interact with the
+  operating system, not just how to run them.
+
+- Linux supports modern system concepts such as containers and
+  resource isolation, which are widely used in industry.
+
+- Learning Linux makes you more confident and independent when working
+  with any computing environment.
+

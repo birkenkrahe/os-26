@@ -1,6 +1,6 @@
-#+TITLE:CSC 420 Spring 2026 Syllabus
+#+TITLE:Syllabus - Operating Systems
 #+AUTHOR: Marcus Birkenkrahe
-#+SUBTITLE: Operating Systems (CSC 420) Spring 2026
+#+SUBTITLE: Operating Systems (CSC 420.01) Spring 2026
 #+options: toc:nil
 #+startup: overview indent hideblocks
 #+attr_html: :width 400px :float nil:
@@ -8,6 +8,7 @@
 [[../img/cover24.png]]
 * General Course Information
 
+- Course prefix/number/section: CSC 420.01
 - Meeting Times: Monday-Wednesday-Friday 13:00-13:50 hrs
 - Meeting place: Derby Science Center room 209 (Computer lab)
 - Professor: Marcus Birkenkrahe
