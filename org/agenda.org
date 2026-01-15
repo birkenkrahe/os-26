@@ -51,3 +51,75 @@
 - Learning Linux makes you more confident and independent when working
   with any computing environment.
 
+** [P]Review Questions: Virtualization, OS, and Hardware
+
+Q&A by ChatGPT (extracted exclusively from the whiteboard).
+
+1. What is the conceptual difference between a *virtual machine (VM)*
+   and a *container*?
+   #+begin_quote
+   A virtual machine virtualizes an entire operating system (including
+   its own kernel), while a container shares the host OS kernel and
+   isolates applications at the process level.
+   #+end_quote
+
+2. Why are platforms like Google Colab or Linux VMs suitable for
+   running Linux environments on non-Linux hosts?
+   #+begin_quote
+   They abstract the underlying hardware by running Linux inside a
+   virtualized environment, allowing Linux tools and workflows to run
+   independently of the host OS.
+   #+end_quote
+
+3. What role does Docker play in the container ecosystem?
+   #+begin_quote
+   Docker provides tooling to build, distribute, and run containers
+   that package applications with their dependencies while sharing the
+   host kernel.
+   #+end_quote
+
+4. What problem do container *orchestrators* like Kubernetes solve?
+   #+begin_quote
+   They manage the deployment, scaling, networking, and lifecycle of
+   multiple containers across one or more machines.
+   #+end_quote
+
+5. hat is the role of the *shell* relative to the *kernel*?
+   #+begin_quote
+   The shell is a user-level program that translates user commands
+   into *system calls* handled by the kernel.
+   #+end_quote
+
+6. What is a *pipeline* in a Unix-like shell (e.g., =ls | wc -l=)?
+   #+begin_quote
+   A pipeline connects the output of one command directly to the input
+   of another, enabling composition of simple programs.
+   #+end_quote
+
+7. Why is RAM described as “fast” compared to non-volatile memory?
+   #+begin_quote
+   RAM provides low-latency, high-bandwidth access for active
+   programs, whereas non-volatile memory is slower but persistent.
+   #+end_quote
+
+8. What is the function of the I/O bus in the hardware diagram?
+   #+begin_quote
+   The I/O bus connects the CPU and memory to peripheral devices such as keyboards, displays, storage, and network interfaces.
+   #+end_quote
+
+9. In a typical process virtual memory layout, what is the difference
+   between the *stack* and the *heap*?
+   #+begin_quote
+   The stack is used for *function* calls and local variables with
+   automatic lifetime, while the heap is used for dynamically
+   allocated memory with manual or managed lifetime (like *vector*).
+   #+end_quote
+
+10. Why can containers generally start faster and use fewer resources
+    than virtual machines?
+    #+begin_quote
+    Because containers do not boot a full OS or run a separate kernel;
+    they reuse the host kernel and isolate processes instead.
+    #+end_quote
+
+
