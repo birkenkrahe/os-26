@@ -15,7 +15,7 @@
 - [ ] Why Linux?
 - [ ] OS fundamentals (lecture)
 
-** Syllabus walk-through
+** DONE Syllabus walk-through
 #+attr_html: :width 400px :float nil:
 [[../img/overview.png]]
 
@@ -30,7 +30,7 @@
   theoretical and abstract to very hands-on system programming. All of
   them are very weighty (because there is a lot to know).
 
-** Why Linux?
+** DONE Why Linux?
 
 - Linux lets you see what the operating system is doing, instead of
   hiding it behind graphical interfaces.
@@ -51,9 +51,10 @@
 - Learning Linux makes you more confident and independent when working
   with any computing environment.
 
-** [P]Review Questions: Virtualization, OS, and Hardware
+** NEXT [P]Review Questions: Virtualization, OS, and Hardware
 
-Q&A by ChatGPT (extracted exclusively from the whiteboard).
+[Q&A by ChatGPT - extracted exclusively from whiteboard screenshots.]
+
 
 1. What is the conceptual difference between a *virtual machine (VM)*
    and a *container*?
@@ -122,4 +123,14 @@ Q&A by ChatGPT (extracted exclusively from the whiteboard).
     they reuse the host kernel and isolate processes instead.
     #+end_quote
 
+** First assignments
 
+- There is no class on Monday.
+
+- The first assignment is a DataCamp assignment (deadline: Thu)
+
+- There will also be a first quiz (deadline: Thu)
+
+- I will kick off the projects next Wednesday (bring some ideas).
+
+  
