@@ -1,4 +1,4 @@
-#+TITLE:Agenda and overview 
+#+TITLE:Agenda and overview
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE:CSC 420 Operating Systems (Lyon College, Spring 2026)
 #+STARTUP: overview hideblocks indent
@@ -7,12 +7,12 @@
 #+PROPERTY: header-args:python :session *Python* :results output :exports both :noweb yes
 #+PROPERTY: header-args:C :main yes :includes <stdio.h> :results output :exports both :noweb yes
 #+PROPERTY: header-args:C++ :main yes :includes <iostream> :results output :exports both :noweb yes
-* Course overview
-#+attr_html: :width 400px :float nil: 
+* Week 1 - Course overview
+#+attr_html: :width 400px :float nil:
 [[../img/cover.png]]
 
-- [ ] Syllabus walk-through
-- [ ] Why Linux?
+- [X] Syllabus walk-through
+- [X] Why Linux?
 - [ ] OS fundamentals (lecture)
 
 ** DONE Syllabus walk-through
@@ -51,10 +51,9 @@
 - Learning Linux makes you more confident and independent when working
   with any computing environment.
 
-** NEXT [P]Review Questions: Virtualization, OS, and Hardware
+** DONE [P]Review Questions: Virtualization, OS, and Hardware
 
 [Q&A by ChatGPT - extracted exclusively from whiteboard screenshots.]
-
 
 1. What is the conceptual difference between a *virtual machine (VM)*
    and a *container*?
@@ -85,7 +84,7 @@
    multiple containers across one or more machines.
    #+end_quote
 
-5. hat is the role of the *shell* relative to the *kernel*?
+5. What is the role of the *shell* relative to the *kernel*?
    #+begin_quote
    The shell is a user-level program that translates user commands
    into *system calls* handled by the kernel.
@@ -105,13 +104,14 @@
 
 8. What is the function of the I/O bus in the hardware diagram?
    #+begin_quote
-   The I/O bus connects the CPU and memory to peripheral devices such as keyboards, displays, storage, and network interfaces.
+   The I/O bus connects the CPU and memory to peripheral devices such
+   as keyboards, displays, storage, and network interfaces.
    #+end_quote
 
 9. In a typical process virtual memory layout, what is the difference
    between the *stack* and the *heap*?
    #+begin_quote
-   The stack is used for *function* calls and local variables with
+   The stack is used for *function* calls and *local* variables with
    automatic lifetime, while the heap is used for dynamically
    allocated memory with manual or managed lifetime (like *vector*).
    #+end_quote
@@ -125,7 +125,7 @@
 
 ** First assignments
 
-- There is no class on Monday.
+- There is no class on Monday (MLK day).
 
 - The first assignment is a DataCamp assignment (deadline: Thu)
 
@@ -133,4 +133,141 @@
 
 - I will kick off the projects next Wednesday (bring some ideas).
 
-  
+* Week 2 - Projects & OS Fundamentals
+
+- [ ] Review: first week
+- [ ] OS Fundamentals II
+- [ ] Projects
+- [ ] Test 1: Linux overall, OS fundamentals I (by Monday 26 January)
+
+** Review: OS fundamentals I
+
+1. What is the primary role of an operating system in a computer
+   system?
+   #+begin_quote
+   To manage hardware resources and provide an abstraction layer for
+   applications.
+   #+end_quote
+
+2. What happens inside a computer system when a user presses a key and
+   a character appears on the screen?
+   #+begin_quote
+   An application requests resources, the OS schedules the CPU and
+   allocates memory, and the CPU executes the task using RAM.
+   #+end_quote
+
+3. Why does process scheduling become necessary in a multitasking
+   system?
+   #+begin_quote
+   Multiple processes compete for CPU time and must be coordinated by
+   the OS.
+   #+end_quote
+
+4. What challenges can arise from unclear or simultaneous input
+   events?
+   #+begin_quote
+   Conflicting signals must be interpreted and handled correctly by
+   the OS and device drivers.
+   #+end_quote
+
+5. What is the purpose of separating user mode from kernel mode?
+   #+begin_quote
+   To prevent user programs from executing privileged operations or
+   accessing hardware directly.
+   #+end_quote
+
+6. What problem do container technologies aim to address in modern
+   computing systems?
+   #+begin_quote
+   They provide isolated, portable environments for running
+   applications.
+   #+end_quote
+
+7. How do containers differ from full virtual machines in their use of
+   system resources?
+   #+begin_quote
+   Containers share the host kernel, while virtual machines run a
+   complete guest operating system.
+   #+end_quote
+
+8. What does it mean for software to run on “bare metal”?
+   #+begin_quote
+   It runs directly on hardware without a virtualization layer (like
+   an OS).
+   #+end_quote
+
+9. Why is version control useful when managing system configuration or
+   documentation files?
+   #+begin_quote
+   It enables tracking changes, collaboration, and reproducibility.
+   #+end_quote
+
+10. How does the operating system manage multiple users and
+    applications on the same machine?
+    #+begin_quote
+    It allocates resources and enforces isolation and protection.
+    #+end_quote
+
+** CSC 420 – Beginner Term Project Ideas
+
+- Rationale
+  #+begin_quote
+  These projects go beyond class activities by asking you to take
+  ownership of a topic over the entire term. Instead of following
+  step-by-step instructions, you will decide what to explore, design
+  your own experiments, and refine your explanations through multiple
+  sprint reviews. The focus is on understanding and explaining how Linux
+  behaves in real situations, not just running commands.
+  #+end_quote
+
+- Project list:
+
+  1. *Linux System Map:* Build a structured overview of the Linux system
+     layout, key directories, configuration files, running services,
+     and attached hardware, with explanations.
+
+  2. *Process Life Cycle Diary:* Observe and document how processes are
+     created, scheduled, paused, and terminated using standard
+     process-monitoring tools.
+
+  3. *Users, Groups, and Permissions Explorer:* Investigate how Linux
+     manages users, groups, file ownership, and permissions through
+     controlled experiments and examples.
+
+  4. *Disk Usage and Filesystem Explorer*: Examine disks, partitions,
+     mounts, and filesystem usage, explaining how storage is organized
+     and reported by the OS.
+
+  5. *Boot and Startup Observation Project:* Trace what happens during
+     system startup after the kernel loads, focusing on services,
+     timing, and logs.
+
+  6. *System Logs as a Narrative:* Analyze system logs to reconstruct
+     what the system is doing over time and how events are recorded.
+
+  7. *Resource Monitoring Notebook*: Monitor CPU, memory, and I/O usage
+     under different workloads and explain observed behavior.
+
+  8. *Networking Basics in Practice:* Explore network interfaces, IP
+     addressing, routing, DNS, and open ports using standard Linux
+     tools.
+
+  9. *Shell Automation Helper Tool:* Develop a small shell script that
+     automates a common system task and explain how it interacts with
+     the OS.
+
+  10. *Configuration Files in Practice:* Explore how Linux configuration
+      files in /etc control system behavior by inspecting, comparing,
+      and safely modifying selected configuration files, and
+      documenting their effects.
+
+- Using AI agents:
+  #+begin_quote
+  You may use AI agents as helpers while working on your project—for
+  example, to suggest commands, draft regular expressions, or help
+  interpret output. However, agents are only assistants: you are
+  responsible for testing everything they produce and for explaining
+  how and why it works. The goal is to use agents to support your
+  learning and exploration, not to replace your own understanding.
+  #+end_quote  
+      
