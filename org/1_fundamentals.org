@@ -3,11 +3,11 @@
 #+SUBTITLE:CSC 420 - Operating Systems - Lyon College Spring 2024
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
-* README
-#+ATTR_HTML: :WIDTH 400px:
+* Objectives
+#+attr_html: :width 200px :float nil: 
 [[../img/brainOS2.png]]
 
-/Image: where is the operating system .../
+/Image: where is the operating system.../?
 
 A summary of material for an overview of OS fundamentals based mostly
 on the textbook by Silberschatz et al. (2018), chapter 1.
@@ -15,17 +15,17 @@ on the textbook by Silberschatz et al. (2018), chapter 1.
 * Fundamentals of Operating Systems
 
 What you will learn:
-- What OS do and what they don't do
-- Computer system components
-- The OS kernel and interrupts
-- System startup and daemons
-- Multiprogramming and timesharing
-- Dual-mode operation
-- Virtualization
-- Distributed systems
-- Kernel data structures
-- Computing environments
-- FOSS OS
+- [ ] What OS do and what they don't do
+- [X] Computer system components
+- [ ] The OS kernel and *interrupts* (special system call)
+- [ ] System startup and *daemons*
+- [ ] Multiprogramming and timesharing
+- [ ] Dual-mode operation
+- [ ] Virtualization
+- [ ] Distributed systems
+- [ ] Kernel data structures
+- [ ] Computing environments
+- [ ] FOSS OS
 
 See also:
 1. [[https://www.youtube.com/playlist?list=PLW1yb8L3S1ngGmtKlI5XYcTNQQ1r3xZvq][Fundamentals of Operating Sytems in 77 videos (Davis, 2018)]].
@@ -34,6 +34,7 @@ See also:
 
 * What is an Operating System?
 
+What is an Operating System?
 #+begin_quote
 - An operating system is software that manages a computer's
   hardware.
@@ -70,7 +71,7 @@ What issues could any of these actors have? What could go wrong?
 - Good performance
 - Doesn't care about resource utilization
 - Depends on scenario: workstation, controller, PC, phone, mainframe
-- Most devices are resource poor (CPU/memory can be stretched
+- Most devices are resource poor (CPU/memory can be stretched)
 #+end_quote
 
 * What does the OS want?
@@ -97,7 +98,7 @@ today's OS work load - operating the disk drives. You had to configure
 the interface for every application yourself.
 #+end_quote
 
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/middleware.png]]
 
 * Alternative approaches
@@ -108,12 +109,13 @@ the interface for every application yourself.
 - Distributed operating systems (spread out over machines)
 - Persistent operating systems (all main memory is persistent)
 - Agent-based models (autnomous agents structure jobs)
-
+- ...
+  
 * A minimal pseudo kernel in Python
 
 To run, tangle and start ~kernel.py~ script in the shell, or execute
 here and switch to ~*Python*~ buffer to enter kernel operations.
-#+begin_src python :results output :session *Python* :tangle kernel.py
+#+begin_example python :results none :session *Python* :tangle kernel.py
   def handle_command(command):
       # This function handles the commands input by the user
       if command == "exit":
@@ -141,8 +143,7 @@ here and switch to ~*Python*~ buffer to enter kernel operations.
       minimal_kernel()
 #+end_src
 
-
-* Computer system organization
+* NEXT Computer system organization
 #+ATTR_HTML: :WIDTH 400px:
 [[../img/computer.png]]
 
