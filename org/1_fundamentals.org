@@ -143,8 +143,8 @@ here and switch to ~*Python*~ buffer to enter kernel operations.
       minimal_kernel()
 #+end_src
 
-* NEXT Computer system organization
-#+ATTR_HTML: :WIDTH 400px:
+* Computer system organization
+#+attr_html: :width 400px :float nil: 
 [[../img/computer.png]]
 
 A memory-centric computer model:
@@ -153,9 +153,10 @@ A memory-centric computer model:
 3) Application software and hardware (peripherals, I/O devices)
 
 * An Input/Output operation, dissected
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/interrupt2.png]]
 
+Recall the difference between device adapters vs. controllers:
 1. Device driver loads registers in the device controller.
 2. Device controller decides which action to take, like 'read
    character' from keyboard.
@@ -164,12 +165,12 @@ A memory-centric computer model:
    *interrupt* signal from the controller.
 
 * Process, interrupted
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/interrupt3.png]]
 
-- Interrupts are used to handle asynchronous events.
+- *Interrupts* are used to handle asynchronous events.
 - Device controllers and hardware faults raise interrupts.
-- To handle the workload, the OS uses an event-vector table.
+- To handle the workload, the OS uses an *event-vector table*.
 
 * Event vector tables
 #+ATTR_HTML: :WIDTH 400px:
@@ -184,6 +185,9 @@ Efficient because there are tens of thousands of processes most of
 whom don't need to be interrupted.
 
 * Interrupt log and priorities
+
+This will also work on Google Cloud Shell (do it) showing that this
+system is a proper Linux VM with its own kernel.
 
 #+ATTR_HTML: :WIDTH 400px:
 #+caption: interrupt log on Pi 4 (uptime: 4 days)
@@ -222,20 +226,20 @@ Explanation of the figure:
   the last reboot.
 
 * System startup
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/bootstrap2.png]]
 
 _ The CPU needs something in memory to work with.
-- The first program loaded at boot is the bootstrap program.
-- It is stored in the ROM (Read Only Memory) or EEPROM (Electrically
+- The first program loaded at boot is the *bootstrap* program.
+- It is stored in the *ROM* (Read Only Memory) or *EEPROM* (Electrically
   Erasable Programmable ROM) - non-volatile firmware memory.
-- The bootstrap program initializes the system and loads the kernel.
-- It starts system daemons - service programs outside of the kernel.
-- The configuration data to boot are the BIOS (Basic Input Output
+- The bootstrap program initializes the system and loads the *kernel*.
+- It starts system *daemons* - service programs outside of the kernel.
+- The configuration data to boot are the *BIOS* (Basic Input Output
   System) data. (Needed e.g. when you want to boot from USB).
 
 * The Linux system daemon ~systemd~
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/systemd1.png]]
 
 - Once the kernel is loaded it can start serving system & users.
@@ -243,7 +247,7 @@ _ The CPU needs something in memory to work with.
 - The kernel now waits for interrupts to call it to service.
 
 * Multiprogramming (batch system)
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/batch.png]]
 
 - Jobs (code + data) are organized to keep the CPU always busy.
@@ -264,7 +268,7 @@ mode:
 #+end_example
 
 * ~top~ processes occupying the CPU
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/top1.png]]
 
 How and what the CPU is busy with you can see with the ~top~ Linux
@@ -274,7 +278,7 @@ The screenshot also shows the ~sshd~ that supervises the ~ssh~ (secure
 shell) program used by me to connect to the Pi from my Windows box.
 
 * Timesharing (multitasking)
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/timesharing.png]]
 
 - CPU switches jobs so fast that users get the illusion of
@@ -290,7 +294,7 @@ We will not dive into these theoretically (much), but practically with
 the help of the shell and the shell scripting language =bash=.
 
 * Dual-mode operation
-#+ATTR_HTML: :WIDTH 400px:
+#+attr_html: :width 400px :float nil: 
 [[../img/dualmode.png]]
 
 - Dual-mode operation allows the OS to protect itself and the system.
