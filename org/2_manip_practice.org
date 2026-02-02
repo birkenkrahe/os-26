@@ -34,8 +34,6 @@ mkdir -v playground
 ls -l | grep playground
 #+end_example
 
-- [ ] Check task group
-
 * Creating directories
 1. Change directory to =playground= (do this at the start of each code block in this exercise).
 2. Print your working directory.
@@ -50,8 +48,6 @@ mkdir -v dir1 dir2
 ls -l | grep -E 'dir[12]'
 #+end_example
 
-- [ ] Check task group
-
 * Copying files
 1. Copy =/etc/passwd= into the current working directory (=playground=).
 2. Switch on verbose output for the copy command.
@@ -62,8 +58,6 @@ cd ~/playground
 cp -v /etc/passwd .
 ls -l | grep -E 'pass..'
 #+end_example
-
-- [ ] Check task group
 
 * Moving and renaming files
 ** Rename the file
@@ -138,8 +132,6 @@ ls -l dir1
 ls -l dir2
 #+end_example
 
-- [ ] Check task group
-
 * Creating hard links
 1. Create a hard link named =fun-hard= to =fun= in the current directory.
 2. Create a hard link named =fun-hard= to =fun= in =dir1=.
@@ -165,8 +157,6 @@ Show that =fun= and the hard links refer to the same inode:
 cd ~/playground
 ls -li fun fun-hard dir1/fun-hard dir2/fun-hard
 #+end_example
-
-- [ ] Check task group
 
 * Creating symbolic links
 1. Create a symbolic link named =fun-sym= to =fun= in the current directory.
@@ -201,8 +191,6 @@ Optional check:
 cd ~/playground
 ls -ldi dir1 dir1-sym
 #+end_example
-
-- [ ] Check task group
 
 * Removing files and directories
 ** Remove one hard link
@@ -269,8 +257,6 @@ cd ~
 rm -vr playground
 ls -l
 #+end_example
-
-- [ ] Check this last task group
 
 * Command summary
 Fill in the table.
