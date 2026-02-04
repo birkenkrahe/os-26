@@ -1,0 +1,83 @@
+#+STARTUP: overview hideblocks indent entitiespretty:
+* In-class Exercise: From Source to Project Plan (NotebookLM)
+
+** Goal
+
+Use a *single external source* and NotebookLM to identify *concrete first
+steps* for a possible course project, then represent those steps
+visually.
+
+** Time-boxed workflow (50 min)
+
+*** 1. Find one source (15 min)
+
+Individually:
+
+- Find *one substantial online source* relevant to the course
+  (article, technical blog post, paper, documentation page).
+- The source must be *technical*, not promotional.
+
+Write down:
+- Title
+- URL
+- One sentence explaining why this source could support a project
+
+Upload the source into NotebookLM.
+
+*** 2. Analyze with NotebookLM (15 min)
+
+In NotebookLM, ask:
+
+#+begin_quote
+Based on this source, what would be the *first 3–5 concrete steps*
+to turn this into a small student project?
+#+end_quote
+
+Then ask:
+
+#+begin_quote
+What assumptions or prerequisites does this source imply?
+#+end_quote
+
+Do *not* ask for a proposal or a full project plan.
+
+*** 3. Produce a visual artifact (15 min)
+
+Create *one* of the following (your choice):
+
+- a *single infographic*
+- *one slide* (not a deck)
+- a *simple mind map*
+
+The artifact must show:
+- a project title
+- the 3–5 first steps
+- at least one assumption or risk
+
+You may use any tool (Google Slides, PowerPoint, draw.io, paper +
+photo).
+
+*** 4. Submit (5 min)
+
+Submit:
+- the visual artifact
+- the source link
+
+Be prepared to explain your artifact in *30 seconds*.
+
+** What we will discuss (brief)
+
+- Are the “first steps” actually actionable?
+- Which sources led to clearer project structure?
+- Where did NotebookLM help, and where did it overreach?
+
+** Notes on the artifact
+
+- A *single slide or infographic* is usually the most effective format.
+- Mind maps are acceptable, but often sprawl and hide assumptions.
+
+** Summary
+
+- Assumptions: source quality matters; NotebookLM output requires filtering.
+- Risks: vague sources; steps that are really goals; visuals without decisions.
+- Human judgment required: source selection, step concreteness, feasibility.

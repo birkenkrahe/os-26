@@ -281,14 +281,14 @@
   learning and exploration, not to replace your own understanding.
   #+end_quote  
       
-* Week 3 ("Winter week"): DataCamp Review & OS Fundamentals II
-#+attr_html: :width 400px :float nil:
+* DONE Week 3 ("Winter week"): DataCamp Review & OS Fundamentals II
+#+attr_html: :width 600px :float nil:
 [[../img/summary_21_jan_2.png]]
 
-- [ ] Projects? Anyone? Canvas list?
-- [ ] DataCamp Review: 
-- [ ] OS Fundamentals II
-- [ ] Quiz 2: Manipulating Data (based on DataCamp lesson)
+- [X] Projects? Anyone? Canvas list?
+- [X] DataCamp Review: Popquiz (self graded bonus option)
+- [X] Quiz 2: Manipulating Data & OS Fundamentals II
+- [X] OS Fundamentals II: System interrupts and daemons
 
 ** DataCamp Review: Manipulating files and directories
 
@@ -308,23 +308,26 @@
    #+end_example
 
 3) *Reading Paths:* If the shell prints the following output, where are
-   you?  /home/student/projects Is this an absolute path or a relative
-   path?
+   you?  =/home/student/projects=. Is this an absolute path or a
+   relative path?
    #+begin_quote
    Absolute path; it starts at the root directory (/).
    #+end_quote
 
 4) *Listing Files:* What command lists the contents of the current
    working directory and prints the number of files?
-   #+begin_example sh
-   ls -l | wc -l
-   #+end_example
+   #+begin_src bash :results output
+   ls | wc -l  # Linux pipeline
+   #+end_src
+
+   #+RESULTS:
+   : 25
 
 5) *Interpreting:* In a long listing (~ls -l~), what does the first
    character of each line indicate?
    #+begin_quote
-   It indicates the file type (for example, regular file, directory,
-   or symbolic link).
+   It indicates the file type (for example, regular file (=-=),
+   directory (~d~) or symbolic link (~s~).
    #+end_quote
 
 6) *Changing Directories:* Write the command to move into a directory
@@ -332,6 +335,17 @@
    #+begin_example sh
    cd data
    #+end_example
+
+   Remember that the computer can only see files in its ~PATH~.
+   #+begin_src bash :results output
+     echo $PATH
+   #+end_src
+
+   #+RESULTS:
+   : /home/marcus/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+   To add another directory to search in for files, use its absolute
+   path.
 
 7) *Moving Up:* What does the following command do?  ~cd ..~
    #+begin_quote
@@ -344,7 +358,8 @@
    ~cp~ duplicates a file; ~mv~ relocates a file.
    #+end_quote
 
-9) *Renaming Files:* In Linux, which command is used to rename a file, and why does that make sense conceptually?
+9) *Renaming Files:* In Linux, which command is used to rename a file,
+   and why does that make sense conceptually?
    #+begin_quote
    ~mv~ - renaming is treated as moving a file from one pathname to
    another.
@@ -357,4 +372,26 @@
     the directory.
     #+end_quote
 
+    #+begin_example sh
+    rm -rf dir # remove `dir` recursively and by force
+    #+end_example
 
+
+* Week 4: OS Fundamentals III
+
+- [X] *Projects:* [[https://lyon.instructure.com/courses/4415/assignments/54482][Any update on the projects?]]
+- [X] *Practice*: [[https://github.com/birkenkrahe/os-26/blob/main/org/2_manip_practice.org][Manipulating files and data.]]
+- [ ] *Lecture*: [[https://github.com/birkenkrahe/os-26/blob/main/org/1_fundamentals.org][OS fundamentals (continued)]]
+
+If we are finished with the lecture before the time is up, I'll go
+around the room asking for your thoughts on your projects, or what you
+still need to know or think about to make a decision.
+
+If time allows, we can do a little exercise with NotebookLM to enrol
+AI as a helper, or at least start with the exercise (find a source).
+
+* Using NotebookLM to shape the project proposal
+
+See [[file:notebooklm.org][notebooklm.org]]
+
+  
