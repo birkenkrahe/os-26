@@ -35,24 +35,22 @@
    likely end up with a few relevant ones.
 
 6) Once you're done adding external sources, add the sprint 1 review
-   instructions: [[https://tinyurl.com/os-26-sprint-1-instructions][tinyurl.com/os-26-sprint-1-instructions]]
+   instructions (as PDF): [[https://tinyurl.com/os-26-sprint-1-instructions][tinyurl.com/os-26-sprint-1-instructions]]
 
 Purpose: You are putting *constraints* (Sprint rules) and *content* (your
 source) into the same reasoning space.
 
 * Step 2: CHAT (20 minutes)
 
-Run the following prompts *exactly* (one at a time) *inside your
-NotebookLM*.
-- Get them from here so that you don't have to type them in:
-  [[https://drive.google.com/file/d/1hn717qvOG3rBtb0RQkK9BdtqOQqYTzcU/view?usp=drive_link][tinyurl.com/sprint1-prompts]]
+- Run the following prompts *exactly* (one at a time) *inside your
+  NotebookLM*.
 
 - When you are satisfied with the answers, save them as *notes* in your
   notebook (=add note=).
 
 -----
 
-1) *Prompt 1 - Customize response*
+1) *Prompt 1 - Customize response*:
    #+begin_quote
    For all answers in this session:
    - Bullet points only.
@@ -63,14 +61,14 @@ NotebookLM*.
    - Focus on structure, not content.
    #+end_quote
 
-2) *Prompt 2 — Project Path*
+2) *Prompt 2 — Project Path*:
    #+begin_quote
    Based only on the uploaded source and the Sprint 1 instructions,
    what kind of project does this topic best support: a build-oriented
    single agent or a research deep dive?  Briefly explain why.
    #+end_quote
 
-3) *Prompt 3 — Proposal Skeleton*
+3) *Prompt 3 — Proposal Skeleton*:
    #+begin_quote
    Based on the Sprint 1 proposal structure (problem, reason,
    constraints, goals, metrics, references), do NOT write a proposal.
@@ -83,7 +81,7 @@ NotebookLM*.
    Present the result as a checklist or table.
    #+end_quote
 
-4) *Prompt 4 — Next Actions*
+4) *Prompt 4 — Next Actions*:
    #+begin_quote
    Do not assume this project is finalized.
 
@@ -110,8 +108,7 @@ Ask NotebookLM to generate *one visual artifact*:
 
 1) In the =Sources=, check all your sources so that they are included.
 2) Open the =Infographic= menu in the =Studio= panel.
-3) At the =Studio= prompt, enter the following text (copy it from
-   tinyurl.com/sprint1-visual)
+3) At the =Studio= prompt, enter the following text:
 
 #+begin_quote
 Create a one-page infographic that explains:
