@@ -1,83 +1,175 @@
 #+STARTUP: overview hideblocks indent entitiespretty:
-* In-class Exercise: From Source to Project Plan (NotebookLM)
+#+attr_html: :width 400px :float nil:
+[[../img/notebooklm.png]]
 
-** Goal
+* In-Class Exercise: From Interest → Sprint 1 Proposal Skeleton
 
-Use a *single external source* and NotebookLM to identify *concrete first
-steps* for a possible course project, then represent those steps
-visually.
+- *Purpose:* By the end of today’s session, you will have a *clear
+  starting point* for Sprint 1.
+  + You will *not* build anything yet.
+  + You will *not* finish your proposal.
+  + Your goal is to design a *viable project direction* and make the
+  structure explicit.
 
-** Time-boxed workflow (50 min)
+- Today’s work is meant to *reduce ambiguity*, not to impress.
 
-*** 1. Find one source (15 min)
+- *Time Available*: 45 minutes total (including short discussion and
+  showcasing your artifacts at the end).
 
-Individually:
+* Step 1: SOURCES (10 min)
 
-- Find *one substantial online source* relevant to the course
-  (article, technical blog post, paper, documentation page).
-- The source must be *technical*, not promotional.
+1) Choose a topic you are genuinely interested in. You may use a free
+   topic from the [[https://lyon.instructure.com/courses/4415/pages/projects][shared project list in Canvas]] or propose your own.
 
-Write down:
-- Title
-- URL
-- One sentence explaining why this source could support a project
+2) Open notebooklm.google.com and start a *new notebook*.
 
-Upload the source into NotebookLM.
+3) in the ~Sources~ panel of the dashboard, click on ~+ Add sources~.
 
-*** 2. Analyze with NotebookLM (15 min)
+4) In the search field ~Search the web for new sources~ put your search
+   prompt. For example, for my demo project, I used the prompt: ="An
+   agent to help me learn ecclesiastical Latin"=.
 
-In NotebookLM, ask:
+5) The AI will search for sources and likely find a bunch. Some will
+   not be accessible (they appear in red and you should remove
+   them). Others will be stupid and you can delete them. But you
+   likely end up with a few relevant ones.
+
+6) Once you're done adding external sources, add the sprint 1 review
+   instructions: [[https://tinyurl.com/os-26-sprint-1-instructions][tinyurl.com/os-26-sprint-1-instructions]]
+
+Purpose: You are putting *constraints* (Sprint rules) and *content* (your
+source) into the same reasoning space.
+
+* Step 2: CHAT (20 minutes)
+
+Run the following prompts *exactly* (one at a time) *inside your
+NotebookLM*.
+- Get them from here so that you don't have to type them in:
+  [[https://drive.google.com/file/d/1hn717qvOG3rBtb0RQkK9BdtqOQqYTzcU/view?usp=drive_link][tinyurl.com/sprint1-prompts]]
+
+- When you are satisfied with the answers, save them as *notes* in your
+  notebook (=add note=).
+
+-----
+
+1) *Prompt 1 - Customize response*
+   #+begin_quote
+   For all answers in this session:
+   - Bullet points only.
+   - Max 5 bullets total.
+   - Each bullet ≤ 10 words.
+   - No prose, no paragraphs.
+   - No justification or elaboration.
+   - Focus on structure, not content.
+   #+end_quote
+
+2) *Prompt 2 — Project Path*
+   #+begin_quote
+   Based only on the uploaded source and the Sprint 1 instructions,
+   what kind of project does this topic best support: a build-oriented
+   single agent or a research deep dive?  Briefly explain why.
+   #+end_quote
+
+3) *Prompt 3 — Proposal Skeleton*
+   #+begin_quote
+   Based on the Sprint 1 proposal structure (problem, reason,
+   constraints, goals, metrics, references), do NOT write a proposal.
+
+   Instead:
+   - list what information would be required for each section
+   - state what can be inferred from the uploaded source
+   - state what would still require human decisions or clarification
+
+   Present the result as a checklist or table.
+   #+end_quote
+
+4) *Prompt 4 — Next Actions*
+   #+begin_quote
+   Do not assume this project is finalized.
+
+   Identify:
+   - the key decisions that must be made before a Sprint 1 proposal
+     can be written
+   - the main risks related to scope, feasibility, or clarity
+   - what information or feedback would reduce each risk
+
+   Present the result as short bullet points.
+   Do not suggest implementation steps or timelines.
+   #+end_quote
+
+Rules:
+- Do not ask for “better ideas.”
+- Do not ask for examples from other students.
+- Treat gaps and uncertainty as *useful signals*.
+- Point out to the bot when the format/content gets too dense for you
+  to understand, and ask for a simpler/shorter version.
+
+* *Step 3: STUDIO (10 minutes)*
+
+Ask NotebookLM to generate *one visual artifact*:
+
+1) In the =Sources=, check all your sources so that they are included.
+2) Open the =Infographic= menu in the =Studio= panel.
+3) At the =Studio= prompt, enter the following text (copy it from
+   tinyurl.com/sprint1-visual)
 
 #+begin_quote
-Based on this source, what would be the *first 3–5 concrete steps*
-to turn this into a small student project?
+Create a one-page infographic that explains:
+- the project goal
+- the chosen project path (build or research)
+- the workflow or reasoning flow (inputs → process → outputs)
+- open questions, risks, or assumptions
+
+This is for explaining the project in class, not for marketing.
 #+end_quote
 
-Then ask:
+If the result (which should take 5 min to be generated) is not to your
+liking, alter the prompt accordingly.
 
-#+begin_quote
-What assumptions or prerequisites does this source imply?
-#+end_quote
+*Optional (if time):* Ask for a short slide deck (about 5 slides)
+explaining the same structure. Ask in "Chat" for a prompt for such
+a presentation.
 
-Do *not* ask for a proposal or a full project plan.
+* *Step 4: Submit + Reflect (5 minutes)*
 
-*** 3. Produce a visual artifact (15 min)
+1. Export the infographic as an image.
+2. Upload it to Canvas for today’s participation credit.
+3. Keep your NotebookLM notebook — you will reuse it for Sprint 2.
 
-Create *one* of the following (your choice):
+*Be ready to discuss:*
+- Where did the outline feel weak or unclear?
+- What required *your* judgment rather than the AI’s?
+- Did this exercise change which project path you prefer?
 
-- a *single infographic*
-- *one slide* (not a deck)
-- a *simple mind map*
+* My example: Project Credo
+#+attr_html: :width 400px :float nil: 
+[[../img/project_credo.png]]
 
-The artifact must show:
-- a project title
-- the 3–5 first steps
-- at least one assumption or risk
+Sources prompt: "An agent to help me learn ecclesiastical Latin"
 
-You may use any tool (Google Slides, PowerPoint, draw.io, paper +
-photo).
+(Based on 9 sources and the prompt from the exercise.)
 
-*** 4. Submit (5 min)
+* My prompt for the NotebookLM exercise
 
-Submit:
-- the visual artifact
-- the source link
+Okay, I want to design an exercise for the students for today.
+available time with discussion (15 min) at end: 45 minutes.
 
-Be prepared to explain your artifact in *30 seconds*.
+Students need to pick one of two project paths:
+- building something
+- doing some research
 
-** What we will discuss (brief)
+In the first sprint they shall only design a proposal.
 
-- Are the “first steps” actually actionable?
-- Which sources led to clearer project structure?
-- Where did NotebookLM help, and where did it overreach?
+I need an idea for an exercise today that enables them to complete
+the attached instruction set.
 
-** Notes on the artifact
+What I had in mind:
+- ask them to superficially research ("grab") at least one source related
+  to a topic on or off the list that they are interested in.
+- create a new notebook & upload the source to NotebookLM, as well as
+  any relevant course material (e.g. the sprint 1 instructions)
+- query NotebookLM on best next steps for this project.
+- ask for a summary in the form of an infographic (to be shown in class)
+- ask for a short slide deck explaining the steps
+- upload the infographic for points at the end of class.
 
-- A *single slide or infographic* is usually the most effective format.
-- Mind maps are acceptable, but often sprawl and hide assumptions.
-
-** Summary
-
-- Assumptions: source quality matters; NotebookLM output requires filtering.
-- Risks: vague sources; steps that are really goals; visuals without decisions.
-- Human judgment required: source selection, step concreteness, feasibility.
