@@ -6,18 +6,14 @@
 #+PROPERTY: header-args:bash :exports both :results output
 * README
 
-- You can code along with the file [[http://tinyurl.com/3-codealong-org][tinyurl.com/3-codealong.org]]
-
-  You can save it to an Org-mode file ~3-shell.org~
-
-- Upload the finished codealong file [[https://lyon.instructure.com/courses/2255/assignments/25142][to Canvas]]
-
 - The solutions and results herein were all obtained on a Lenovo
   laptop running Linux Mint 21.3 with 4 Intel Core i3-6006U CPUs.
 
 - This lab is based on chapter 5 (pp. 39-48) of Shotts (2019).
 
-- You can get the completed file from [[https://tinyurl.com/3-shell-org][tinyurl.com/3-shell-org]]
+- You can get the completed file from GitHub.
+
+- Open a Google Cloud Shell terminal to code along with me.
 
 * Command summary
 
