@@ -602,7 +602,7 @@ done
   : regex (7)            - POSIX.2 regular expressions
   : fortune (6)          - print a random, hopefully interesting, adage
 
-* Display a commands =info= entry
+* Display a commands =info= entry (Emacs only)
 
 - Info is a GNU project. You can use it as a standalone manual or use
   it for example inside Emacs: try ~C-h i~ and you're in it.
