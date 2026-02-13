@@ -393,4 +393,77 @@ See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
 
 - [X] Sprint review
 - [X] Overview of Raspberry Pi (Part I)
-- [ ] OS installation (home assignment)
+- [X] OS installation (home assignment) - by next Tuesay
+- [ ] Lecture + code along: The Shell Notebook
+
+** Review: Raspberry Pi overview
+
+1. You want to determine what CPU/hardware platform you are running on
+   from the command line. What single file would you display to get
+   that information?
+   #+begin_src bash :results none
+   cat /proc/cpuinfo > cpuinfo.txt
+   #+end_src 
+
+2. You want to determine which Linux distribution and version are
+   installed. What single file would you display to get that
+   information?
+   #+begin_src bash :results none
+   cat /etc/os-release > os-release.txt
+   #+end_src 
+
+3. Who initiated the Raspberry Pi project, and in what year did it
+   begin?
+   #+begin_quote
+   Eben Upton, 2006-2012.
+   #+end_quote
+
+4. In what year did the first Raspberry Pi become commercially
+   available, and what was its initial price?
+   #+begin_quote
+   2012, $35.
+   #+end_quote
+
+5. Which command-line utility is commonly used to produce a compact
+   “system overview” report (kernel, CPU, graphics, storage, network)
+   with a single command?
+   #+begin_src bash :results none
+   inxi > inxi.txt
+   #+end_src
+
+6. What processor architecture is used in most Raspberry Pi boards?
+   #+begin_quote
+   ARM (Advanced RISC Machines).
+   #+end_quote
+
+7. How many physical CPU cores and how many hardware threads are shown
+   for the example system (based on ~lscpu~)?
+   #+begin_quote
+   8 physical cores and 16 hardware threads.
+   #+end_quote
+
+8. Which command can be used to list block devices, their partitions,
+   and sizes in a tree-like format?
+   #+begin_quote
+   ~lsblk~
+   #+end_quote
+
+9. Which Raspberry Pi model is designed as a microcontroller rather
+   than a full single-board computer?
+   #+begin_quote
+   Raspberry Pi Pico.
+   #+end_quote
+
+10. What type of storage device is the primary internal drive in the
+    example Raspberry Pi system?
+    #+begin_quote
+    NVMe solid-state drive (SSD).
+    #+end_quote
+
+** The Shell Notebook
+
+Let's change things up and use Google Colab to build our own Shell
+notebook. This would be more fun in Emacs but I've discontinued it.
+
+Open this notebook and make a copy so that you can work in it:
+[[https://tinyurl.com/shell-notebook][tinyurl.com/shell-notebook]]
