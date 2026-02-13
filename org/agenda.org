@@ -376,19 +376,21 @@
     rm -rf dir # remove `dir` recursively and by force
     #+end_example
 
-* Week 4: OS Fundamentals III + Project Design
+* DONE Week 4: OS Fundamentals III + Project Design
 
 - [X] *Projects:* [[https://lyon.instructure.com/courses/4415/assignments/54482][Any update on the projects?]]
 - [X] *Practice*: [[https://github.com/birkenkrahe/os-26/blob/main/org/2_manip_practice.org][Manipulating files and data.]]
 - [X] *Lecture*: [[https://github.com/birkenkrahe/os-26/blob/main/org/1_fundamentals.org][OS fundamentals (continued)]]
 - [ ] *Lab*: [[https://github.com/birkenkrahe/os-26/blob/main/org/notebooklm.org][Project design with NotebookLM]]
+- [ ] *Quiz 2* will be live soon (deadline next Friday)
+- [ ] *Lecture + Codealong*: The Shell (see GitHub)
 
-If we are finished with the lecture before the time is up, I'll go
-around the room asking for your thoughts on your projects, or what you
-still need to know or think about to make a decision.
-
-** Lab: Using NotebookLM to shape the project proposal
+** DONE Lab: Using NotebookLM to shape the project proposal
 
 See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
 
-  
+* Week 5: Sprint review + OS installation + Pi overview
+
+- [X] Sprint review
+- [X] Overview of Raspberry Pi (Part I)
+- [ ] OS installation (home assignment)
