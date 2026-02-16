@@ -389,7 +389,7 @@
 
 See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
 
-* Week 5: Sprint review + OS installation + Pi overview
+* DONE Week 5: Sprint review + OS installation + Pi overview
 
 - [X] Sprint review
 - [X] Overview of Raspberry Pi (Part I)
@@ -415,13 +415,13 @@ See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
 3. Who initiated the Raspberry Pi project, and in what year did it
    begin?
    #+begin_quote
-   Eben Upton, 2006-2012.
+   Eben Upton (British Software Engineer), 2006-2012.
    #+end_quote
 
 4. In what year did the first Raspberry Pi become commercially
    available, and what was its initial price?
    #+begin_quote
-   2012, $35.
+   2012, $35. By comparison, the Pi 400 costs $99.
    #+end_quote
 
 5. Which command-line utility is commonly used to produce a compact
@@ -433,20 +433,34 @@ See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
 
 6. What processor architecture is used in most Raspberry Pi boards?
    #+begin_quote
-   ARM (Advanced RISC Machines).
+   ARM (Advanced RISC Machines), a British company.
    #+end_quote
 
 7. How many physical CPU cores and how many hardware threads are shown
-   for the example system (based on ~lscpu~)?
+   for the current system (based on ~lscpu~)?
    #+begin_quote
    8 physical cores and 16 hardware threads.
    #+end_quote
+   #+begin_src bash :results output
+     lscpu > lscpu.txt
+   #+end_src
 
+   #+RESULTS:
+   
 8. Which command can be used to list block devices, their partitions,
    and sizes in a tree-like format?
-   #+begin_quote
-   ~lsblk~
-   #+end_quote
+   #+begin_src bash :results output
+   lsblk
+   #+end_src
+
+   #+RESULTS:
+   : NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+   : nvme1n1     259:0    0 953.9G  0 disk 
+   : ├─nvme1n1p1 259:1    0   128M  0 part 
+   : └─nvme1n1p2 259:2    0 953.7G  0 part 
+   : nvme0n1     259:3    0 476.9G  0 disk 
+   : ├─nvme0n1p1 259:4    0   512M  0 part /boot/efi
+   : └─nvme0n1p2 259:5    0 476.4G  0 part /
 
 9. Which Raspberry Pi model is designed as a microcontroller rather
    than a full single-board computer?
@@ -465,5 +479,18 @@ See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
 Let's change things up and use Google Colab to build our own Shell
 notebook. This would be more fun in Emacs but I've discontinued it.
 
-Open this notebook and make a copy so that you can work in it:
-[[https://tinyurl.com/shell-notebook][tinyurl.com/shell-notebook]]
+Open this notebook in your browser (Google Chrome is best and make a
+copy so that you can work in it: [[https://tinyurl.com/shell-notebook][tinyurl.com/shell-notebook]]
+
+* Week 6: Installing linux + Shell Part 2
+
+- [ ] You need to check your submission: I left you a message if I
+  could not see your proposal, and if you have an infographic or a
+  slide deck (from NotebookLM) you can also upload them here.
+
+- [ ] We are going to install Raspbian on Wednesday. Make sure that
+  you have your SSD cards with the OS image on them so that we can do
+  it together in class.
+
+- [ ] There will not be a class on Friday - I will give you an
+  hour-long exercise and a new quiz to complete by Friday night.
