@@ -482,22 +482,24 @@ notebook. This would be more fun in Emacs but I've discontinued it.
 Open this notebook in your browser (Google Chrome is best and make a
 copy so that you can work in it: [[https://tinyurl.com/shell-notebook][tinyurl.com/shell-notebook]]
 
-* Week 6: Installing linux + Shell Part 2
+* Week 6: Installing Linux + Shell Part 2
 
-- [ ] You need to check your submission: I left you a message if I
+- [X] You need to check your submission: I left you a message if I
   could not see your proposal, and if you have an infographic or a
   slide deck (from NotebookLM) you can also upload them here.
 
-- [ ] We are going to install Raspbian *on Wednesday*. Make sure that
+- [X] We are going to install Raspbian *on Wednesday*. Make sure that
   you have your SSD cards with the OS image on them so that we can do
   it together in class.
 
-- [ ] There will *no class on Friday* - I will give you an hour-long
+- [X] There will *no class on Friday* - I will give you an hour-long
   *exercise* and a new *quiz* to complete by Friday night.
 
-- [ ] *Continued:* Lecture + code along: The Shell Notebook
+- [X] *Continued:* Lecture + code along: The Shell Notebook
   
 ** Review of the last session
+
+These and others will be subject of the next qiuz.
 
 1. What does the presence of a file named ~.dockerenv~ suggest about
    the runtime environment?
@@ -531,8 +533,8 @@ copy so that you can work in it: [[https://tinyurl.com/shell-notebook][tinyurl.c
 
 6. How can you check a file’s permissions?
    #+begin_quote
-   Use ~ls -l~ to display detailed file information, including
-   permission bits.
+   Use ~ls -l~ (long listing) to display detailed file information,
+   including permission bits (rwx).
    #+end_quote
 
 7. What command changes file permissions, and what does ~chmod +x
@@ -586,11 +588,15 @@ copy so that you can work in it: [[https://tinyurl.com/shell-notebook][tinyurl.c
     Use ~cd ..~ to move to the parent directory.
     #+end_quote
 
-15. What is the pedagogical difference between top-down, bottom-up,
-    and analogy-based learning as discussed in the lecture?
+15. What is the difference between top-down, bottom-up,
+    and analogy-based learning?
     #+begin_quote
     Top-down starts with abstract structure and theory, bottom-up
     starts with experimentation and concrete examples, and
     analogy-based learning explains new concepts by relating them to
     familiar ideas.
     #+end_quote
+
+** Installing Raspbian on the Raspberry Pi
+
+

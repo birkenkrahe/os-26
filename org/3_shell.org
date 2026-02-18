@@ -81,48 +81,48 @@ You'll see something like this:
      represent devices that handle data as a stream of bytes, like
      keyboards or serial ports.
 
-      Example: crw-rw-rw- 1 root tty 5, 0 Mar 1 12:34 /dev/tty
+     Example: crw-rw-rw- 1 root tty 5, 0 Mar 1 12:34 /dev/tty
 
-   2. Block Device Files: Identified by a 'b' at the beginning of the
-      file permissions string. Block device files represent devices
-      that handle data in blocks, such as hard drives and disk
-      partitions.
-      #+begin_example
-      brw-rw---- 1 root disk 8, 0 Mar 1 12:34 /dev/sda
-      #+end_example
+     2. Block Device Files: Identified by a 'b' at the beginning of the
+        file permissions string. Block device files represent devices
+        that handle data in blocks, such as hard drives and disk
+        partitions.
+        #+begin_example
+        brw-rw---- 1 root disk 8, 0 Mar 1 12:34 /dev/sda
+        #+end_example
 
-    3. Pipes: Named pipes (also known as FIFOs, for First In First
-       Out) are identified by a 'p' at the beginning of the file
-       permissions string. Pipes are used for inter-process
-       communication.
-       #+begin_example
-       prw-r--r-- 1 user group 0 Mar 1 12:34 /path/to/named_pipe
-       #+end_example
+        3. Pipes: Named pipes (also known as FIFOs, for First In First
+           Out) are identified by a 'p' at the beginning of the file
+           permissions string. Pipes are used for inter-process
+           communication.
+           #+begin_example
+           prw-r--r-- 1 user group 0 Mar 1 12:34 /path/to/named_pipe
+           #+end_example
 
-    4. Sockets: Used for network communication, sockets are identified
-       by an 's' at the beginning of the file permissions string. They
-       facilitate communication between processes, either on the same
-       machine or across networks.
-       #+begin_example
-       srwxrwxrwx 1 user group 0 Mar 1 12:34 /tmp/socket
-       #+end_example
-    5. Symbolic Links: Symbolic links are identified by an 'l' at the
-       beginning of the file permissions string. A symbolic link is a
-       type of file that points to another file or directory.
-       #+begin_example
-       lrwxrwxrwx 1 user group 7 Mar 1 12:34 /path/to/symlink -> /target
-       #+end_example
+        4. Sockets: Used for network communication, sockets are identified
+           by an 's' at the beginning of the file permissions string. They
+           facilitate communication between processes, either on the same
+           machine or across networks.
+           #+begin_example
+           srwxrwxrwx 1 user group 0 Mar 1 12:34 /tmp/socket
+           #+end_example
+        5. Symbolic Links: Symbolic links are identified by an 'l' at the
+           beginning of the file permissions string. A symbolic link is a
+           type of file that points to another file or directory.
+           #+begin_example
+           lrwxrwxrwx 1 user group 7 Mar 1 12:34 /path/to/symlink -> /target
+           #+end_example
 
-    6. Directories and Regular Files: While not special files, for
-       completeness, directories are identified by a 'd', and regular
-       files have no specific identifier at the beginning of their
-       permissions string.
-       #+begin_example
-        drwxr-xr-x 2 user group 4096 Mar 1 12:34 /path/to/directory
-       #+end_example
-       #+begin_example
-       -rw-r--r-- 1 user group 123 Mar 1 12:34 /path/to/file
-       #+end_example
+        6. Directories and Regular Files: While not special files, for
+           completeness, directories are identified by a 'd', and regular
+           files have no specific identifier at the beginning of their
+           permissions string.
+           #+begin_example
+            drwxr-xr-x 2 user group 4096 Mar 1 12:34 /path/to/directory
+           #+end_example
+           #+begin_example
+           -rw-r--r-- 1 user group 123 Mar 1 12:34 /path/to/file
+           #+end_example
 
 Special files are managed by the operating system and provide an
 interface to hardware devices, inter-process communication mechanisms,
@@ -219,7 +219,7 @@ done
     which cd  # it's a built-in
     type cd
     which gcc # it's an executable
-    type -a gcc 
+    type -a gcc
   #+end_src
 
   #+RESULTS:
@@ -254,15 +254,15 @@ done
       its value is used for DIR.
 
       Options:
-        -L	force symbolic links to be followed: resolve symbolic
+        -L      force symbolic links to be followed: resolve symbolic
                   links in DIR after processing instances of `..'
-        -P	use the physical directory structure without following
+        -P      use the physical directory structure without following
                   symbolic links: resolve symbolic links in DIR before
                   processing instances of `..'
-        -e	if the -P option is supplied, and the current working
+        -e      if the -P option is supplied, and the current working
                   directory cannot be determined successfully, exit with
                   a non-zero status
-        -@	on systems that support it, present a file with extended
+        -@      on systems that support it, present a file with extended
                   attributes as a directory containing the file attributes
 
       The default is to follow symbolic links, as if `-L' were specified.
@@ -310,22 +310,22 @@ done
       command name.
 
       Options:
-        -a	display all locations containing an executable named NAME;
+        -a      display all locations containing an executable named NAME;
                   includes aliases, builtins, and functions, if and only if
                   the `-p' option is not also used
-        -f	suppress shell function lookup
-        -P	force a PATH search for each NAME, even if it is an alias,
+        -f      suppress shell function lookup
+        -P      force a PATH search for each NAME, even if it is an alias,
                   builtin, or function, and returns the name of the disk file
                   that would be executed
-        -p	returns either the name of the disk file that would be executed,
+        -p      returns either the name of the disk file that would be executed,
                   or nothing if `type -t NAME' would not return `file'
-        -t	output a single word which is one of `alias', `keyword',
+        -t      output a single word which is one of `alias', `keyword',
                   `function', `builtin', `file' or `', if NAME is an alias,
                   shell reserved word, shell function, shell builtin, disk file,
                   or not found, respectively
 
       Arguments:
-        NAME	Command name to be interpreted.
+        NAME    Command name to be interpreted.
 
       Exit Status:
       Returns success if all of the NAMEs are found; fails if any are not found.
@@ -399,7 +399,7 @@ done
   For bug reporting instructions, please see:
   <file:///usr/share/doc/gcc-11/README.Bugs>.
   #+end_example
-  
+
 - Try the option ~--help~ for ~help~.
   #+begin_src bash
     help --help
@@ -713,5 +713,3 @@ done
 * References
 
 Shotts W (2019). The Linux Command Line (2e), NoStarch Press.
-
-
