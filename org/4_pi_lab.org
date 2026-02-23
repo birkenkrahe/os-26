@@ -1,0 +1,268 @@
+#+TITLE: Raspberry Pi Linux Orientation Lab
+#+AUTHOR: Marcus Birkenkrahe with ChatGPT
+#+SUBTITLE: CSC 420 Operating Systems Lyon College Spring 2026
+#+STARTUP: overview hideblocks indent entitiespretty:
+* Goal
+
+In this lab you will:
+
+1. Update your Raspberry Pi OS.
+2. Install several useful Linux tools.
+3. Explore your system using the command line.
+4. Answer short conceptual questions about what you observe.
+
+You will perform all work in the terminal.
+
+* Part 1 — Update the Operating System
+
+*Step 1. Update package lists*
+
+#+begin_example bash
+  sudo apt update
+#+end_example
+
+*Step 2. Upgrade installed packages*
+
+#+begin_example bash
+  sudo apt upgrade -y
+#+end_example
+
+Optional but recommended:
+
+#+begin_example bash
+  sudo apt autoremove -y
+#+end_example
+
+*Questions*
+
+1. What does ~sudo~ allow you to do?
+   #+begin_quote
+   ~sudo~ allows a regular user to execute commands with superuser
+   (root) privileges, enabling system-level changes such as installing
+   software system-wide or modifying protected files.
+   #+end_quote
+2. What is the difference between ~apt update~ and ~apt upgrade~?
+   #+begin_quote
+   - ~apt update~ refreshes the local list of available packages from
+     repositories.
+   - ~apt upgrade~ installes newer versions of already installed
+     packages based on that updated list.
+   #+end_quote
+3. What can go wrong with these commands?
+   #+begin_quote
+   - ~update~ might not be able to run because the package archive is
+     not reachable (either address lookup or archive location error).
+   - When running ~upgrade~ with ~sudo~, you can modify critical system
+     components since the kernel is not involved to check.
+   - An interrupted upgrade (power loss/network failure) can leave the
+     system in an inconsistent state.
+   - Upgrading can introduce incompatibilities or remove packages
+     required by other packages (dependencies).
+   #+end_quote
+
+* Part 2 — Install Useful Linux Tools
+
+Install the following packages:
+
+- ~tree~ (directory visualization)
+- ~htop~ (process viewer)
+- ~mlocate~ (fast file search)
+
+You can install multiple packages in one go, without confirmation:
+#+begin_example bash
+  sudo apt install tree htop mlocate -y
+#+end_example
+
+Check that the files exist, and where they are served from using ~which~.
+#+begin_example bash
+  which tree
+  which htop
+  which mlocate
+#+end_example
+
+What did you find?
+
+After installing ~mlocate~, build the file index:
+
+#+begin_example bash
+  sudo updatedb
+#+end_example
+
+To verify installation of ~mlocate~, use
+#+begin_example bash
+  dpkg -L mlocate  # -L: list files
+#+end_example
+
+*Questions*
+
+1. What is a package in Linux?
+   #+begin_quote
+   A *package* is a bundled collection of software files (executables,
+   libraries, configuration files, metadata) managed by a package
+   manager (~apt~) for installation, upgrading, and removal.
+   #+end_quote
+
+2. Where do these packages come from?
+   #+begin_quote
+   Packages are downloaded from *software repositories*, remote servers
+   maintained by the distribution or trusted maintainers that host
+   verified and versioned software.
+   #+end_quote
+
+3. What's the difference between ~apt~ and ~dpkg~?
+   #+begin_quote
+   ~dpkg~ is a lower-level package management tool for Debian-based
+   systems. It can install ~.deb~ files, remove, list, show packages but
+   does not resolve dependencies automatically
+   #+end_quote
+
+* Part 3 — Explore the Filesystem with tree
+
+Display the top two levels of the root directory:
+
+#+begin_src bash
+  tree -L 2 /
+#+end_src
+
+Display the top two levels of your home directory:
+
+#+begin_src bash
+  tree -L 2 ~
+#+end_src
+
+*Questions*
+
+1. What is the difference between ~/~ and ~~~?
+   #+begin_quote
+   ~/~ is the root directory of the entire filesystem, while ~~~
+   represents the current user’s home directory.
+   #+end_quote
+
+2. Name three directories directly under ~/~.
+   #+begin_quote
+   Examples include ~/home~, ~/etc~, and ~/usr~.
+   #+end_quote
+
+3. What kind of files are stored in ~/etc~?
+   #+begin_quote
+   ~/etc~ contains system-wide configuration files used by the operating
+   system and installed services.
+   #+end_quote
+
+* Part 4 — Explore Running Processes with htop
+
+Start the interactive process viewer:
+
+#+begin_src bash
+  htop
+#+end_src
+
+Observe:
+
+- CPU usage
+- Memory usage
+- Running processes
+- Process IDs (PIDs)
+
+Exit with ~q~.
+
+*Questions*
+
+1. How many processes are running on your system?
+   #+begin_quote
+   The exact number depends on the system state, but it can be
+   observed in ~htop~ or with ~ps aux | wc -l~. These commands group
+   process information differently.
+   #+end_quote
+
+2. What is PID 1? What program is it?
+   #+begin_quote
+   PID 1 is the first process started by the kernel during boot. On
+   Raspberry Pi OS, it is typically ~systemd~. Easier to see with ~top~.
+   #+end_quote
+
+3. What happens to CPU usage when you open another program?
+   #+begin_quote
+   CPU usage increases because the system allocates processing time to
+   the newly started program.
+   #+end_quote
+
+* Part 5 — Searching for Files
+
+*Using locate (indexed search)*
+
+#+begin_src bash
+  locate bash
+#+end_src
+
+Contrast this with the ~type -a~ command that you already know.
+
+*Using find (real-time search)*
+
+#+begin_src bash
+  find / -name bash 2>/dev/null
+#+end_src
+
+This search takes much longer. You may not wish to wait that
+long. Abort it with CTRL-c, or add a ~&~ at the end (background).
+
+*Questions*
+
+1. Which command returns results faster?
+   #+begin_quote
+   ~locate~ typically returns results faster because it searches a
+   prebuilt index rather than scanning the filesystem in real time.
+   #+end_quote
+
+2. Why does ~locate~ need ~updatedb~?
+   #+begin_quote
+   ~updatedb~ builds or refreshes the database of file paths that ~locate~
+   searches. Without it, ~locate~ may return outdated or incomplete
+   results.
+   #+end_quote
+
+3. What is the difference between indexed search and live search?
+   #+begin_quote
+   Indexed search uses a precomputed database of file paths for fast
+   lookup, while live search scans the filesystem directly each time
+   the command is executed.
+   #+end_quote
+
+* Part 6 — System Information
+
+Display kernel information:
+
+#+begin_src bash
+  uname -a
+#+end_src
+
+Display distribution information:
+
+#+begin_src bash
+  lsb_release -a
+#+end_src
+
+This is an alternative to the direct ~cat /etc/os-release~
+
+*Questions*
+
+1. What kernel version are you running?
+   #+begin_quote
+   The kernel version can be determined using ~uname -a~; the exact
+   version depends on the specific system installation.
+   #+end_quote
+
+2. What distribution version are you running?
+   #+begin_quote
+   The distribution version can be determined using ~lsb_release -a~;
+   the exact version depends on the installed release of Raspberry Pi
+   OS.
+   #+end_quote
+
+3. What is the difference between the kernel and the operating system?
+   #+begin_quote
+   The kernel is the core component that manages hardware, memory,
+   processes, and system calls, while the operating system includes
+   the kernel plus system utilities, libraries, and user-level tools.
+   #+end_quote
+
