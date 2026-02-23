@@ -482,7 +482,7 @@ notebook. This would be more fun in Emacs but I've discontinued it.
 Open this notebook in your browser (Google Chrome is best and make a
 copy so that you can work in it: [[https://tinyurl.com/shell-notebook][tinyurl.com/shell-notebook]]
 
-* Week 6: Installing Linux + Shell Part 2
+* DONE Week 6: Installing Linux + Shell Part 2
 
 - [X] You need to check your submission: I left you a message if I
   could not see your proposal, and if you have an infographic or a
@@ -599,4 +599,143 @@ These and others will be subject of the next qiuz.
 
 ** Installing Raspbian on the Raspberry Pi
 
+* Week 7: Submission standards, Pi OS update, redirection
 
+- [ ] Review: Submission standards
+- [ ] Update the Raspberry Pi OS and install an app
+- [ ] Redirecting data streams
+
+** Review: Submission standards
+#+attr_html: :width 400px :float nil:
+[[../img/submission_standards.png]]
+
+- [ ] A few of you did not submit the "[[https://colab.research.google.com/drive/1sgLY8DwBb0P4HeDkSkQlYohqmDxvdJmq?usp=sharing][Forensic analysis]]" assignment.
+- [ ] If you have trouble with time management: Use tech support!
+- [ ] *Notebooks* are your friend: Learn Markup! It's trivial & helps.
+- [ ] The command is not ~!whoami~ but ~whoami~. The ~!~ is a Colab tool.
+- [ ] If you use AI *you must reference it* and *explain how you used it*.
+- [ ] If you cite references (you should!): *consistent* and *complete*.
+- [ ] *A link is not a reference.* It can be part of one (then hide it!)
+- [ ] Some of you need to *read my comments* (e.g. about sharing files).
+- [ ] Deadline for the next sprint review: *March 9* (updated notebook).
+
+** Review: Pi installation and first use (test yourself)
+
+1. What does =sudo raspi-config= configure on a Raspberry Pi?
+   #+begin_quote
+   It opens the Raspberry Pi configuration utility to change system
+   settings such as SSH, hostname, locale, password, and boot options.
+   #+end_quote
+
+2. What is SSH and why is it useful on a Raspberry Pi?
+   #+begin_quote
+   SSH (Secure Shell) allows remote login and command execution over a
+   network connection.
+   #+end_quote
+
+3. What does =startx= do?
+   #+begin_quote
+   It starts the X11 graphical environment from the command line.
+   #+end_quote
+
+4. What is the difference between X11 and a window manager? (*NEW*)
+   #+begin_quote
+   X11 provides the graphical display system, while the window manager
+   controls window placement, decoration, and interaction.
+   #+end_quote
+
+5. What is the purpose of the file =.bashrc=?
+   #+begin_quote
+   It is a shell configuration file executed when a new interactive
+   Bash session starts.
+   #+end_quote
+
+6. Why does the filename =.bashrc= have a dot at the beginning?
+   #+begin_quote
+   Files beginning with a dot (=.=) are hidden by default in Unix-like
+   systems.
+   #+end_quote
+
+7. How can you list hidden files in a directory?
+   #+begin_quote
+   Use =ls -a= or =ls --all=.
+   #+end_quote** 
+
+8. What does the variable =PS1= represent?
+   #+begin_quote
+   =PS1= defines the primary shell prompt string displayed to the user.
+   #+end_quote
+
+9. How can you display the current prompt?
+   #+begin_quote
+   ~echo $PS1~ prints the current value of the prompt string variable.
+   #+end_quote
+
+10. What is the purpose of the =HISTORY= variable?
+    #+begin_quote
+    It controls or references how command history is stored and managed.
+    #+end_quote
+
+11. Can you change the =HISTORY= variable?
+    #+begin_quote
+    Yes, with ~HISTSIZE=10~ you change it to 10 items, and with =echo
+    $HISTSIZE= you get the current value.
+    #+end_quote
+
+12. What is the difference between =cat= and =less=?
+    #+begin_quote
+    =cat= prints the entire file to standard output at once, while =less=
+    allows interactive scrolling and viewing.
+    #+end_quote
+
+13. What does the =type= command do?
+    #+begin_quote
+    It tells how a command name is interpreted by the shell (alias,
+    built-in, function, or external binary).
+    #+end_quote
+
+14. What is a shell built-in command? 
+    #+begin_quote
+    A command implemented directly inside the shell rather than as a
+    separate executable file.
+    #+end_quote
+
+15. Why is =cd= a built-in instead of an external program? (*NEW*)
+    #+begin_quote
+    Because changing directories must modify the current shell process
+    itself, which an external program cannot do.
+    #+end_quote
+
+16. What is a shell alias?
+    #+begin_quote
+    A shortcut name that substitutes one command string for another.
+    #+end_quote
+
+17. What is a shell function?
+    #+begin_quote
+    A user-defined block of shell commands stored in memory and
+    executed like a command.
+    #+end_quote
+
+18. What is meant by a “binary” in Linux?
+    #+begin_quote
+    An executable file compiled into machine code, typically stored in
+    directories like =/bin= or =/usr/bin=.
+    #+end_quote
+
+19. What happens when you type a command name into the shell?
+    #+begin_quote
+    The shell searches for an alias, function, built-in, or executable
+    in the directories listed in =PATH=, then executes the first match.
+    #+end_quote
+
+** Raspberry Pi orientation lab
+#+attr_html: :width 400px :float nil:
+[[../img/pi2box.jpg]]
+
+- Update your Raspberry Pi OS
+- Install several useful non-standard Linux tools
+- Explore your system using the command-line
+- Answer short conceptual questions about what you observe.
+
+  
