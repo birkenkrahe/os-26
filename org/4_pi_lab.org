@@ -1,4 +1,4 @@
-#+TITLE: Raspberry Pi Linux Orientation Lab
+x==g#+TITLE: Raspberry Pi Linux Orientation Lab
 #+AUTHOR: Marcus Birkenkrahe with ChatGPT
 #+SUBTITLE: CSC 420 Operating Systems Lyon College Spring 2026
 #+STARTUP: overview hideblocks indent entitiespretty:
@@ -135,7 +135,9 @@ Display the top two levels of your home directory:
 1. What is the difference between ~/~ and ~~~?
    #+begin_quote
    ~/~ is the root directory of the entire filesystem, while ~~~
-   represents the current user’s home directory.
+   represents the current user’s home directory. You can also use the
+   environment variable ~$HOME~ or the absolute address to your home
+   directory, ~/home/pi~ (if your username is ~pi~).
    #+end_quote
 
 2. Name three directories directly under ~/~.
