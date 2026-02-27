@@ -609,9 +609,7 @@ These and others will be subject of the next qiuz.
 - [ ] Redirecting data streams
 - [ ] 2nd sprint: *extensive* Literature review (due March 13)
 
-** NEXT 2nd sprint: Literature review
-
-** Review: Submission standards
+** DONE Review: Submission standards
 #+attr_html: :width 400px :float nil:
 [[../img/submission_standards.png]]n
 
@@ -625,7 +623,7 @@ These and others will be subject of the next qiuz.
 - [X] Some of you need to *read my comments* (e.g. about sharing files).
 - [X] Deadline for the next sprint review: *March 9* (updated notebook).
 
-** Review: Pi installation and first use (test yourself)
+** DONE Review: Pi installation and first use (test yourself)
 
 1. What does =sudo raspi-config= configure on a Raspberry Pi?
    #+begin_quote
@@ -740,8 +738,15 @@ These and others will be subject of the next qiuz.
 [[../img/pi2box.jpg]]
 
 - [X] Update your Raspberry Pi OS
-- [ ] Install several useful non-standard Linux tools
+- [X] Install several useful non-standard Linux tools
 - [ ] Explore your system using the command-line
 - [ ] Answer short conceptual questions about what you observe.
+
+** Finish up with the shell foundation lecture
+
+- Getting ~help~ with ~man~ and ~apropos~
+- Getting your ~fortune~
+- ~whatis~ in a command?
+- GNU ~info~ system
 
   
