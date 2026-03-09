@@ -749,14 +749,14 @@ These and others will be subject of the next qiuz.
 - ~whatis~ in a command?
 - GNU ~info~ system
 
-* Week 8: Redirection & Expansion
+* Week 8/9: Redirection & Expansion
 
 - [ ] Review: Redirection I
 - [ ] DataCamp: New course "Introduction to Bash Scripting"
 - [ ] Continued: Redirection II
 - [ ] Lecture: Expanding shell parameters
 
-** Review: Redirection & Big Data
+** DONE Review: Redirection & Big Data
 
 1. What does *REPL* stand for, and how does it describe the behavior of
    a command-line interface?
@@ -853,7 +853,7 @@ These and others will be subject of the next qiuz.
     - *Value* – the usefulness or insights obtained from the data
     #+end_quote
 
-** Quiz: Redirection
+** Review: Redirection (popquiz)
 
 [[https://github.com/birkenkrahe/os-26/blob/main/pdf/Redirection_popquiz.pdf][In-class assignment (PDF)]]. Turn in the completed quiz for points. If
 you missed class, you can complete the quiz on your own, grade it (on
