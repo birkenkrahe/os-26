@@ -599,17 +599,17 @@ These and others will be subject of the next qiuz.
 
 ** Installing Raspbian on the Raspberry Pi
 
-* Week 7: Submission standards, Pi OS update, redirection
+* DONE Week 7: Submission standards, Pi OS update, redirection
 #+attr_html: :width 400px :float nil:
 [[../img/literature_review.png]]
 
-- [ ] Review: Submission standards
-- [ ] Update the Raspberry Pi OS and install an app
-- [ ] Finish up the shell introduction lecture
-- [ ] Redirecting data streams
-- [ ] 2nd sprint: *extensive* Literature review (due March 13)
+- [X] Review: Submission standards
+- [X] Update the Raspberry Pi OS and install an app
+- [X] Finish up the shell introduction lecture
+- [X] 2nd sprint: *extensive* Literature review (due March 13)
+- [X] Redirecting data streams
 
-** DONE Review: Submission standards
+** Review: Submission standards
 #+attr_html: :width 400px :float nil:
 [[../img/submission_standards.png]]n
 
@@ -623,7 +623,7 @@ These and others will be subject of the next qiuz.
 - [X] Some of you need to *read my comments* (e.g. about sharing files).
 - [X] Deadline for the next sprint review: *March 9* (updated notebook).
 
-** DONE Review: Pi installation and first use (test yourself)
+** Review: Pi installation and first use (test yourself)
 
 1. What does =sudo raspi-config= configure on a Raspberry Pi?
    #+begin_quote
@@ -749,4 +749,112 @@ These and others will be subject of the next qiuz.
 - ~whatis~ in a command?
 - GNU ~info~ system
 
-  
+* Week 8: Redirection & Expansion
+
+- [ ] Review: Redirection I
+- [ ] DataCamp: New course "Introduction to Bash Scripting"
+- [ ] Continued: Redirection II
+- [ ] Lecture: Expanding shell parameters
+
+** Review: Redirection & Big Data
+
+1. What does *REPL* stand for, and how does it describe the behavior of
+   a command-line interface?
+   #+begin_quote
+   REPL stands for *Read–Eval–Print Loop*. The system reads a command,
+   evaluates (executes) it, prints the result, and then waits for the
+   next command.
+   #+end_quote
+
+2. In Unix-like systems, what are *stdin*, *stdout*, and *stderr*, and how
+   does the OS distinguish between them?
+   #+begin_quote
+   They are standard input/output data streams used by programs.
+   - ~stdin~ = file descriptor 0 (input)
+   - ~stdout~ = file descriptor 1 (normal output)
+   - ~stderr~ = file descriptor 2 (error output).
+   #+end_quote
+
+3. What does the command operator ~>~ do in the shell? 
+   #+begin_quote
+   ~>~ redirects standard output (~stdout~) to a file.
+   #+end_quote
+
+4. What if =input.txt= exists when you run =echo "1" > input.txt= ?
+   #+begin_quote
+   If the file =input= exists it is overwritten; if it does not exist it
+   is created.
+   #+end_quote
+
+5. How does the operator ~>>~ differ from ~>~ in shell redirection?
+   #+begin_quote
+   ~>>~ appends output to the end of a file instead of overwriting the
+   file.
+   #+end_quote
+
+6. How can you redirect *standard error* to a file in the shell?
+   #+begin_quote
+   Use the file descriptor for stderr (2) with redirection: ~2>
+   filename~. This sends error messages to the specified file instead
+   of the terminal.
+   #+end_quote
+
+   #+begin_src bash :results output :exports both
+     ls /nonsense 2> error
+     cat error
+   #+end_src
+
+7. Why does the command ~ls -l /bin/usr > file.txt~ leave ~file.txt~ empty
+   even though an error occurs?
+   #+begin_quote
+   Because ~>~ redirects only ~stdout~. The error message is sent to
+   ~stderr~, which still goes to the terminal unless explicitly
+   redirected.
+   #+end_quote
+
+8. What does the Unix command ~rev~ do?
+   #+begin_quote
+   ~rev~ reverses the characters in each line of input. It opens an
+   input stream that has to be shut down.
+   #+end_quote
+
+9. How can ~rev~ be used inside a shell script?
+   #+begin_src bash :results output :exports both
+     # piping a string from `stdin` into `rev`
+     echo "hello world" | rev
+   #+end_src
+
+   Advanced example:
+   #+begin_src bash :noeval :exports both :tangle rev.sh
+     #!/bin/bash
+     # This script reads each line from `input.txt`, reverses the
+     # characters using `rev`, and prints the result.
+
+     while read line
+     do
+         echo "$line" | rev
+     done < input.txt
+   #+end_src
+
+   #+begin_src bash :results output :exports both
+     echo -e "To be or not to be\nthat is the question" > input.txt
+     cat input.txt
+     chmod +x rev.sh
+     ./rev.sh
+   #+end_src
+
+10. What are the *five V’s of Big Data* and what do they describe? 
+    #+begin_quote
+    The five V’s describe key characteristics of Big Data:
+    - *Volume* – the large amount of data generated
+    - *Variety* – different forms of data (text, images, logs, etc.)
+    - *Velocity* – the speed at which data is generated and processed
+    - *Veracity* – the reliability and quality of the data
+    - *Value* – the usefulness or insights obtained from the data
+    #+end_quote
+
+** Quiz: Redirection
+
+[[https://github.com/birkenkrahe/os-26/blob/main/pdf/Redirection_popquiz.pdf][In-class assignment (PDF)]]. Turn in the completed quiz for points. If
+you missed class, you can complete the quiz on your own, grade it (on
+your honor) and turn it in within one week after the class meeting.
