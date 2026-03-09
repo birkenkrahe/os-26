@@ -1,0 +1,125 @@
+#+title: Redirection - Solutions
+#+startup: overview hideblocks indent entitiespretty:
+#+options: toc:nil num:nil ^:nil: html-postamble:nil
+
+* Solutions
+
+* Task 1: Locate Standard Device Files
+Use the ls command to list all files in the ~/dev~ directory that
+include ~"std"~ in their names.
+#+begin_src bash :results output
+  ls -l /dev/* | grep std
+#+end_src
+
+* Task 2: Understanding =rev= Command
+Demonstrate how the =rev= command can reverse a string. Use the string
+"OpenAI" as an example.
+#+begin_src bash :results output
+  echo "OpenAI" | rev
+#+end_src
+
+* Task 3: Redirect Output to a File
+
+Redirect the listing of all files in the ~/usr/bin~ directory to a file
+named ~list.txt~, then display only the bottom five lines of the file.
+#+begin_src bash :results output
+  ls -l /usr/bin > list.txt
+  tail -n 5 list.txt
+#+end_src
+
+* Task 4: Check File Type
+Determine the type of the previously created ~list.txt~ file.
+#+begin_src bash :results output
+  file list.txt
+#+end_src
+
+* Task 5: View Top Lines of a File
+
+Display the first 5 lines of the ~list.txt~ file, =tee= the output off
+to a file ~top.txt~, and count the number of words.
+#+begin_src bash :results output
+  head -n 5 list.txt | tee top.txt | wc -w
+#+end_src
+
+* Task 6: Redirect Non-Existing Directory Listing to a File
+Attempt to list a non-existing directory (~/non_existing_dir~) and
+redirect the error message to a file named ~error.txt~, then display the
+file content.
+#+begin_src bash :results output
+  ls -l /non_existing_dir 2> error.txt
+  cat error.txt
+#+end_src
+
+* Task 7: Create an Empty File
+
+Create an empty file named ~empty.txt~ without using =touch=, just
+redirection. List the file to make sure it's empty.
+#+begin_src bash :results output
+  > empty.txt
+  ls -l empty.txt
+#+end_src
+
+* Task 8: Append Text to a File
+
+Put the text "Nothing to see here" in a file ~append.txt~. Now append
+the text "Adding more content" to the end of the file and display the
+file.
+#+begin_src bash :results output
+  echo "Nothing to see here" > append.txt
+  echo "Adding more content" >> append.txt
+  cat append.txt
+#+end_src
+
+* Task 9: Display Environment Variables
+
+- On one line, write a list of all environment variables to a file
+  ~env.txt~ and count the number of variables (the displayed output).
+- On the next line count the lines of the file ~env.txt~ you created.
+- On the last line, display only the first line of ~env.txt~ using the
+  ~--lines~ flag.
+#+begin_src bash :results output
+  printenv | tee env.txt | wc -l
+  wc -l env.txt
+  head --lines=1 env.txt
+#+end_src
+
+* Task 10: Use a Loop to Create Files
+
+Put the line "Error message:" in a file ~error2.txt~. Now list a
+non-existing directory (~/non_existing_dir~) and append both =stdout= and
+=stderr= to ~error2.txt~. Lastly, count the number of lines of ~error2.txt~.
+#+begin_src bash :results output
+  echo "Error message:" > error2.txt
+  ls -l /non_existing_dir >> error2.txt 2>&1
+  wc -l error2.txt
+#+end_src
+
+* Notes
+
+1. In Task 5, =wc -w= counts *words*. If you want to count *lines*
+   instead, use =wc -l=.
+
+2. In Task 9, =wc -l env.txt= prints both the count and the filename.
+   If you want only the number, use:
+   #+begin_src bash :results output
+     wc -l < env.txt
+   #+end_src
+
+3. In Task 10, the order of redirection matters. This works:
+   #+begin_src bash :results output
+     ls -l /non_existing_dir >> error2.txt 2>&1
+   #+end_src
+   because both stdout and stderr end up in the same file.
+
+* Assumptions
+
+- The tasks are intended for a standard Unix/Linux shell.
+- =/usr/bin= and =/dev= exist on the system.
+- =rev= is installed.
+
+* What could fail or vary
+
+- The exact contents of =/usr/bin=, =/dev=, and =printenv= depend on the system.
+- The error text for a missing directory may differ slightly by shell or OS.
+- Some systems may produce slightly different output formatting for =ls= or =file=.
+
