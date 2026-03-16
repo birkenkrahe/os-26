@@ -749,14 +749,14 @@ These and others will be subject of the next qiuz.
 - ~whatis~ in a command?
 - GNU ~info~ system
 
-* Week 8/9: Redirection & Expansion
+* DONE Week 8: Redirection & Expansion
 
-- [ ] Review: Redirection I
-- [ ] DataCamp: New course "Introduction to Bash Scripting"
-- [ ] Continued: Redirection II
-- [ ] Lecture: Expanding shell parameters
+- [X] Review: Redirection I
+- [X] DataCamp: New course "Introduction to Bash Scripting"
+- [X] Continued: Redirection II
+- [X] Lecture: Expanding shell parameters
 
-** DONE Review: Redirection & Big Data
+** Review: Redirection & Big Data
 
 1. What does *REPL* stand for, and how does it describe the behavior of
    a command-line interface?
@@ -858,3 +858,102 @@ These and others will be subject of the next qiuz.
 [[https://github.com/birkenkrahe/os-26/blob/main/pdf/Redirection_popquiz.pdf][In-class assignment (PDF)]]. Turn in the completed quiz for points. If
 you missed class, you can complete the quiz on your own, grade it (on
 your honor) and turn it in within one week after the class meeting.
+
+* Week 9: Expansion II & file permissions
+
+** Review: Expansion I
+
+1. What does *expansion* mean in the context of the Unix shell?
+   #+begin_quote
+   Expansion is the substitution process the shell performs before
+   executing a command, replacing patterns, variables, or expressions
+   with their resulting values.
+   #+end_quote
+
+2. What does the command =echo *= print?
+   #+begin_quote
+   The shell performs pathname expansion before running the
+   command. The =*= pattern is replaced by all filenames in the current
+   directory, so =echo= receives the expanded list instead of the
+   literal =*=.
+   #+end_quote
+
+3. What happens if a pathname pattern such as =D*= does not match any
+   files?
+   #+begin_quote
+   If no files match the pattern, the shell leaves the pattern
+   unchanged and the command prints the literal string =D*=.
+   #+end_quote
+
+4. What is =[[:lower:]]=?  
+   #+begin_quote
+   It is a POSIX character class, a standard notation used in patterns
+   and regular expressions that represents a set of characters, such
+   as all lowercase letters in the current locale.
+   #+end_quote
+
+   Example:
+   #+begin_src bash :results output :exports both
+     if [ ! -d test ]; then
+         mkdir test
+     fi        
+     cd test
+     touch apple Banana cat Dog
+     echo [[:lower:]]*
+   #+end_src
+
+   #+RESULTS:
+   : apple cat
+
+5. Why does =echo *= not show hidden files?
+   #+begin_quote
+   By default, pathname expansion ignores filenames that begin with a
+   period, so hidden files are excluded from matches of the =*= pattern.
+   #+end_quote
+
+6. Why does the pattern =.*= include both =.= and =..=?
+   #+begin_quote
+   Because the pattern matches any filename starting with a period,
+   and both the current directory (=.=) and the parent directory (=..=)
+   satisfy that pattern.
+   #+end_quote
+
+7. What does the pattern =.[!.]*= match?
+   #+begin_quote
+   It matches hidden files that start with a single period but
+   excludes =.= and =..= because the second character cannot be another
+   period.
+   #+end_quote
+
+8. What is *tilde* expansion and what does =echo ~= print?
+   #+begin_quote
+   Tilde expansion replaces the tilde character with a user's ~$HOME~
+   directory. The command =echo ~= prints the current user's home
+   directory path. =echo $HOME= does the same thing.
+   #+end_quote
+
+   #+begin_src bash :results output :exports both
+     echo ~
+   #+end_src
+
+9. What is *arithmetic* expansion and what syntax does it use in ~bash~?
+   #+begin_quote
+   Arithmetic expansion allows the shell to evaluate integer
+   arithmetic expressions using the syntax =$((expression))=.
+   #+end_quote
+
+   #+begin_src bash :results output :exports both
+     echo $((2+2))
+   #+end_src
+   
+10. What is *brace* expansion and what is it commonly used for?
+   #+begin_quote
+   Brace expansion generates multiple text strings from a pattern,
+   often used to create lists of filenames or directories such as
+   numbered sequences or combinations.
+   #+end_quote
+
+   #+begin_src bash :results output :exports both
+     echo A{1..10}
+   #+end_src
+
