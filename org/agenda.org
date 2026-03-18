@@ -753,10 +753,10 @@ These and others will be subject of the next qiuz.
 
 - [X] Review: Redirection I
 - [X] DataCamp: New course "Introduction to Bash Scripting"
-- [X] Continued: Redirection II
-- [X] Lecture: Expanding shell parameters
+- [ ] Continued: Redirection II
+- [ ] Lecture: Expanding shell parameters
 
-** Review: Redirection & Big Data
+** DONE Review: Redirection & Big Data
 
 1. What does *REPL* stand for, and how does it describe the behavior of
    a command-line interface?
@@ -853,7 +853,7 @@ These and others will be subject of the next qiuz.
     - *Value* – the usefulness or insights obtained from the data
     #+end_quote
 
-** Review: Redirection (popquiz)
+** DONE Review: Redirection (popquiz)
 
 [[https://github.com/birkenkrahe/os-26/blob/main/pdf/Redirection_popquiz.pdf][In-class assignment (PDF)]]. Turn in the completed quiz for points. If
 you missed class, you can complete the quiz on your own, grade it (on
@@ -861,7 +861,11 @@ your honor) and turn it in within one week after the class meeting.
 
 * Week 9: Expansion II & file permissions
 
-** Review: Expansion I
+- [ ] Expansion II: Command substitution, quoting, word splitting, escaping
+- [ ] There is a quiz on expansion (due March 30)
+- [ ] Next topic: file permissions
+
+** DONE Review: Expansion I
 
 1. What does *expansion* mean in the context of the Unix shell?
    #+begin_quote
@@ -889,7 +893,7 @@ your honor) and turn it in within one week after the class meeting.
    #+begin_quote
    It is a POSIX character class, a standard notation used in patterns
    and regular expressions that represents a set of characters, such
-   as all lowercase letters in the current locale.
+   as all lowercase letters in the current locale (what the shell looks at).
    #+end_quote
 
    Example:
@@ -899,11 +903,11 @@ your honor) and turn it in within one week after the class meeting.
      fi        
      cd test
      touch apple Banana cat Dog
-     echo [[:lower:]]*
+     echo [[:upper:]]*
    #+end_src
 
    #+RESULTS:
-   : apple cat
+   : Banana Dog
 
 5. Why does =echo *= not show hidden files?
    #+begin_quote
@@ -934,7 +938,12 @@ your honor) and turn it in within one week after the class meeting.
 
    #+begin_src bash :results output :exports both
      echo ~
+     echo $HOME
    #+end_src
+
+   #+RESULTS:
+   : /home/marcus
+   : /home/marcus
 
 9. What is *arithmetic* expansion and what syntax does it use in ~bash~?
    #+begin_quote
@@ -945,6 +954,9 @@ your honor) and turn it in within one week after the class meeting.
    #+begin_src bash :results output :exports both
      echo $((2+2))
    #+end_src
+
+   #+RESULTS:
+   : 4
    
 10. What is *brace* expansion and what is it commonly used for?
    #+begin_quote
@@ -957,3 +969,82 @@ your honor) and turn it in within one week after the class meeting.
      echo A{1..10}
    #+end_src
 
+   #+RESULTS:
+   : A1 A2 A3 A4 A5 A6 A7 A8 A9 A10
+
+   Something to do: use expansion to generate hard passwords
+
+** Review: Expansion II
+
+1. What is command substitution in the shell and what syntax is
+   commonly used?
+   #+begin_quote
+   Command substitution replaces a command with its output, typically
+   using $(command).
+   #+end_quote
+
+2. What is the difference between =$(command)= and =`command`=?
+   #+begin_quote
+   They perform the same function, but $(command) is the modern,
+   preferred, and more readable syntax.
+   #+end_quote
+
+3. What will =echo $(ls)= output and why?
+   #+begin_quote
+   Command substitution: outputs list of files in current directory
+   because ~ls~ is executed and its output is substituted into ~echo~.
+   #+end_quote
+
+4. How does quoting affect command substitution, as in =echo $(cal)= vs
+   =echo "$(cal)"=?
+   #+begin_quote
+   Without quotes, word splitting removes formatting; with quotes,
+   formatting (newlines, spacing) is preserved.
+   #+end_quote
+
+5. What is word splitting and when does it occur?
+   #+begin_quote
+   Word splitting divides text into separate arguments based on
+   whitespace and occurs on unquoted expansions.
+   #+end_quote
+
+6. Which expansions are suppressed inside double quotes?
+   #+begin_quote
+   Word splitting, pathname expansion, tilde expansion, and brace
+   expansion are suppressed.
+   #+end_quote
+
+7. Which expansions still occur inside double quotes?
+   #+begin_quote
+   Parameter expansion, arithmetic expansion, and command substitution still occur.
+   #+end_quote
+
+8. What is the effect of single quotes on shell expansions?
+   #+begin_quote
+   Single quotes suppress all expansions, treating everything literally.
+   #+end_quote
+
+9. Why does echo "The total is $100.00" produce unexpected output?
+   #+begin_quote
+   =$1= is interpreted as a variable and replaced with an empty string,
+   resulting in incorrect output.
+   #+end_quote
+
+10. What is the purpose of the escape character =\= in the shell?
+    #+begin_quote
+    It removes the special meaning of the following character or
+    represents control sequences like =\n= or =\t=.
+    #+end_quote
+
+
+* Week 10: Process management
+
+* Week 11: Environment
+
+* Week 12: Networking
+
+* Week 13: Compilation
+
+* Week 14: Bash scripting
+
+* Week 15: Presentations
