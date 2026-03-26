@@ -859,13 +859,14 @@ These and others will be subject of the next qiuz.
 you missed class, you can complete the quiz on your own, grade it (on
 your honor) and turn it in within one week after the class meeting.
 
-* Week 9: Expansion II & file permissions
+* DONE Week 9: Expansion II & file permissions
 
-- [ ] Expansion II: Command substitution, quoting, word splitting, escaping
-- [ ] There is a quiz on expansion (due March 30)
-- [ ] Next topic: file permissions
+- [X] Expansion II: Command substitution, quoting, word splitting, escaping
+- [X] There is a quiz on expansion (due Monday, March 30)
+- [X] Remember the 2nd sprint deadline (Friday, March 20)
+- [X] Next topic: File permissions
 
-** DONE Review: Expansion I
+** Review: Expansion I
 
 1. What does *expansion* mean in the context of the Unix shell?
    #+begin_quote
@@ -976,6 +977,16 @@ your honor) and turn it in within one week after the class meeting.
 
 ** Review: Expansion II
 
+Why is this "expansion" stuff important?
+#+begin_quote
+Searching across a huge file system. Accessing environment variables,
+and turn input into explicit commands, write general purpose scripts,
+automate batch operations, give you full command of the command-line.
+
+The shell is like a saddle to a race horse, and expansion techniques
+are like stirrups for the horse.
+#+end_quote
+
 1. What is command substitution in the shell and what syntax is
    commonly used?
    #+begin_quote
@@ -988,7 +999,7 @@ your honor) and turn it in within one week after the class meeting.
    They perform the same function, but $(command) is the modern,
    preferred, and more readable syntax.
    #+end_quote
-
+   
 3. What will =echo $(ls)= output and why?
    #+begin_quote
    Command substitution: outputs list of files in current directory
@@ -1016,7 +1027,8 @@ your honor) and turn it in within one week after the class meeting.
 
 7. Which expansions still occur inside double quotes?
    #+begin_quote
-   Parameter expansion, arithmetic expansion, and command substitution still occur.
+   Parameter expansion, arithmetic expansion, and command substitution
+   still occur.
    #+end_quote
 
 8. What is the effect of single quotes on shell expansions?
@@ -1024,7 +1036,7 @@ your honor) and turn it in within one week after the class meeting.
    Single quotes suppress all expansions, treating everything literally.
    #+end_quote
 
-9. Why does echo "The total is $100.00" produce unexpected output?
+9. Why does =echo "The total is $100.00"= produce unexpected output?
    #+begin_quote
    =$1= is interpreted as a variable and replaced with an empty string,
    resulting in incorrect output.
@@ -1037,7 +1049,11 @@ your honor) and turn it in within one week after the class meeting.
     #+end_quote
 
 
-* Week 10: Process management
+* Week 10: Sprint review 2 / File permissions / Process management
+
+- [ ] New DataCamp assignment: Containerization and Virtualization
+- [ ] Continue: File permissions
+- [ ] New topic: Process management
 
 * Week 11: Environment
 
