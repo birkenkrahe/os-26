@@ -1055,6 +1055,71 @@ are like stirrups for the horse.
 - [ ] Continue: File permissions
 - [ ] New topic: Process management
 
+** Review
+
+1. Why are UNIX operating systems designed as multi-user systems?
+   #+begin_quote
+   Because early computers were shared systems, requiring multiple
+   users to access the same machine while protecting their data from
+   one another.
+   #+end_quote
+
+2. What is the purpose of the /etc/shadow file and why is it
+   restricted?
+   #+begin_quote
+   It stores user password information and is restricted to protect
+   sensitive authentication data from unauthorized access.
+   #+end_quote
+
+3. What information does the ~id~ command provide about a user?
+   #+begin_quote
+   It displays the user ID (uid), group ID (gid), and all groups the
+   user belongs to.
+   #+end_quote
+
+4. What is the difference between a user ID (uid) and a group ID (gid)?
+   #+begin_quote
+   The uid uniquely identifies a user, while the gid identifies the
+   primary group associated with that user.
+   #+end_quote
+
+5. How are file permissions structured in the UNIX security model?
+   #+begin_quote
+   Permissions are divided into three categories—owner, group, and
+   others—each with read, write, and execute permissions.
+   #+end_quote
+
+6. What does the first character in ~ls -l~ output represent?
+   #+begin_quote
+   It indicates the file type, such as regular file (-), directory
+   (d), special file (c) or symbolic link (l).
+   #+end_quote
+
+7. What is the meaning of the permission string ~-rw-r--r--~?
+   #+begin_quote
+   The owner can read and write; the group and others can only read
+   the file.
+   #+end_quote
+
+8. Why do symbolic links show full permissions like ~lrwxrwxrwx~ even
+   when access is restricted?
+   #+begin_quote
+   Because symbolic links only point to another file; actual
+   permissions are determined by the target file.
+   #+end_quote
+
+9. What is the effect of execute permission on directories?
+   #+begin_quote
+   It allows users to enter the directory (e.g., using cd) and access
+   its contents.
+   #+end_quote
+
+10. Why can a regular user not create files directly in ~/home~?
+    #+begin_quote
+    Because the ~/home~ directory is owned by root and only root (or its
+    group) has write permissions there.
+    #+end_quote
+
 * Week 11: Environment
 
 * Week 12: Networking

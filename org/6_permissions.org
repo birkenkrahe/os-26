@@ -1,4 +1,4 @@
-#+TITLE:Permissions
+x==g#+TITLE:Permissions
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE:permissions practice for CSC420 Operating Systems Spring 2024 Lyon College
 #+STARTUP:overview hideblocks indent
@@ -348,7 +348,8 @@
   : drwxr-x--- 34 marcus marcus 4096 Apr  2 09:50 marcus
 
   #+begin_quote
-  Answer: you and your group can enter and read, only you can write to ~$HOME~
+  Answer: you and your group can enter and read, only you can write to
+  ~$HOME~
   #+end_quote
 
 - Can you (as ~$USER~) create a file in ~/home~?
@@ -370,7 +371,7 @@
   rights, and you are not in ~root~'s group.
   #+end_quote
 
-* Changing file modes (=chmod=)
+* NEXT Changing file modes (=chmod=)
 
 - Only file owners and superuser can change the mode of a file or
   directory using the command ~chmod~.
@@ -412,8 +413,27 @@
   #+begin_example python
     format(8,'o')  # decimal 8 to octal (10)
     format(8,'b')  # decimal 8 to binary (1000)
-    oct(10)  # octal to decimal
+    oct(50)  # octal to decimal (40)
+    oct(10)  # octal to binary  (1000)
   #+end_example
+
+- You can also do this on the command line with ~bc~:
+  #+begin_src bash :results output :exports both
+    echo "obase=8; ibase=10; 8" | bc # 8^1 + 0 * 8^0
+    echo "obase=2; ibase=10; 8" | bc # 2^3 + 0 * (2^2+2^1+2^0)
+    echo "obase=10; ibase=8; 50"| bc # 5 * 8^1 + 0 * 8^0
+    echo "obase=2; ibase=8; 7" | bc # 4 + 2 + 1
+    echo "obase=2; ibase=8; 6" | bc # 4 + 2 + 0        
+    echo "obase=2; ibase=8; 5" | bc # 4 + 0 + 1   
+  #+end_src
+
+  #+RESULTS:
+  : 10
+  : 1000
+  : 40
+  : 111
+  : 110
+  : 101
 
 - By setting 3 octal digits, we can set the file mode for the owner,
   group owner, and world.
@@ -470,7 +490,7 @@
 
 - What does ~chmod 775~ do? Why is this a common setting?
   #+begin_src bash
-    chmod 775 foo.txt
+    chmod 775 foo.txt # 111 111 101
     ls -l foo.txt
   #+end_src
 
@@ -570,6 +590,19 @@
   #+RESULTS: chmod5
   : -r--r----- 1 marcus marcus 0 Apr  2 10:26 bar.txt
 
+- So if you can set permissions with symbols, why would you bother
+  with octal?
+  #+begin_quote
+  Octal matches the 3-bit structure of permissions exactly, aligns
+  with internal binary representations, and is very compact. It's best
+  suited for bulk assignments (rather than individual file changes).
+  #+end_quote
+
+- You can also set permissions in the GUI but that's not stable, not
+  fast, not consistent, and not suited to bulk permission changes.
+  #+attr_html: :width 400px :float nil:
+  [[../img/gui_permissions.png]]
+  
 * Setting permissions in the GUI
 
 You can inspect and set permissions also in GUIs. It usually takes two
@@ -591,12 +624,31 @@ you need administrative rights (which may require an admin login).
 * Setting default permissions (=umask=)
 
 - When a file is created, the =umask= command expresses a /mask/ of bits
-  to be *removed* from from the mode attributes of a file.
+  to be *removed* from from the default mode attributes of a file.
+
+- What is the default file mode for files and directories?
+  #+begin_quote
+  The default file mode is 666 (rw-rw-rw). The default directory mode
+  is 777 (rwxrwxrwx).
+  #+end_quote
+
+- How can you find this out?
+  #+begin_src bash :results output :exports both
+    rm -rf empty*
+    touch empty
+    ls -l empty  # -rw-rw-r-- does not seem to be right: umask is applied
+    mkdir empty2
+    ls -ld empty*
+  #+end_src
+
+  #+RESULTS:
+  : -rw-rw-r-- 1 aletheia aletheia 0 Mar 30 08:00 empty
+  : -rw-rw-r-- 1 aletheia aletheia    0 Mar 30 08:00 empty
+  : drwxrwxr-x 2 aletheia aletheia 4096 Mar 30 08:00 empty2
 
 - Running the command without arguments returns the default mask:
   #+begin_src bash
-    # default permission mask
-    umask
+    umask # default permission mask
   #+end_src
 
   #+RESULTS:
@@ -621,6 +673,12 @@ you need administrative rights (which may require an admin login).
   #+RESULTS:
   : removed 'foo.txt'
   : -rw-rw-r-- 1 marcus marcus 0 Apr  4 09:51 foo.txt
+
+- So what did ~umask~ do?
+  #+begin_quote
+  umask 002 removes the write permission from the 'others' group. It
+  is applied to the default file mode: 666-002=664 or rw-rw-r.
+  #+end_quote  
 
 - Reset the mask to ~0000~ ('remove nothing') and create the file again:
   #+begin_src bash
@@ -661,7 +719,8 @@ you need administrative rights (which may require an admin login).
 - Where a 1 appears in the binary value, the corresponding attribute
   is unset.
 
-- Exercises:
+- *Exercises:*
+  
   1) What are the permissions of a new file ~foo.txt~ when you run =umask
      0226=?
      #+begin_src bash
@@ -729,8 +788,9 @@ you need administrative rights (which may require an admin login).
   #+end_src
 
   #+RESULTS:
+  : removed 'empty'
   : mode of 'empty' changed from 0664 (rw-rw-r--) to 4664 (rwSrw-r--)
-  : -rwSrw-r-- 1 marcus marcus 0 Apr  4 10:14 empty
+  : -rwSrw-r-- 1 aletheia aletheia 0 Mar 30 08:17 empty
 
 - The =setgid= bit (octal ~2000~) changes the group ID from the current
   group ID running the program to that of the file owner.
@@ -751,7 +811,7 @@ you need administrative rights (which may require an admin login).
 
   #+RESULTS:
   : mkdir: created directory 'Empty'
-  : drwxrwsr-x 2 marcus marcus 4096 Apr  4 10:19 Empty
+  : drwxrwsr-x 2 aletheia aletheia 4096 Mar 30 08:17 Empty
 
 - The *sticky bit* (octal ~1000~) is a Unix artifact that stopped an
   executable file from being swapped out of cache memory but this is
@@ -774,7 +834,7 @@ you need administrative rights (which may require an admin login).
   #+RESULTS:
   : removed directory 'Empty'
   : mkdir: created directory 'Empty'
-  : drwxrwxr-t 2 marcus marcus 4096 Apr  4 10:21 Empty
+  : drwxrwxr-t 2 aletheia aletheia 4096 Mar 30 08:18 Empty
 
 * Changing identities (=su=, =sudo=)
 
