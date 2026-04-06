@@ -1,4 +1,4 @@
-x==g#+TITLE:Permissions
+#+TITLE:Permissions
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE:permissions practice for CSC420 Operating Systems Spring 2024 Lyon College
 #+STARTUP:overview hideblocks indent
@@ -371,7 +371,7 @@ x==g#+TITLE:Permissions
   rights, and you are not in ~root~'s group.
   #+end_quote
 
-* NEXT Changing file modes (=chmod=)
+* Changing file modes (=chmod=)
 
 - Only file owners and superuser can change the mode of a file or
   directory using the command ~chmod~.
@@ -906,7 +906,7 @@ you need administrative rights (which may require an admin login).
 - Ubuntu and its distributions (like Linux Mint) do not give a default
   password to ~root~ but use =sudo= to grant superuser privileges.
 
-* Change file owner and group (=chown=) 
+* IN PROGRESS Change file owner and group (=chown=) 
 
 - You need superuser privileges to change owner and group of a file.
 
