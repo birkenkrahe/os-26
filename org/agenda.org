@@ -1258,18 +1258,29 @@ are like stirrups for the horse.
     #+RESULTS:
     : ---------- 1 marcus marcus 0 Apr  1 13:21 foo.txt
 
-* Week 11: Process management / 2nd sprint review
+* DONE Week 11: Process management / 2nd sprint review
 
+- [ ] QuizRunner: custom GPT in class (15 min)
 - [ ] Review: 2nd Sprint Review
 - [ ] Process management
-- [ ] QuizRunner: custom GPT in class (15 min)
+
+** QuizRunner: File permissions and bash scripting
+
+- Open: [[https://tinyurl.com/quiz-runner-permissions][tinyurl.com/quiz-runner-permissions]]
+- Complete at least 10 questions
+- Upload the URL to Canvas
 
 ** 2nd Sprint
 
 - What was this sprint about in your view?
 
+  #+attr_html: :width 400px:
+  [[../img/sprint2.png]]
+
 - Write a (manual) summary paragraph of your main insights during this
   sprint review (on paper). Sign with your name (pledged) and date.
+  #+attr_html: :width 400px:
+  [[../img/insights.png]]
 
 - Noticed a lot of wide spacing (this can happen when one copies
   straight from ChatGPT into GDocs).
@@ -1289,6 +1300,7 @@ are like stirrups for the horse.
 - Will you read the feedback with the same attention and excitement?
 
 - Do you find it easier or harder to argue with the AI's output?
+
 
 * Week 12: Environment / Networking
 
