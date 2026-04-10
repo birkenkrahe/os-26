@@ -279,8 +279,8 @@
   responsible for testing everything they produce and for explaining
   how and why it works. The goal is to use agents to support your
   learning and exploration, not to replace your own understanding.
-  #+end_quote  
-      
+  #+end_quote
+
 * DONE Week 3 ("Winter week"): DataCamp Review & OS Fundamentals II
 #+attr_html: :width 600px :float nil:
 [[../img/summary_21_jan_2.png]]
@@ -317,7 +317,7 @@
 4) *Listing Files:* What command lists the contents of the current
    working directory and prints the number of files?
    #+begin_src bash :results output
-   ls | wc -l  # Linux pipeline
+     ls | wc -l  # Linux pipeline
    #+end_src
 
    #+RESULTS:
@@ -402,15 +402,15 @@ See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
    from the command line. What single file would you display to get
    that information?
    #+begin_src bash :results none
-   cat /proc/cpuinfo > cpuinfo.txt
-   #+end_src 
+     cat /proc/cpuinfo > cpuinfo.txt
+   #+end_src
 
 2. You want to determine which Linux distribution and version are
    installed. What single file would you display to get that
    information?
    #+begin_src bash :results none
-   cat /etc/os-release > os-release.txt
-   #+end_src 
+     cat /etc/os-release > os-release.txt
+   #+end_src
 
 3. Who initiated the Raspberry Pi project, and in what year did it
    begin?
@@ -428,7 +428,7 @@ See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
    “system overview” report (kernel, CPU, graphics, storage, network)
    with a single command?
    #+begin_src bash :results none
-   inxi > inxi.txt
+     inxi > inxi.txt
    #+end_src
 
 6. What processor architecture is used in most Raspberry Pi boards?
@@ -446,19 +446,19 @@ See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
    #+end_src
 
    #+RESULTS:
-   
+
 8. Which command can be used to list block devices, their partitions,
    and sizes in a tree-like format?
    #+begin_src bash :results output
-   lsblk
+     lsblk
    #+end_src
 
    #+RESULTS:
    : NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-   : nvme1n1     259:0    0 953.9G  0 disk 
-   : ├─nvme1n1p1 259:1    0   128M  0 part 
-   : └─nvme1n1p2 259:2    0 953.7G  0 part 
-   : nvme0n1     259:3    0 476.9G  0 disk 
+   : nvme1n1     259:0    0 953.9G  0 disk
+   : ├─nvme1n1p1 259:1    0   128M  0 part
+   : └─nvme1n1p2 259:2    0 953.7G  0 part
+   : nvme0n1     259:3    0 476.9G  0 disk
    : ├─nvme0n1p1 259:4    0   512M  0 part /boot/efi
    : └─nvme0n1p2 259:5    0 476.4G  0 part /
 
@@ -496,7 +496,7 @@ copy so that you can work in it: [[https://tinyurl.com/shell-notebook][tinyurl.c
   *exercise* and a new *quiz* to complete by Friday night.
 
 - [X] *Continued:* Lecture + code along: The Shell Notebook
-  
+
 ** Review of the last session
 
 These and others will be subject of the next qiuz.
@@ -663,11 +663,11 @@ These and others will be subject of the next qiuz.
 7. How can you list hidden files in a directory?
    #+begin_quote
    Use =ls -a= or =ls --all=.
-   #+end_quote** 
+   #+end_quote**
 
-8. What does the variable =PS1= represent?
-   #+begin_quote
-   =PS1= defines the primary shell prompt string displayed to the user.
+   8. What does the variable =PS1= represent?
+      #+begin_quote
+      =PS1= defines the primary shell prompt string displayed to the user.
    #+end_quote
 
 9. How can you display the current prompt?
@@ -698,7 +698,7 @@ These and others will be subject of the next qiuz.
     built-in, function, or external binary).
     #+end_quote
 
-14. What is a shell built-in command? 
+14. What is a shell built-in command?
     #+begin_quote
     A command implemented directly inside the shell rather than as a
     separate executable file.
@@ -775,7 +775,7 @@ These and others will be subject of the next qiuz.
    - ~stderr~ = file descriptor 2 (error output).
    #+end_quote
 
-3. What does the command operator ~>~ do in the shell? 
+3. What does the command operator ~>~ do in the shell?
    #+begin_quote
    ~>~ redirects standard output (~stdout~) to a file.
    #+end_quote
@@ -843,7 +843,7 @@ These and others will be subject of the next qiuz.
      ./rev.sh
    #+end_src
 
-10. What are the *five V’s of Big Data* and what do they describe? 
+10. What are the *five V’s of Big Data* and what do they describe?
     #+begin_quote
     The five V’s describe key characteristics of Big Data:
     - *Volume* – the large amount of data generated
@@ -890,7 +890,7 @@ your honor) and turn it in within one week after the class meeting.
    unchanged and the command prints the literal string =D*=.
    #+end_quote
 
-4. What is =[[:lower:]]=?  
+4. What is =[[:lower:]]=?
    #+begin_quote
    It is a POSIX character class, a standard notation used in patterns
    and regular expressions that represents a set of characters, such
@@ -901,7 +901,7 @@ your honor) and turn it in within one week after the class meeting.
    #+begin_src bash :results output :exports both
      if [ ! -d test ]; then
          mkdir test
-     fi        
+     fi
      cd test
      touch apple Banana cat Dog
      echo [[:upper:]]*
@@ -958,22 +958,22 @@ your honor) and turn it in within one week after the class meeting.
 
    #+RESULTS:
    : 4
-   
+
 10. What is *brace* expansion and what is it commonly used for?
-   #+begin_quote
-   Brace expansion generates multiple text strings from a pattern,
-   often used to create lists of filenames or directories such as
-   numbered sequences or combinations.
-   #+end_quote
+    #+begin_quote
+    Brace expansion generates multiple text strings from a pattern,
+    often used to create lists of filenames or directories such as
+    numbered sequences or combinations.
+    #+end_quote
 
-   #+begin_src bash :results output :exports both
-     echo A{1..10}
-   #+end_src
+    #+begin_src bash :results output :exports both
+      echo A{1..10}
+    #+end_src
 
-   #+RESULTS:
-   : A1 A2 A3 A4 A5 A6 A7 A8 A9 A10
+    #+RESULTS:
+    : A1 A2 A3 A4 A5 A6 A7 A8 A9 A10
 
-   Something to do: use expansion to generate hard passwords
+    Something to do: use expansion to generate hard passwords
 
 ** Review: Expansion II
 
@@ -999,7 +999,7 @@ are like stirrups for the horse.
    They perform the same function, but $(command) is the modern,
    preferred, and more readable syntax.
    #+end_quote
-   
+
 3. What will =echo $(ls)= output and why?
    #+begin_quote
    Command substitution: outputs list of files in current directory
@@ -1048,14 +1048,13 @@ are like stirrups for the horse.
     represents control sequences like =\n= or =\t=.
     #+end_quote
 
+* DONE Week 10: File permissions II
 
-* Week 10: Sprint review 2 / File permissions / Process management
-
-- [ ] New DataCamp assignment: Containerization and Virtualization
-- [ ] Continue: File permissions
+- [X] New DataCamp assignment: Containerization and Virtualization
+- [X] Continue: File permissions
 - [ ] New topic: Process management
 
-** Review
+** Review up to ~chmod~
 
 1. Why are UNIX operating systems designed as multi-user systems?
    #+begin_quote
@@ -1077,6 +1076,13 @@ are like stirrups for the horse.
    user belongs to.
    #+end_quote
 
+   #+begin_src bash :results output
+     id
+   #+end_src
+
+   #+RESULTS:
+   : uid=1000(marcus) gid=1000(marcus) groups=1000(marcus),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),115(lpadmin),136(sambashare)
+
 4. What is the difference between a user ID (uid) and a group ID (gid)?
    #+begin_quote
    The uid uniquely identifies a user, while the gid identifies the
@@ -1088,6 +1094,15 @@ are like stirrups for the horse.
    Permissions are divided into three categories—owner, group, and
    others—each with read, write, and execute permissions.
    #+end_quote
+
+   #+begin_src bash :results output
+     pwd
+     ls -l agenda.org
+   #+end_src
+
+   #+RESULTS:
+   : /home/marcus/GitHub/admin/spring26/csc420/org
+   : -rw-rw-r-- 1 marcus marcus 38964 Mar 30 13:09 agenda.org
 
 6. What does the first character in ~ls -l~ output represent?
    #+begin_quote
@@ -1120,12 +1135,202 @@ are like stirrups for the horse.
     group) has write permissions there.
     #+end_quote
 
-* Week 11: Environment
+    #+begin_src bash :results output
+      ls -l /
+    #+end_src
 
-* Week 12: Networking
+    #+RESULTS:
+    #+begin_example
+    total 2097268
+    lrwxrwxrwx   1 root root          7 Mar 14  2024 bin -> usr/bin
+    drwxr-xr-x   4 root root       4096 Mar 30 13:01 boot
+    drwxr-xr-x   2 root root       4096 Mar 14  2024 cdrom
+    drwxr-xr-x  21 root root       5220 Mar 30 12:57 dev
+    drwxr-xr-x 158 root root      12288 Mar 30 13:01 etc
+    drwxr-xr-x   3 root root       4096 Mar 14  2024 home
+    lrwxrwxrwx   1 root root          7 Mar 14  2024 lib -> usr/lib
+    lrwxrwxrwx   1 root root          9 Mar 14  2024 lib64 -> usr/lib64
+    drwx------   2 root root      16384 Mar 14  2024 lost+found
+    drwxr-xr-x   3 root root       4096 Sep 13  2025 media
+    drwxr-xr-x   2 root root       4096 Jan  9  2024 mnt
+    drwxr-xr-x   5 root root       4096 Jan 24  2025 opt
+    dr-xr-xr-x 440 root root          0 Mar 30 08:55 proc
+    drwx------   8 root root       4096 Jan 24  2025 root
+    drwxr-xr-x  40 root root       1200 Mar 30 13:00 run
+    lrwxrwxrwx   1 root root          8 Mar 14  2024 sbin -> usr/sbin
+    drwxr-xr-x   2 root root       4096 Jan  9  2024 srv
+    -rw-------   1 root root 2147483648 Aug 25  2025 swapfile
+    dr-xr-xr-x  13 root root          0 Mar 30 08:55 sys
+    drwxr-xr-x   9 root root       4096 Mar 30 09:00 timeshift
+    drwxrwxrwt  26 root root      36864 Mar 30 13:13 tmp
+    drwxr-xr-x  14 root root       4096 Apr  4  2024 usr
+    drwxr-xr-x  12 root root       4096 Sep 20  2025 var
+    #+end_example
+
+** Review from ~chmod~, ~umask~
+
+1. What does the command =chmod 600 foo.txt= do to file permissions?
+   #+begin_quote
+   It sets read and write permissions for the owner (rw-) and removes
+   all permissions for group and others (--- ---).
+   #+end_quote
+
+2. How are octal digits related to binary file permissions?
+   #+begin_quote
+   Each octal digit represents three binary bits, corresponding to
+   read (4), write (2), and execute (1) permissions.
+   #+end_quote
+
+3. What file mode corresponds to the octal value =775=, and why is it
+   commonly used?
+   #+begin_quote
+   It corresponds to rwxrwxr-x. It is commonly used for directories
+   because it allows full access for owner and group, and read/execute
+   access for others.
+   #+end_quote
+
+4. In symbolic notation, what does =u+x, go=rx= mean?
+   #+begin_quote
+   It adds execute permission for the user and sets read and execute
+   permissions for group and others, removing any other permissions
+   they had.
+   #+end_quote
+
+5. Why might octal notation be preferred over symbolic notation for
+   setting permissions?
+   #+begin_quote
+   Octal notation is compact, aligns directly with binary
+   representation, and is efficient for setting complete permission
+   sets in one step ("bulk transactions")
+   #+end_quote
+
+6. What are the permissions of a new file ~foo.txt~ when you run =umask
+   0226=?
+   #+begin_src bash :noweb yes :results output
+     <<rm_foo.txt>>
+     umask 0226 # sets umask to new values
+     umask
+     > foo.txt
+     ls -l foo.txt
+     umask 0002
+     umask
+     > qux.txt
+     ls -l qux.txt
+   #+end_src
+
+   #+RESULTS:
+   : removed 'foo.txt'
+   : 0226
+   : -r--r----- 1 marcus marcus 0 Apr  1 13:16 foo.txt
+   : 0002
+   : -rw-rw-r-- 1 marcus marcus 0 Apr  1 13:16 qux.txt
+
+7. What is the corresponding binary code for =umask 0226=?
+   #+begin_example
+   0226 = 000 010 010 110
+   #+end_example
+
+8. Which permissions are masked (removed) by =umask 0224=?
+   #+begin_example
+   0224 = 000 010 010 100
+        = --- -w- -w- r-- (removed)
+        = --- r-- r-- -w- (remaining)
+   #+end_example
+
+9. What about ~umask 0331~ - what does that do?
+   #+begin_src bash
+     umask 0331 # remove 011 010 001 -wx -w- --x
+     > foo.txt
+     ls -l foo.txt
+   #+end_src
+
+   #+RESULTS:
+   : -r--r--rw- 1 marcus marcus 0 Apr  1 13:20 foo.txt
+
+10. Which masks would remove all permissions? Show this.
+    #+begin_src bash
+      rm foo.txt
+      umask 0666 # for regular files (executables: 777)
+      > foo.txt
+      ls -l foo.txt
+    #+end_src
+
+    #+RESULTS:
+    : ---------- 1 marcus marcus 0 Apr  1 13:21 foo.txt
+
+* Week 11: Process management / 2nd sprint review
+
+- [ ] Review: 2nd Sprint Review
+- [ ] Process management
+- [ ] QuizRunner: custom GPT in class (15 min)
+
+** 2nd Sprint
+
+- What was this sprint about in your view?
+
+- Write a (manual) summary paragraph of your main insights during this
+  sprint review (on paper). Sign with your name (pledged) and date.
+
+- Noticed a lot of wide spacing (this can happen when one copies
+  straight from ChatGPT into GDocs).
+
+- What ChatGPT highlighted in its analysis (for every one of you):
+  #+begin_quote
+  1. Benchmark: strongest technical clarity and application
+  2. Very close in technical clarity; slightly less integration
+  3. Strong structure; slightly less technical specificity
+  4. Good direction; compressed and underdeveloped
+  5. Solid effort; needs more development and citations
+  6. Incomplete but shows engagement
+  #+end_quote
+
+- What do you think about me using AI to assess your work?
+
+- Will you read the feedback with the same attention and excitement?
+
+- Do you find it easier or harder to argue with the AI's output?
+
+* Week 12: Environment / Networking
 
 * Week 13: Compilation
 
 * Week 14: Bash scripting
 
 * Week 15: Presentations
+* Noweb chunks
+
+- Remove ~foo.txt~ if file exists:
+  #+name: rm_foo.txt
+  #+begin_src bash :results silent
+    if [ -e "foo.txt" ]; then
+        rm -rvf foo.txt
+    fi
+  #+end_src
+
+  #+RESULTS: rm_foo.txt
+
+- Remove all files ~foo*.txt~ if they exist:
+  #+name: rm_foo*.txt
+  #+begin_src bash
+    for file in foo*.txt; do
+        if [ -e "$file" ]; then
+            rm -rfv $file
+        fi
+    done
+  #+end_src
+
+- Remove ~empty~ if file exists:
+  #+name: rm_empty
+  #+begin_src bash :results silent
+    if [ -e "empty" ]; then
+        rm -rvf empty
+    fi
+  #+end_src
+
+- Remove ~Empty~ if directory exists:
+  #+name: rm_Empty_dir
+  #+begin_src bash :results silent
+    if [ -d "Empty" ]; then
+        rm -rvf Empty
+    fi
+  #+end_src
