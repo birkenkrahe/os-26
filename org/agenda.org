@@ -1258,11 +1258,11 @@ are like stirrups for the horse.
     #+RESULTS:
     : ---------- 1 marcus marcus 0 Apr  1 13:21 foo.txt
 
-* DONE Week 11: Process management / 2nd sprint review
+* DONE Week 11: Process management I
 
-- [ ] QuizRunner: custom GPT in class (15 min)
-- [ ] Review: 2nd Sprint Review
-- [ ] Process management
+- [X] QuizRunner: custom GPT in class (15 min)
+- [X] Review: 2nd Sprint Review
+- [X] Process management
 
 ** QuizRunner: File permissions and bash scripting
 
@@ -1301,14 +1301,30 @@ are like stirrups for the horse.
 
 - Do you find it easier or harder to argue with the AI's output?
 
+* DONE Week 12: Process management II / 2nd sprint review
 
-* Week 12: Environment / Networking
+- [X] Finish process management - process control
+- [ ] Environment
+- [ ] Networking
 
-* Week 13: Compilation
+** Review of last session
 
-* Week 14: Bash scripting
+- Steps necessary to complete literature review
+- ~top~ command: Process overview of CPU and memory resources
+- Using the literature review to revisit own project approach
+- The kernel identifies all processes with a unique PID
+- The whole operation relies on careful schedule management
+- You cannot see the true memory layout, only the virtualized memory
+  (stack, heap, global, data...)
 
-* Week 15: Presentations
+* Week 13: Environment / Networking
+
+- [ ] Environment variables
+- [ ] ~bash~ configuration files
+- [ ] Networking
+
+* Week 14: Lab week
+
 * Noweb chunks
 
 - Remove ~foo.txt~ if file exists:

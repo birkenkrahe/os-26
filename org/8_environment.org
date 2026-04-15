@@ -1,6 +1,6 @@
 #+TITLE:The Environment
 #+AUTHOR:Marcus Birkenkrahe
-#+SUBTITLE:environment practice for CSC420 Operating Systems Spring 2022 Lyon College
+#+SUBTITLE:environment practice for CSC420 Operating Systems Spring 2026 Lyon College
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:bash :results output
@@ -54,7 +54,9 @@
 
 * Examining the environment
 
-* [X] You can use the builtin bash programs ~set~, or the program
+There are different ways to view environment variables.
+
+* You can use the builtin bash programs ~set~, or the program
 ~printenv~ to view the environment.
 
 Pipe the output of ~printenv~ into ~cat~ to view it.
@@ -82,7 +84,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/us
 HOSTTYPE=x86_64
 #+end_example
 
-* [X] How many different environment variables are there? (Make sure
+* How many different environment variables are there? (Make sure
 you removed potential duplicates.)
 
 #+name: count
@@ -96,7 +98,7 @@ you removed potential duplicates.)
 
 ??? Really? Use cut
 
-* [ ] You can also print individual variables with ~printenv~,
+* You can also print individual variables with ~printenv~,
 e.g. ~$USER~.
 
 #+name: user
@@ -212,20 +214,20 @@ but you're likely to see these variables.
 Check their values out with ~printenv~ or ~echo~ (see below). Don't
 worry if some values are missing - they vary with the distribution.
 
-| VARIABLE | CONTENT                            |
-|----------+------------------------------------|
+| VARIABLE | CONTENT                          |
+|----------+----------------------------------|
 | DISPLAY  | Graphical display name (~:0~)      |
-| EDITOR   | Program used for text editing      |
-| SHELL    | Name of your shell program         |
-| HOME     | Pathname of your home directory    |
-| LANG     | Character set of your language     |
-| OLDPWD   | Previous working directory         |
+| EDITOR   | Program used for text editing    |
+| SHELL    | Name of your shell program       |
+| HOME     | Pathname of your home directory  |
+| LANG     | Character set of your language   |
+| OLDPWD   | Previous working directory       |
 | PAGER    | Program for paging output (~less~) |
-| PS1      | Shell prompt string 1              |
-| PWD      | Current working directory          |
-| TERM     | Name of terminal type              |
-| TZ       | Your time zone (UTC)               |
-| USER     | Your user name                     |
+| PS1      | Shell prompt string 1            |
+| PWD      | Current working directory        |
+| TERM     | Name of terminal type            |
+| TZ       | Your time zone (UTC)             |
+| USER     | Your user name                   |
 
 #+begin_src bash :results output
   echo "DISPLAY": $DISPLAY
@@ -245,19 +247,19 @@ worry if some values are missing - they vary with the distribution.
 
 #+RESULTS:
 #+begin_example
-DISPLAY:
+DISPLAY: :0
 EDITOR:
 SHELL: /bin/bash
-HOME: /home/marcus
-LANG: C.UTF-8
+HOME: /home/aletheia
+LANG: en_US.UTF-8
 OLDPWD:
 PAGER:
-PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/mnt/c/Program Files (x86)/Embarcadero/Studio/21.0/bin:/mnt/c/Users/Public/Documents/Embarcadero/Studio/21.0/Bpl:/mnt/c/Program Files (x86)/Embarcadero/Studio/21.0/bin64:/mnt/c/Users/Public/Documents/Embarcadero/Studio/21.0/Bpl/Win64:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/MySQL/MySQL Shell 8.0/bin/:/mnt/c/Users/birkenkrahe/scoop/shims:/mnt/c/Users/birkenkrahe/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/birkenkrahe/AppData/Local/GitHubDesktop/bin:/mnt/c/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin:/mnt/c/Program Files/R/R-4.1.2/bin/x64:/mnt/c/Users/birkenkrahe/R/win-library:/mnt/c/Program Files (x86)/Vim/vim82/:/mnt/c/Users/birkenkrahe/scoop/apps/unzip/6.00:/mnt/c/Users/birkenkrahe/scoop/apps/7zip/21.06:/mnt/c/Users/birkenkrahe/scoop/apps/zip/3.0:/mnt/c/Program Files/PuTTY:/mnt/c/Program Files/R1/R-4.1.2/bin:/mnt/c/Program Files (x86)/sqlite-tools-win32-x86-3360000:/mnt/c/Program Files/Emacs/x86_64/bin:/mnt/c/Program Files (x86)/mingw-w64/i686-8.1.0-posix-dwarf-rt_v6-rev0/mingw32/bin
+PATH: /home/aletheia/.local/bin:/home/aletheia/.opencode/bin:/home/aletheia/.nvm/versions/node/v20.19.6/bin:/home/aletheia/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 PS1:
-PWD: /mnt/c/Users/birkenkrahe/Documents/GitHub/os420/practice
-TERM: xterm-256color
+PWD: /home/aletheia/GitHub/admin/spring26/csc420/org
+TERM: dumb
 TZ:
-USER: marcus
+USER: aletheia
 #+end_example
 
 
@@ -304,9 +306,9 @@ USER: marcus
   | /etc/bash.bashrc | Global GUI config file            |
   | ~/.bashrc        | Personal GUI config file          |
 
-- [ ] How many configuration files do you have in your home
-  directory? Use ~grep~ with the ~-l~ option and ~wc~ in a pipe to
-  get the answer.
+- How many configuration (hidden) files do you have in your home
+  directory? Use ~grep~ with the ~-l~ option and ~wc~ in a pipe to get the
+  answer.
 
   #+name: startupfiles
   #+begin_src bash
@@ -314,14 +316,11 @@ USER: marcus
     ls -A | grep "^\." | wc -l
   #+end_src
 
-  #+RESULTS: startupfiles
-  : 59
-
 - In addition to reading the startup files listed, non-login shells
   inherit the environment from their parent process (login shell)
 
-- [ ] Take a look at your ~.bashrc~ file in the ~HOME~
-  directory. Can you identify any of the settings?
+- Take a look at your ~.bashrc~ file in the ~HOME~ directory. Can you
+  identify any of the settings?
 
 * What's in a startup file
 
