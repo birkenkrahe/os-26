@@ -1319,11 +1319,164 @@ are like stirrups for the horse.
 
 * Week 13: Environment / Networking
 
-- [ ] Environment variables
-- [ ] ~bash~ configuration files
-- [ ] Networking
+- [X] Lecture: Environment variables
+- [X] Lecture: ~bash~ configuration files
+- [ ] Quiz 7 available (bash scripting/file permissions) - Apr 24th
+- [ ] Live: 3rd sprint review deadline - Apr 30th
+- [ ] Lecture:: Networking
 
-* Week 14: Lab week
+** Review: Environment and bash
+
+1. What is the difference between *shell variables* and *environment
+   variables*?
+  
+   Shell variables are valid only in a shell session, while
+   environment variables are exported (alongside shell functions)
+   and are available in a terminals and applications (~export~).
+
+2. How can you display all environment variables, and how does this
+   differ from using =set=?
+
+   To print all environment variables, use ~printenv~. ~set~ also prints
+   these but also prints all shell variables and functions.
+
+   #+begin_src bash :results output
+     set
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   BASH=/usr/bin/bash
+   BASHOPTS=checkwinsize:cmdhist:complete_fullquote:extquote:force_fignore:globasciiranges:hostcomplete:interactive_comments:progcomp:promptvars:sourcepath
+   BASH_ALIASES=()
+   BASH_ARGC=()
+   BASH_ARGV=()
+   BASH_CMDS=()
+   BASH_LINENO=()
+   BASH_SOURCE=()
+   BASH_VERSINFO=([0]="5" [1]="1" [2]="16" [3]="1" [4]="release" [5]="x86_64-pc-linux-gnu")
+   BASH_VERSION='5.1.16(1)-release'
+   CINNAMON_VERSION=6.0.4
+   CLUTTER_IM_MODULE=ibus
+   COLORTERM=truecolor
+   DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+   DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path
+   DESKTOP_SESSION=cinnamon
+   DIRSTACK=()
+   DISPLAY=:0
+   EUID=1000
+   GDMSESSION=cinnamon
+   GDM_LANG=en_US
+   GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+   GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/4c79c0a8_11a7_44c6_880f_69e38225f6d7
+   GNOME_TERMINAL_SERVICE=:1.175
+   GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+   GROUPS=()
+   GTK3_MODULES=xapp-gtk3-module
+   GTK_IM_MODULE=ibus
+   GTK_MODULES=gail:atk-bridge
+   HOME=/home/marcus
+   HOSTNAME=marcus-Precision-5760
+   HOSTTYPE=x86_64
+   IFS=$' \t\n'
+   LANG=en_US.UTF-8
+   LANGUAGE=en_US
+   LESSCLOSE='/usr/bin/lesspipe %s %s'
+   LESSOPEN='| /usr/bin/lesspipe %s'
+   LOGNAME=marcus
+   LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'
+   MACHTYPE=x86_64-pc-linux-gnu
+   MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path
+   OLDPWD=/home/marcus
+   OPTERR=1
+   OPTIND=1
+   OSTYPE=linux-gnu
+   PATH=/home/marcus/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+   PPID=25431
+   PS4='+ '
+   PT8HOME=/opt/pt
+   PWD=/home/marcus/GitHub/admin/spring26/csc420/org
+   QT_ACCESSIBILITY=1
+   QT_IM_MODULE=ibus
+   QT_QPA_PLATFORMTHEME=qt5ct
+   SESSION_MANAGER=local/marcus-Precision-5760:@/tmp/.ICE-unix/1171,unix/marcus-Precision-5760:/tmp/.ICE-unix/1171
+   SHELL=/bin/bash
+   SHELLOPTS=braceexpand:hashall:interactive-comments
+   SHLVL=1
+   SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+   TERM=dumb
+   UID=1000
+   USER=marcus
+   VTE_VERSION=6800
+   XAUTHORITY=/home/marcus/.Xauthority
+   XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg
+   XDG_CURRENT_DESKTOP=X-Cinnamon
+   XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/home/marcus/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+   XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/marcus
+   XDG_RUNTIME_DIR=/run/user/1000
+   XDG_SEAT=seat0
+   XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+   XDG_SESSION_CLASS=user
+   XDG_SESSION_DESKTOP=cinnamon
+   XDG_SESSION_ID=c1
+   XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+   XDG_SESSION_TYPE=x11
+   XDG_VTNR=7
+   XMODIFIERS=@im=ibus
+   _=/usr/bin/bash
+   #+end_example
+
+3. What is the purpose of an alias, and how would you create one named
+   =dh= for human-readable disk usage (the command is =df
+   --human-readable=)?
+  
+   #+begin_src bash :results output
+     alias dh='df --human-readable'
+     alias
+   #+end_src
+
+   #+RESULTS:
+   : alias dh='df --human-readable'
+
+4. What is a *process ID (PID)*, and how do commands like =ps= and =top=
+   relate to it?
+   
+   A PID is a unique numeric integer identifier for all processes.
+
+   ~ps~ shows the PID
+
+   #+begin_src bash :results output
+     ps
+   #+end_src
+
+   ~top~ shows you a bunch of processes dynamically.
+
+   There is another command that shows you the jobs - ~jobs~
+
+   #+begin_src bash :results output
+     jobs
+   #+end_src
+
+5. What is the role of the "shebang" at the top of a bash script? Can
+   you write it?
+   
+   The shebang gives the shell the program to use when running a
+   shell script.
+
+   #+begin_src bash :results output
+     which bash
+   #+end_src
+
+   #+RESULTS:
+   : /usr/bin/bash
+
+   Shebang that would work on this machine:
+   #+begin_src 
+     #!/usr/bin/bash
+   #+end_src
+
+
+* Week 14: 
 
 * Noweb chunks
 
