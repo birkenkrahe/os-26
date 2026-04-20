@@ -219,7 +219,7 @@
   Look at the man page for each of these programs if you're interested
   in learning more, and try some of the many options. 
 
-** Knock-knock who's there: ~ping~
+* Knock-knock who's there: ~ping~
 
    - The ~ping~ command sends a special network packet called an ~ICMP
      ECHO_REQUEST~ to a specified host.
@@ -260,7 +260,7 @@
      ping google.com
      #+end_example
 
-** What's the route: ~traceroute~
+* What's the route: ~traceroute~
 
    - This program lists all the hops network traffic takes to get from
      the local system to the specified host. Here is the route from
@@ -313,7 +313,7 @@ traceroute to lyon.edu (40.119.1.254), 30 hops max, 60 byte packets
      with the ~traceroute~ to ~google.com~. Check if ~-T~ or ~-I~ make a
      difference.
 
-** What's interfaced: ~ip~ and ~ifconfig~
+* What's interfaced: ~ip~ and ~ifconfig~
 
    - The ~ip(8)~ program is a multi-purpose network configuration tool
 
@@ -359,7 +359,7 @@ traceroute to lyon.edu (40.119.1.254), 30 hops max, 60 byte packets
      - ~eth~ for Ethernet interface
      - ~wlan0~ for the WiFi interface
 
-   - When peforming diagnostics, look for the word ~UP~ in the first
+   - When performing diagnostics, look for the word ~UP~ in the first
      line (which means it's enabled), and a valid IP address in the
      ~inet~ field. E.g. I only have WiFi right now, and no Ethernet.
 
@@ -404,7 +404,7 @@ traceroute to lyon.edu (40.119.1.254), 30 hops max, 60 byte packets
 
      #+end_example
 
-** What's on the net: ~netstat~
+* What's on the net: ~netstat~
 
    - This program is used to examine network settings and statistics.
 
