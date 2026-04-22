@@ -1486,7 +1486,7 @@ are like stirrups for the horse.
 - [ ] Lecture/practice: Compiling source distributions
 - [ ] Lab: Compiling source distributions
 
-** Review what you learnt last session:
+** DONE Review what you learnt last session:
 
 1. Why does the Internet exist?
 2. What is packet switching?
@@ -1497,7 +1497,7 @@ are like stirrups for the horse.
 7. What does the DHCP (Dynamic host Configuration Protocol) do?
 8. What is TCP - Transmission Control Protocol?
 
-** Summary Networking II
+** DONE Summary Networking II
 
 #+begin_quote
 The internet is a resilient network designed to continue functioning
@@ -1517,6 +1517,16 @@ communication over the internet is managed by TCP, and tools like ping
 and traceroute illustrate how packets move across networks and how
 connectivity and latency arise from the underlying infrastructure.
 #+end_quote
+
+
+** Compiling from source
+
+- Compiler chain
+- Using an FTP server
+- Downloading source
+- Viewing a tarball
+- Unpacking, configuring, building and installing from source
+- Running tests
 
 * Noweb chunks
 
