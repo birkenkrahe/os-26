@@ -1478,15 +1478,16 @@ are like stirrups for the horse.
 
 * Week 14: Networking / Compiling
 
-- [ ] New quiz: Process + Environment + Networking
-- [ ] Prose summary on Networking I available (PDF)
-- [ ] Canvas page: Enter the URL to your GDrive with project materials
-- [ ] Canvas page: Project schedule (enter your name)
-- [ ] Lecture/practice: Networking II
+- [X] New quiz: Process + Environment + Networking
+- [X] Prose summary on Networking I available (PDF)
+- [X] Canvas page: Enter the URL to your GDrive with project materials
+- [X] Canvas page: Project schedule (enter your name)
+- [X] Lecture/practice: Networking II
 - [ ] Lecture/practice: Compiling source distributions
 - [ ] Lab: Compiling source distributions
 
-On a sheet of paper, review what you learnt last session:
+** Review what you learnt last session:
+
 1. Why does the Internet exist?
 2. What is packet switching?
 3. What is the client-server model?
@@ -1495,6 +1496,27 @@ On a sheet of paper, review what you learnt last session:
 6. What are MAC addresses?
 7. What does the DHCP (Dynamic host Configuration Protocol) do?
 8. What is TCP - Transmission Control Protocol?
+
+** Summary Networking II
+
+#+begin_quote
+The internet is a resilient network designed to continue functioning
+even when parts fail, achieved through packet switching, where
+messages are split into small packets that travel independently across
+multiple routes and are reassembled at the destination. Communication
+typically follows a client–server model, where a client (e.g., your
+browser) requests data from a server (e.g., a website), and this
+interaction relies on a layered network stack of protocols that handle
+addressing, routing, and data transmission. When you enter a URL like
+https://google.com, the protocol (HTTPS), port (443), and domain name
+are used, but the system must first translate the domain into an IP
+address via DNS before communication can occur. Devices on networks
+are identified by MAC addresses at a lower level and IP addresses at a
+higher level, with DHCP dynamically assigning IPs. Reliable
+communication over the internet is managed by TCP, and tools like ping
+and traceroute illustrate how packets move across networks and how
+connectivity and latency arise from the underlying infrastructure.
+#+end_quote
 
 * Noweb chunks
 
