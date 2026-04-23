@@ -1484,9 +1484,8 @@ are like stirrups for the horse.
 - [X] Canvas page: Project schedule (enter your name)
 - [X] Lecture/practice: Networking II
 - [ ] Lecture/practice: Compiling source distributions
-- [ ] Lab: Compiling source distributions
 
-** DONE Review what you learnt last session:
+** Review what you learnt last session:
 
 1. Why does the Internet exist?
 2. What is packet switching?
@@ -1497,7 +1496,7 @@ are like stirrups for the horse.
 7. What does the DHCP (Dynamic host Configuration Protocol) do?
 8. What is TCP - Transmission Control Protocol?
 
-** DONE Summary Networking II
+** Summary Networking II
 
 #+begin_quote
 The internet is a resilient network designed to continue functioning
@@ -1518,6 +1517,94 @@ and traceroute illustrate how packets move across networks and how
 connectivity and latency arise from the underlying infrastructure.
 #+end_quote
 
+
+** NEXT Review: Compiling from source I
+
+1. Why might a program not be installable using a package manager like
+   apt?
+   #+begin_quote
+   Because no precompiled binary exists for the specific system or
+   architecture.
+   #+end_quote
+
+2. What is an alternative when no binary is available for a program?
+   #+begin_quote
+   Download the source code and build the program manually.
+   #+end_quote
+
+3. What is another reason (besides availability) to compile software
+   from source?
+   #+begin_quote
+   To obtain newer or specific versions that are not provided as
+   binaries.
+   #+end_quote
+
+4. Why can’t a C source file like hello.c be executed directly?
+   #+begin_quote
+   Because it must first be compiled into machine-executable code.
+   #+end_quote
+
+5. What is the name of the common C compiler used in the session?
+   #+begin_quote
+   gcc (or cc, which refers to the same compiler).
+   #+end_quote
+
+6. What is the default output file produced by compiling a C program
+   without specifying a name?
+   #+begin_quote
+   a.out
+   #+end_quote
+
+7. What is the role of the preprocessor in the compilation chain?
+   #+begin_quote
+   It processes directives like #include and expands macros before
+   compilation.
+   #+end_quote
+
+8. What does the -E flag in gcc do?
+   #+begin_quote
+   It runs only the preprocessing step and outputs the result.
+   #+end_quote
+
+9. What is produced during the assembly step?
+   #+begin_quote
+   A human-readable assembly file (.s).
+   #+end_quote
+
+10. Why is the assembly file useful to inspect?
+    #+begin_quote
+    It shows how the program interacts with CPU registers and
+    low-level operations.
+    #+end_quote
+
+11. What is an object file (.o), and why is it not executable?
+    #+begin_quote
+    It is compiled machine code without linked libraries, so it cannot
+    run on its own.
+    #+end_quote
+
+12. What step is required to turn an object file into an executable?
+    #+begin_quote
+    Linking with required libraries.
+    #+end_quote
+
+13. Why does making an object file executable with chmod still not
+    allow it to run?
+    #+begin_quote
+    Because it is missing linked libraries and is not a complete executable.
+    #+end_quote
+
+14. What does the full gcc command (without flags) do implicitly?
+    #+begin_quote
+    It runs preprocessing, compilation, assembly, and linking in one
+    step.
+    #+end_quote
+
+15. What is a tar.gz file and what does it typically contain?
+    #+begin_quote
+    A compressed archive containing a directory tree of source code
+    files.
+    #+end_quote
 
 ** Compiling from source
 
