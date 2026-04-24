@@ -1,0 +1,1660 @@
+#+TITLE:Agenda and overview
+#+AUTHOR:Marcus Birkenkrahe
+#+SUBTITLE:CSC 420 Operating Systems (Lyon College, Spring 2026)
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+#+PROPERTY: header-args:python :session *Python* :results output :exports both :noweb yes
+#+PROPERTY: header-args:C :main yes :includes <stdio.h> :results output :exports both :noweb yes
+#+PROPERTY: header-args:C++ :main yes :includes <iostream> :results output :exports both :noweb yes
+* DONE Week 1: Course overview
+#+attr_html: :width 400px :float nil:
+[[../img/cover.png]]
+
+- [X] Syllabus walk-through
+- [X] Why Linux?
+- [ ] OS fundamentals (lecture)
+
+** DONE Syllabus walk-through
+#+attr_html: :width 400px :float nil:
+[[../img/overview.png]]
+
+- I originally planned to redevelop this course around the book by
+  Brian Ward, How Linux Works. But when I looked at my material I
+  thought it was good.
+
+- To have full control over our Operating System, we will use the
+  Raspberry Pi 500, which runs Raspbian Linux.
+
+- There is a plethora of books available, ranging from very
+  theoretical and abstract to very hands-on system programming. All of
+  them are very weighty (because there is a lot to know).
+
+** DONE Why Linux?
+
+- Linux lets you see what the operating system is doing, instead of
+  hiding it behind graphical interfaces.
+
+- The tools you use in Linux make it possible to observe processes,
+  memory use, files, and networking directly.
+
+- Linux is the operating system behind most servers, cloud systems,
+  and embedded devices, so the skills you learn transfer beyond this
+  course.
+
+- Working in Linux helps you understand how programs interact with the
+  operating system, not just how to run them.
+
+- Linux supports modern system concepts such as containers and
+  resource isolation, which are widely used in industry.
+
+- Learning Linux makes you more confident and independent when working
+  with any computing environment.
+
+** DONE [P]Review Questions: Virtualization, OS, and Hardware
+
+[Q&A by ChatGPT - extracted exclusively from whiteboard screenshots.]
+
+1. What is the conceptual difference between a *virtual machine (VM)*
+   and a *container*?
+   #+begin_quote
+   A virtual machine virtualizes an entire operating system (including
+   its own kernel), while a container shares the host OS kernel and
+   isolates applications at the process level.
+   #+end_quote
+
+2. Why are platforms like Google Colab or Linux VMs suitable for
+   running Linux environments on non-Linux hosts?
+   #+begin_quote
+   They abstract the underlying hardware by running Linux inside a
+   virtualized environment, allowing Linux tools and workflows to run
+   independently of the host OS.
+   #+end_quote
+
+3. What role does Docker play in the container ecosystem?
+   #+begin_quote
+   Docker provides tooling to build, distribute, and run containers
+   that package applications with their dependencies while sharing the
+   host kernel.
+   #+end_quote
+
+4. What problem do container *orchestrators* like Kubernetes solve?
+   #+begin_quote
+   They manage the deployment, scaling, networking, and lifecycle of
+   multiple containers across one or more machines.
+   #+end_quote
+
+5. What is the role of the *shell* relative to the *kernel*?
+   #+begin_quote
+   The shell is a user-level program that translates user commands
+   into *system calls* handled by the kernel.
+   #+end_quote
+
+6. What is a *pipeline* in a Unix-like shell (e.g., =ls | wc -l=)?
+   #+begin_quote
+   A pipeline connects the output of one command directly to the input
+   of another, enabling composition of simple programs.
+   #+end_quote
+
+7. Why is RAM described as “fast” compared to non-volatile memory?
+   #+begin_quote
+   RAM provides low-latency, high-bandwidth access for active
+   programs, whereas non-volatile memory is slower but persistent.
+   #+end_quote
+
+8. What is the function of the I/O bus in the hardware diagram?
+   #+begin_quote
+   The I/O bus connects the CPU and memory to peripheral devices such
+   as keyboards, displays, storage, and network interfaces.
+   #+end_quote
+
+9. In a typical process virtual memory layout, what is the difference
+   between the *stack* and the *heap*?
+   #+begin_quote
+   The stack is used for *function* calls and *local* variables with
+   automatic lifetime, while the heap is used for dynamically
+   allocated memory with manual or managed lifetime (like *vector*).
+   #+end_quote
+
+10. Why can containers generally start faster and use fewer resources
+    than virtual machines?
+    #+begin_quote
+    Because containers do not boot a full OS or run a separate kernel;
+    they reuse the host kernel and isolate processes instead.
+    #+end_quote
+
+** First assignments
+
+- There is no class on Monday (MLK day).
+
+- The first assignment is a DataCamp assignment (deadline: Thu)
+
+- There will also be a first quiz (deadline: Thu)
+
+- I will kick off the projects next Wednesday (bring some ideas).
+
+* DONE Week 2 ("MLK week"): Projects & OS Fundamentals
+
+- [X] Review: first week - OS Fundamentals I
+- [X] Quiz 1: Linux overall, OS fundamentals I (by Monday 26 January)
+- [X] First DataCamp lesson is due Friday.
+- [X] The fate of Raspberry Pi
+- [X] Projects (pick from the list or pick your own)
+- [ ] OS Fundamentals II
+
+** Review: OS fundamentals I
+
+[Generated by ChatGPT based on the course materials presented.]
+
+1. What is the primary role of an operating system (OS) in a computer
+   system?
+   #+begin_quote
+   To manage hardware resources and provide an abstraction layer for
+   applications.
+   #+end_quote
+
+2. What happens inside a computer system when a user presses a key and
+   a character appears on the screen?
+   #+begin_quote
+   An application (~bash~) requests resources, the OS kernel schedules
+   the CPU and allocates memory, and the CPU executes the task using
+   RAM (also involves using the IO/bus, and the display adapter).
+   #+end_quote
+
+3. Why does process scheduling become necessary in a multitasking
+   system?
+   #+begin_quote
+   Multiple processes compete for CPU time and must be coordinated by
+   the OS. To begin with, you have one process on one CPU by one user,
+   and on Linux, you have multiple processes run by multiple CPUs, for
+   multiple users.
+   #+end_quote
+
+4. What challenges can arise from unclear or simultaneous input
+   events?
+   #+begin_quote
+   Conflicting signals must be interpreted and handled correctly by
+   the OS and device drivers, which means the OS needs to decide who
+   comes first and who gets how much memory when.
+   #+end_quote
+
+5. What is the purpose of separating user mode from kernel mode?
+   #+begin_quote
+   To prevent user programs from executing privileged operations or
+   accessing hardware directly.
+   #+end_quote
+
+6. What problem do container technologies aim to address in modern
+   computing systems?
+   #+begin_quote
+   They provide isolated, portable environments for running
+   applications. E.g. a docker container with a Python environment.
+   #+end_quote
+
+7. How do containers differ from full virtual machines in their use of
+   system resources?
+   #+begin_quote
+   Containers share the host kernel (the machine on which the
+   container runs), while virtual machines (VM) run a complete guest
+   operating system (on the host machine).
+   #+end_quote
+
+8. What does it mean for software to run on “bare metal”?
+   #+begin_quote
+   It runs directly on hardware without a virtualization layer (like
+   an OS - which is a layer of abstraction on top of the hardware).
+   #+end_quote
+
+9. Why is version control (e.g. with Git) useful when managing system
+   configuration or documentation files?
+   #+begin_quote
+   It enables tracking changes, collaboration, and reproducibility.
+   #+end_quote
+
+10. How does the operating system manage multiple users and
+    applications on the same machine?
+    #+begin_quote
+    The kernel allocates resources and enforces isolation and
+    protection by managing the resources automatically.
+    #+end_quote
+
+** CSC 420 – Beginner Term Project Ideas
+
+- Rationale
+  #+begin_quote
+  These projects go beyond class activities by asking you to take
+  ownership of a topic over the entire term. Instead of following
+  step-by-step instructions, you will decide what to explore, design
+  your own experiments, and refine your explanations through multiple
+  sprint reviews. The focus is on understanding and explaining how Linux
+  behaves in real situations, not just running commands.
+  #+end_quote
+
+- Project list:
+
+  1. *Linux System Map:* Build a structured overview of the Linux system
+     layout, key directories, configuration files, running services,
+     and attached hardware, with explanations.
+
+  2. *Process Life Cycle Diary:* Observe and document how processes are
+     created, scheduled, paused, and terminated using standard
+     process-monitoring tools.
+
+  3. *Users, Groups, and Permissions Explorer:* Investigate how Linux
+     manages users, groups, file ownership, and permissions through
+     controlled experiments and examples.
+
+  4. *Disk Usage and Filesystem Explorer*: Examine disks, partitions,
+     mounts, and filesystem usage, explaining how storage is organized
+     and reported by the OS.
+
+  5. *Boot and Startup Observation Project:* Trace what happens during
+     system startup after the kernel loads, focusing on services,
+     timing, and logs.
+
+  6. *System Logs as a Narrative:* Analyze system logs to reconstruct
+     what the system is doing over time and how events are recorded.
+
+  7. *Resource Monitoring Notebook*: Monitor CPU, memory, and I/O usage
+     under different workloads and explain observed behavior.
+
+  8. *Networking Basics in Practice:* Explore network interfaces, IP
+     addressing, routing, DNS, and open ports using standard Linux
+     tools.
+
+  9. *Shell Automation Helper Tool:* Develop a small shell script that
+     automates a common system task and explain how it interacts with
+     the OS.
+
+  10. *Configuration Files in Practice:* Explore how Linux configuration
+      files in /etc control system behavior by inspecting, comparing,
+      and safely modifying selected configuration files, and
+      documenting their effects.
+
+- Using AI agents:
+  #+begin_quote
+  You may use AI agents as helpers while working on your project—for
+  example, to suggest commands, draft regular expressions, or help
+  interpret output. However, agents are only assistants: you are
+  responsible for testing everything they produce and for explaining
+  how and why it works. The goal is to use agents to support your
+  learning and exploration, not to replace your own understanding.
+  #+end_quote
+
+* DONE Week 3 ("Winter week"): DataCamp Review & OS Fundamentals II
+#+attr_html: :width 600px :float nil:
+[[../img/summary_21_jan_2.png]]
+
+- [X] Projects? Anyone? Canvas list?
+- [X] DataCamp Review: Popquiz (self graded bonus option)
+- [X] Quiz 2: Manipulating Data & OS Fundamentals II
+- [X] OS Fundamentals II: System interrupts and daemons
+
+** DataCamp Review: Manipulating files and directories
+
+1) *Shell vs. Desktop (Conceptual):* In one or two sentences, state one
+   key difference between using a shell and using a graphical desktop
+   interface.
+   #+begin_quote
+   The shell is a text-based interface where commands are typed; a
+   graphical desktop uses visual elements such as windows, icons, and
+   menus.
+   #+end_quote
+
+2) *Current Location:* Which command prints the current working
+   directory? Write the command exactly.
+   #+begin_example sh
+   pwd
+   #+end_example
+
+3) *Reading Paths:* If the shell prints the following output, where are
+   you?  =/home/student/projects=. Is this an absolute path or a
+   relative path?
+   #+begin_quote
+   Absolute path; it starts at the root directory (/).
+   #+end_quote
+
+4) *Listing Files:* What command lists the contents of the current
+   working directory and prints the number of files?
+   #+begin_src bash :results output
+     ls | wc -l  # Linux pipeline
+   #+end_src
+
+   #+RESULTS:
+   : 25
+
+5) *Interpreting:* In a long listing (~ls -l~), what does the first
+   character of each line indicate?
+   #+begin_quote
+   It indicates the file type (for example, regular file (=-=),
+   directory (~d~) or symbolic link (~s~).
+   #+end_quote
+
+6) *Changing Directories:* Write the command to move into a directory
+   named data that is inside the current directory.
+   #+begin_example sh
+   cd data
+   #+end_example
+
+   Remember that the computer can only see files in its ~PATH~.
+   #+begin_src bash :results output
+     echo $PATH
+   #+end_src
+
+   #+RESULTS:
+   : /home/marcus/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+   To add another directory to search in for files, use its absolute
+   path.
+
+7) *Moving Up:* What does the following command do?  ~cd ..~
+   #+begin_quote
+   It moves from the current directory to its parent directory.
+   #+end_quote
+
+8) *Copy vs. Move:* Which command would you use to duplicate a file, and
+   which command would you use to relocate a file?
+   #+begin_quote
+   ~cp~ duplicates a file; ~mv~ relocates a file.
+   #+end_quote
+
+9) *Renaming Files:* In Linux, which command is used to rename a file,
+   and why does that make sense conceptually?
+   #+begin_quote
+   ~mv~ - renaming is treated as moving a file from one pathname to
+   another.
+   #+end_quote
+
+10) *Deleting Directories:* Why must a directory usually be empty before
+    it can be deleted from the shell?
+    #+begin_quote
+    To reduce the risk of accidentally deleting all files contained in
+    the directory.
+    #+end_quote
+
+    #+begin_example sh
+    rm -rf dir # remove `dir` recursively and by force
+    #+end_example
+
+* DONE Week 4: OS Fundamentals III + Project Design
+
+- [X] *Projects:* [[https://lyon.instructure.com/courses/4415/assignments/54482][Any update on the projects?]]
+- [X] *Practice*: [[https://github.com/birkenkrahe/os-26/blob/main/org/2_manip_practice.org][Manipulating files and data.]]
+- [X] *Lecture*: [[https://github.com/birkenkrahe/os-26/blob/main/org/1_fundamentals.org][OS fundamentals (continued)]]
+- [ ] *Lab*: [[https://github.com/birkenkrahe/os-26/blob/main/org/notebooklm.org][Project design with NotebookLM]]
+- [ ] *Quiz 2* will be live soon (deadline next Friday)
+- [ ] *Lecture + Codealong*: The Shell (see GitHub)
+
+** DONE Lab: Using NotebookLM to shape the project proposal
+
+See [[file:notebooklm.org][notebooklm.org]] for detailed instructions.
+
+* DONE Week 5: Sprint review + OS installation + Pi overview
+
+- [X] Sprint review
+- [X] Overview of Raspberry Pi (Part I)
+- [X] OS installation (home assignment) - by next Tuesay
+- [ ] Lecture + code along: The Shell Notebook
+
+** Review: Raspberry Pi overview
+
+1. You want to determine what CPU/hardware platform you are running on
+   from the command line. What single file would you display to get
+   that information?
+   #+begin_src bash :results none
+     cat /proc/cpuinfo > cpuinfo.txt
+   #+end_src
+
+2. You want to determine which Linux distribution and version are
+   installed. What single file would you display to get that
+   information?
+   #+begin_src bash :results none
+     cat /etc/os-release > os-release.txt
+   #+end_src
+
+3. Who initiated the Raspberry Pi project, and in what year did it
+   begin?
+   #+begin_quote
+   Eben Upton (British Software Engineer), 2006-2012.
+   #+end_quote
+
+4. In what year did the first Raspberry Pi become commercially
+   available, and what was its initial price?
+   #+begin_quote
+   2012, $35. By comparison, the Pi 400 costs $99.
+   #+end_quote
+
+5. Which command-line utility is commonly used to produce a compact
+   “system overview” report (kernel, CPU, graphics, storage, network)
+   with a single command?
+   #+begin_src bash :results none
+     inxi > inxi.txt
+   #+end_src
+
+6. What processor architecture is used in most Raspberry Pi boards?
+   #+begin_quote
+   ARM (Advanced RISC Machines), a British company.
+   #+end_quote
+
+7. How many physical CPU cores and how many hardware threads are shown
+   for the current system (based on ~lscpu~)?
+   #+begin_quote
+   8 physical cores and 16 hardware threads.
+   #+end_quote
+   #+begin_src bash :results output
+     lscpu > lscpu.txt
+   #+end_src
+
+   #+RESULTS:
+
+8. Which command can be used to list block devices, their partitions,
+   and sizes in a tree-like format?
+   #+begin_src bash :results output
+     lsblk
+   #+end_src
+
+   #+RESULTS:
+   : NAME        MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+   : nvme1n1     259:0    0 953.9G  0 disk
+   : ├─nvme1n1p1 259:1    0   128M  0 part
+   : └─nvme1n1p2 259:2    0 953.7G  0 part
+   : nvme0n1     259:3    0 476.9G  0 disk
+   : ├─nvme0n1p1 259:4    0   512M  0 part /boot/efi
+   : └─nvme0n1p2 259:5    0 476.4G  0 part /
+
+9. Which Raspberry Pi model is designed as a microcontroller rather
+   than a full single-board computer?
+   #+begin_quote
+   Raspberry Pi Pico.
+   #+end_quote
+
+10. What type of storage device is the primary internal drive in the
+    example Raspberry Pi system?
+    #+begin_quote
+    NVMe solid-state drive (SSD).
+    #+end_quote
+
+** The Shell Notebook
+
+Let's change things up and use Google Colab to build our own Shell
+notebook. This would be more fun in Emacs but I've discontinued it.
+
+Open this notebook in your browser (Google Chrome is best and make a
+copy so that you can work in it: [[https://tinyurl.com/shell-notebook][tinyurl.com/shell-notebook]]
+
+* DONE Week 6: Installing Linux + Shell Part 2
+
+- [X] You need to check your submission: I left you a message if I
+  could not see your proposal, and if you have an infographic or a
+  slide deck (from NotebookLM) you can also upload them here.
+
+- [X] We are going to install Raspbian *on Wednesday*. Make sure that
+  you have your SSD cards with the OS image on them so that we can do
+  it together in class.
+
+- [X] There will *no class on Friday* - I will give you an hour-long
+  *exercise* and a new *quiz* to complete by Friday night.
+
+- [X] *Continued:* Lecture + code along: The Shell Notebook
+
+** Review of the last session
+
+These and others will be subject of the next qiuz.
+
+1. What does the presence of a file named ~.dockerenv~ suggest about
+   the runtime environment?
+   #+begin_quote
+   It suggests the system is running inside a Docker container rather
+   than a full virtual machine.
+   #+end_quote
+
+2. How can you determine which user you are currently logged in as?
+   #+begin_quote
+   Use the command ~whoami~ to display the current user.
+   #+end_quote
+
+3. What is the practical difference between being logged in as ~root~
+   and using ~sudo~?
+   #+begin_quote
+   The root user has permanent superuser privileges. ~sudo~ grants
+   temporary elevated privileges to execute specific commands.
+   #+end_quote
+
+4. Why is the ~root~ account considered dangerous?
+   #+begin_quote
+   Because it has permission to modify or delete almost any part of
+   the system, including critical system files.
+   #+end_quote
+
+5. How can you create an empty file from the command line?
+   #+begin_quote
+   Use the ~touch~ command, e.g., ~touch filename~.
+   #+end_quote
+
+6. How can you check a file’s permissions?
+   #+begin_quote
+   Use ~ls -l~ (long listing) to display detailed file information,
+   including permission bits (rwx).
+   #+end_quote
+
+7. What command changes file permissions, and what does ~chmod +x
+   filename~ do?
+   #+begin_quote
+   The command is ~chmod~. The option ~+x~ adds execute permission to
+   the file.
+   #+end_quote
+
+8. What does it mean when a command like ~cd~ does not appear in
+   ~/bin~? (And cannot be found with ~which~)
+   #+begin_quote
+   It means ~cd~ is a shell built-in command rather than an external
+   executable binary.
+   #+end_quote
+
+9. How can you count the number of executable files in a directory
+   such as ~/bin~?
+   #+begin_quote
+   Use a pipeline such as: =ls | wc -l=.  This counts the number of
+   entries listed in the directory.
+   #+end_quote
+
+10. What is special about files like ~stdout~, ~stdin~, and ~stderr~
+    in ~/dev~?
+    #+begin_quote
+    They are special device files representing input/output
+    streams. They are symbolic links or special files connected to
+    system processes.
+    #+end_quote
+
+11. What type of file is ~/dev/tty~, and what is its role?
+    #+begin_quote
+    It is a character special file representing a terminal interface
+    used for input and output.
+    #+end_quote
+
+12. Why is ~/proc~ considered a virtual filesystem?
+    #+begin_quote
+    Because it does not store regular files on disk; instead, it
+    provides runtime information generated by the kernel.
+    #+end_quote
+
+13. What command displays the history of previously executed commands?
+    #+begin_quote
+    The command is ~history~.
+    #+end_quote
+
+14. How do you move up one directory level in the filesystem?
+    #+begin_quote
+    Use ~cd ..~ to move to the parent directory.
+    #+end_quote
+
+15. What is the difference between top-down, bottom-up,
+    and analogy-based learning?
+    #+begin_quote
+    Top-down starts with abstract structure and theory, bottom-up
+    starts with experimentation and concrete examples, and
+    analogy-based learning explains new concepts by relating them to
+    familiar ideas.
+    #+end_quote
+
+** Installing Raspbian on the Raspberry Pi
+
+* DONE Week 7: Submission standards, Pi OS update, redirection
+#+attr_html: :width 400px :float nil:
+[[../img/literature_review.png]]
+
+- [X] Review: Submission standards
+- [X] Update the Raspberry Pi OS and install an app
+- [X] Finish up the shell introduction lecture
+- [X] 2nd sprint: *extensive* Literature review (due March 13)
+- [X] Redirecting data streams
+
+** Review: Submission standards
+#+attr_html: :width 400px :float nil:
+[[../img/submission_standards.png]]n
+
+- [X] A few of you did not submit the "[[https://colab.research.google.com/drive/1sgLY8DwBb0P4HeDkSkQlYohqmDxvdJmq?usp=sharing][Forensic analysis]]" assignment.
+- [X] If you have trouble with time management: Use tech support!
+- [X] *Notebooks* are your friend: Learn Markup! It's trivial & helps.
+- [X] The command is not ~!whoami~ but ~whoami~. The ~!~ is a Colab tool.
+- [X] If you use AI *you must reference it* and *explain how you used it*.
+- [X] If you cite references (you should!): *consistent* and *complete*.
+- [X] *A link is not a reference.* It can be part of one (then hide it!)
+- [X] Some of you need to *read my comments* (e.g. about sharing files).
+- [X] Deadline for the next sprint review: *March 9* (updated notebook).
+
+** Review: Pi installation and first use (test yourself)
+
+1. What does =sudo raspi-config= configure on a Raspberry Pi?
+   #+begin_quote
+   It opens the Raspberry Pi configuration utility to change system
+   settings such as SSH, hostname, locale, password, and boot options.
+   #+end_quote
+
+2. What is SSH and why is it useful on a Raspberry Pi?
+   #+begin_quote
+   SSH (Secure Shell) allows remote login and command execution over a
+   network connection.
+   #+end_quote
+
+3. What does =startx= do?
+   #+begin_quote
+   It starts the X11 graphical environment from the command line.
+   #+end_quote
+
+4. What is the difference between X11 and a window manager? (*NEW*)
+   #+begin_quote
+   X11 provides the graphical display system, while the window manager
+   controls window placement, decoration, and interaction.
+   #+end_quote
+
+5. What is the purpose of the file =.bashrc=?
+   #+begin_quote
+   It is a shell configuration file executed when a new interactive
+   Bash session starts.
+   #+end_quote
+
+6. Why does the filename =.bashrc= have a dot at the beginning?
+   #+begin_quote
+   Files beginning with a dot (=.=) are hidden by default in Unix-like
+   systems.
+   #+end_quote
+
+7. How can you list hidden files in a directory?
+   #+begin_quote
+   Use =ls -a= or =ls --all=.
+   #+end_quote**
+
+   8. What does the variable =PS1= represent?
+      #+begin_quote
+      =PS1= defines the primary shell prompt string displayed to the user.
+   #+end_quote
+
+9. How can you display the current prompt?
+   #+begin_quote
+   ~echo $PS1~ prints the current value of the prompt string variable.
+   #+end_quote
+
+10. What is the purpose of the =HISTORY= variable?
+    #+begin_quote
+    It controls or references how command history is stored and managed.
+    #+end_quote
+
+11. Can you change the =HISTORY= variable?
+    #+begin_quote
+    Yes, with ~HISTSIZE=10~ you change it to 10 items, and with =echo
+    $HISTSIZE= you get the current value.
+    #+end_quote
+
+12. What is the difference between =cat= and =less=?
+    #+begin_quote
+    =cat= prints the entire file to standard output at once, while =less=
+    allows interactive scrolling and viewing.
+    #+end_quote
+
+13. What does the =type= command do?
+    #+begin_quote
+    It tells how a command name is interpreted by the shell (alias,
+    built-in, function, or external binary).
+    #+end_quote
+
+14. What is a shell built-in command?
+    #+begin_quote
+    A command implemented directly inside the shell rather than as a
+    separate executable file.
+    #+end_quote
+
+15. Why is =cd= a built-in instead of an external program? (*NEW*)
+    #+begin_quote
+    Because changing directories must modify the current shell process
+    itself, which an external program cannot do.
+    #+end_quote
+
+16. What is a shell alias?
+    #+begin_quote
+    A shortcut name that substitutes one command string for another.
+    #+end_quote
+
+17. What is a shell function?
+    #+begin_quote
+    A user-defined block of shell commands stored in memory and
+    executed like a command.
+    #+end_quote
+
+18. What is meant by a “binary” in Linux?
+    #+begin_quote
+    An executable file compiled into machine code, typically stored in
+    directories like =/bin= or =/usr/bin=.
+    #+end_quote
+
+19. What happens when you type a command name into the shell?
+    #+begin_quote
+    The shell searches for an alias, function, built-in, or executable
+    in the directories listed in =PATH=, then executes the first match.
+    #+end_quote
+
+** Raspberry Pi orientation lab
+#+attr_html: :width 400px :float nil:
+[[../img/pi2box.jpg]]
+
+- [X] Update your Raspberry Pi OS
+- [X] Install several useful non-standard Linux tools
+- [ ] Explore your system using the command-line
+- [ ] Answer short conceptual questions about what you observe.
+
+** Finish up with the shell foundation lecture
+
+- Getting ~help~ with ~man~ and ~apropos~
+- Getting your ~fortune~
+- ~whatis~ in a command?
+- GNU ~info~ system
+
+* DONE Week 8: Redirection & Expansion
+
+- [X] Review: Redirection I
+- [X] DataCamp: New course "Introduction to Bash Scripting"
+- [ ] Continued: Redirection II
+- [ ] Lecture: Expanding shell parameters
+
+** DONE Review: Redirection & Big Data
+
+1. What does *REPL* stand for, and how does it describe the behavior of
+   a command-line interface?
+   #+begin_quote
+   REPL stands for *Read–Eval–Print Loop*. The system reads a command,
+   evaluates (executes) it, prints the result, and then waits for the
+   next command.
+   #+end_quote
+
+2. In Unix-like systems, what are *stdin*, *stdout*, and *stderr*, and how
+   does the OS distinguish between them?
+   #+begin_quote
+   They are standard input/output data streams used by programs.
+   - ~stdin~ = file descriptor 0 (input)
+   - ~stdout~ = file descriptor 1 (normal output)
+   - ~stderr~ = file descriptor 2 (error output).
+   #+end_quote
+
+3. What does the command operator ~>~ do in the shell?
+   #+begin_quote
+   ~>~ redirects standard output (~stdout~) to a file.
+   #+end_quote
+
+4. What if =input.txt= exists when you run =echo "1" > input.txt= ?
+   #+begin_quote
+   If the file =input= exists it is overwritten; if it does not exist it
+   is created.
+   #+end_quote
+
+5. How does the operator ~>>~ differ from ~>~ in shell redirection?
+   #+begin_quote
+   ~>>~ appends output to the end of a file instead of overwriting the
+   file.
+   #+end_quote
+
+6. How can you redirect *standard error* to a file in the shell?
+   #+begin_quote
+   Use the file descriptor for stderr (2) with redirection: ~2>
+   filename~. This sends error messages to the specified file instead
+   of the terminal.
+   #+end_quote
+
+   #+begin_src bash :results output :exports both
+     ls /nonsense 2> error
+     cat error
+   #+end_src
+
+7. Why does the command ~ls -l /bin/usr > file.txt~ leave ~file.txt~ empty
+   even though an error occurs?
+   #+begin_quote
+   Because ~>~ redirects only ~stdout~. The error message is sent to
+   ~stderr~, which still goes to the terminal unless explicitly
+   redirected.
+   #+end_quote
+
+8. What does the Unix command ~rev~ do?
+   #+begin_quote
+   ~rev~ reverses the characters in each line of input. It opens an
+   input stream that has to be shut down.
+   #+end_quote
+
+9. How can ~rev~ be used inside a shell script?
+   #+begin_src bash :results output :exports both
+     # piping a string from `stdin` into `rev`
+     echo "hello world" | rev
+   #+end_src
+
+   Advanced example:
+   #+begin_src bash :noeval :exports both :tangle rev.sh
+     #!/bin/bash
+     # This script reads each line from `input.txt`, reverses the
+     # characters using `rev`, and prints the result.
+
+     while read line
+     do
+         echo "$line" | rev
+     done < input.txt
+   #+end_src
+
+   #+begin_src bash :results output :exports both
+     echo -e "To be or not to be\nthat is the question" > input.txt
+     cat input.txt
+     chmod +x rev.sh
+     ./rev.sh
+   #+end_src
+
+10. What are the *five V’s of Big Data* and what do they describe?
+    #+begin_quote
+    The five V’s describe key characteristics of Big Data:
+    - *Volume* – the large amount of data generated
+    - *Variety* – different forms of data (text, images, logs, etc.)
+    - *Velocity* – the speed at which data is generated and processed
+    - *Veracity* – the reliability and quality of the data
+    - *Value* – the usefulness or insights obtained from the data
+    #+end_quote
+
+** DONE Review: Redirection (popquiz)
+
+[[https://github.com/birkenkrahe/os-26/blob/main/pdf/Redirection_popquiz.pdf][In-class assignment (PDF)]]. Turn in the completed quiz for points. If
+you missed class, you can complete the quiz on your own, grade it (on
+your honor) and turn it in within one week after the class meeting.
+
+* DONE Week 9: Expansion II & file permissions
+
+- [X] Expansion II: Command substitution, quoting, word splitting, escaping
+- [X] There is a quiz on expansion (due Monday, March 30)
+- [X] Remember the 2nd sprint deadline (Friday, March 20)
+- [X] Next topic: File permissions
+
+** Review: Expansion I
+
+1. What does *expansion* mean in the context of the Unix shell?
+   #+begin_quote
+   Expansion is the substitution process the shell performs before
+   executing a command, replacing patterns, variables, or expressions
+   with their resulting values.
+   #+end_quote
+
+2. What does the command =echo *= print?
+   #+begin_quote
+   The shell performs pathname expansion before running the
+   command. The =*= pattern is replaced by all filenames in the current
+   directory, so =echo= receives the expanded list instead of the
+   literal =*=.
+   #+end_quote
+
+3. What happens if a pathname pattern such as =D*= does not match any
+   files?
+   #+begin_quote
+   If no files match the pattern, the shell leaves the pattern
+   unchanged and the command prints the literal string =D*=.
+   #+end_quote
+
+4. What is =[[:lower:]]=?
+   #+begin_quote
+   It is a POSIX character class, a standard notation used in patterns
+   and regular expressions that represents a set of characters, such
+   as all lowercase letters in the current locale (what the shell looks at).
+   #+end_quote
+
+   Example:
+   #+begin_src bash :results output :exports both
+     if [ ! -d test ]; then
+         mkdir test
+     fi
+     cd test
+     touch apple Banana cat Dog
+     echo [[:upper:]]*
+   #+end_src
+
+   #+RESULTS:
+   : Banana Dog
+
+5. Why does =echo *= not show hidden files?
+   #+begin_quote
+   By default, pathname expansion ignores filenames that begin with a
+   period, so hidden files are excluded from matches of the =*= pattern.
+   #+end_quote
+
+6. Why does the pattern =.*= include both =.= and =..=?
+   #+begin_quote
+   Because the pattern matches any filename starting with a period,
+   and both the current directory (=.=) and the parent directory (=..=)
+   satisfy that pattern.
+   #+end_quote
+
+7. What does the pattern =.[!.]*= match?
+   #+begin_quote
+   It matches hidden files that start with a single period but
+   excludes =.= and =..= because the second character cannot be another
+   period.
+   #+end_quote
+
+8. What is *tilde* expansion and what does =echo ~= print?
+   #+begin_quote
+   Tilde expansion replaces the tilde character with a user's ~$HOME~
+   directory. The command =echo ~= prints the current user's home
+   directory path. =echo $HOME= does the same thing.
+   #+end_quote
+
+   #+begin_src bash :results output :exports both
+     echo ~
+     echo $HOME
+   #+end_src
+
+   #+RESULTS:
+   : /home/marcus
+   : /home/marcus
+
+9. What is *arithmetic* expansion and what syntax does it use in ~bash~?
+   #+begin_quote
+   Arithmetic expansion allows the shell to evaluate integer
+   arithmetic expressions using the syntax =$((expression))=.
+   #+end_quote
+
+   #+begin_src bash :results output :exports both
+     echo $((2+2))
+   #+end_src
+
+   #+RESULTS:
+   : 4
+
+10. What is *brace* expansion and what is it commonly used for?
+    #+begin_quote
+    Brace expansion generates multiple text strings from a pattern,
+    often used to create lists of filenames or directories such as
+    numbered sequences or combinations.
+    #+end_quote
+
+    #+begin_src bash :results output :exports both
+      echo A{1..10}
+    #+end_src
+
+    #+RESULTS:
+    : A1 A2 A3 A4 A5 A6 A7 A8 A9 A10
+
+    Something to do: use expansion to generate hard passwords
+
+** Review: Expansion II
+
+Why is this "expansion" stuff important?
+#+begin_quote
+Searching across a huge file system. Accessing environment variables,
+and turn input into explicit commands, write general purpose scripts,
+automate batch operations, give you full command of the command-line.
+
+The shell is like a saddle to a race horse, and expansion techniques
+are like stirrups for the horse.
+#+end_quote
+
+1. What is command substitution in the shell and what syntax is
+   commonly used?
+   #+begin_quote
+   Command substitution replaces a command with its output, typically
+   using $(command).
+   #+end_quote
+
+2. What is the difference between =$(command)= and =`command`=?
+   #+begin_quote
+   They perform the same function, but $(command) is the modern,
+   preferred, and more readable syntax.
+   #+end_quote
+
+3. What will =echo $(ls)= output and why?
+   #+begin_quote
+   Command substitution: outputs list of files in current directory
+   because ~ls~ is executed and its output is substituted into ~echo~.
+   #+end_quote
+
+4. How does quoting affect command substitution, as in =echo $(cal)= vs
+   =echo "$(cal)"=?
+   #+begin_quote
+   Without quotes, word splitting removes formatting; with quotes,
+   formatting (newlines, spacing) is preserved.
+   #+end_quote
+
+5. What is word splitting and when does it occur?
+   #+begin_quote
+   Word splitting divides text into separate arguments based on
+   whitespace and occurs on unquoted expansions.
+   #+end_quote
+
+6. Which expansions are suppressed inside double quotes?
+   #+begin_quote
+   Word splitting, pathname expansion, tilde expansion, and brace
+   expansion are suppressed.
+   #+end_quote
+
+7. Which expansions still occur inside double quotes?
+   #+begin_quote
+   Parameter expansion, arithmetic expansion, and command substitution
+   still occur.
+   #+end_quote
+
+8. What is the effect of single quotes on shell expansions?
+   #+begin_quote
+   Single quotes suppress all expansions, treating everything literally.
+   #+end_quote
+
+9. Why does =echo "The total is $100.00"= produce unexpected output?
+   #+begin_quote
+   =$1= is interpreted as a variable and replaced with an empty string,
+   resulting in incorrect output.
+   #+end_quote
+
+10. What is the purpose of the escape character =\= in the shell?
+    #+begin_quote
+    It removes the special meaning of the following character or
+    represents control sequences like =\n= or =\t=.
+    #+end_quote
+
+* DONE Week 10: File permissions II
+
+- [X] New DataCamp assignment: Containerization and Virtualization
+- [X] Continue: File permissions
+- [ ] New topic: Process management
+
+** Review up to ~chmod~
+
+1. Why are UNIX operating systems designed as multi-user systems?
+   #+begin_quote
+   Because early computers were shared systems, requiring multiple
+   users to access the same machine while protecting their data from
+   one another.
+   #+end_quote
+
+2. What is the purpose of the /etc/shadow file and why is it
+   restricted?
+   #+begin_quote
+   It stores user password information and is restricted to protect
+   sensitive authentication data from unauthorized access.
+   #+end_quote
+
+3. What information does the ~id~ command provide about a user?
+   #+begin_quote
+   It displays the user ID (uid), group ID (gid), and all groups the
+   user belongs to.
+   #+end_quote
+
+   #+begin_src bash :results output
+     id
+   #+end_src
+
+   #+RESULTS:
+   : uid=1000(marcus) gid=1000(marcus) groups=1000(marcus),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),115(lpadmin),136(sambashare)
+
+4. What is the difference between a user ID (uid) and a group ID (gid)?
+   #+begin_quote
+   The uid uniquely identifies a user, while the gid identifies the
+   primary group associated with that user.
+   #+end_quote
+
+5. How are file permissions structured in the UNIX security model?
+   #+begin_quote
+   Permissions are divided into three categories—owner, group, and
+   others—each with read, write, and execute permissions.
+   #+end_quote
+
+   #+begin_src bash :results output
+     pwd
+     ls -l agenda.org
+   #+end_src
+
+   #+RESULTS:
+   : /home/marcus/GitHub/admin/spring26/csc420/org
+   : -rw-rw-r-- 1 marcus marcus 38964 Mar 30 13:09 agenda.org
+
+6. What does the first character in ~ls -l~ output represent?
+   #+begin_quote
+   It indicates the file type, such as regular file (-), directory
+   (d), special file (c) or symbolic link (l).
+   #+end_quote
+
+7. What is the meaning of the permission string ~-rw-r--r--~?
+   #+begin_quote
+   The owner can read and write; the group and others can only read
+   the file.
+   #+end_quote
+
+8. Why do symbolic links show full permissions like ~lrwxrwxrwx~ even
+   when access is restricted?
+   #+begin_quote
+   Because symbolic links only point to another file; actual
+   permissions are determined by the target file.
+   #+end_quote
+
+9. What is the effect of execute permission on directories?
+   #+begin_quote
+   It allows users to enter the directory (e.g., using cd) and access
+   its contents.
+   #+end_quote
+
+10. Why can a regular user not create files directly in ~/home~?
+    #+begin_quote
+    Because the ~/home~ directory is owned by root and only root (or its
+    group) has write permissions there.
+    #+end_quote
+
+    #+begin_src bash :results output
+      ls -l /
+    #+end_src
+
+    #+RESULTS:
+    #+begin_example
+    total 2097268
+    lrwxrwxrwx   1 root root          7 Mar 14  2024 bin -> usr/bin
+    drwxr-xr-x   4 root root       4096 Mar 30 13:01 boot
+    drwxr-xr-x   2 root root       4096 Mar 14  2024 cdrom
+    drwxr-xr-x  21 root root       5220 Mar 30 12:57 dev
+    drwxr-xr-x 158 root root      12288 Mar 30 13:01 etc
+    drwxr-xr-x   3 root root       4096 Mar 14  2024 home
+    lrwxrwxrwx   1 root root          7 Mar 14  2024 lib -> usr/lib
+    lrwxrwxrwx   1 root root          9 Mar 14  2024 lib64 -> usr/lib64
+    drwx------   2 root root      16384 Mar 14  2024 lost+found
+    drwxr-xr-x   3 root root       4096 Sep 13  2025 media
+    drwxr-xr-x   2 root root       4096 Jan  9  2024 mnt
+    drwxr-xr-x   5 root root       4096 Jan 24  2025 opt
+    dr-xr-xr-x 440 root root          0 Mar 30 08:55 proc
+    drwx------   8 root root       4096 Jan 24  2025 root
+    drwxr-xr-x  40 root root       1200 Mar 30 13:00 run
+    lrwxrwxrwx   1 root root          8 Mar 14  2024 sbin -> usr/sbin
+    drwxr-xr-x   2 root root       4096 Jan  9  2024 srv
+    -rw-------   1 root root 2147483648 Aug 25  2025 swapfile
+    dr-xr-xr-x  13 root root          0 Mar 30 08:55 sys
+    drwxr-xr-x   9 root root       4096 Mar 30 09:00 timeshift
+    drwxrwxrwt  26 root root      36864 Mar 30 13:13 tmp
+    drwxr-xr-x  14 root root       4096 Apr  4  2024 usr
+    drwxr-xr-x  12 root root       4096 Sep 20  2025 var
+    #+end_example
+
+** Review from ~chmod~, ~umask~
+
+1. What does the command =chmod 600 foo.txt= do to file permissions?
+   #+begin_quote
+   It sets read and write permissions for the owner (rw-) and removes
+   all permissions for group and others (--- ---).
+   #+end_quote
+
+2. How are octal digits related to binary file permissions?
+   #+begin_quote
+   Each octal digit represents three binary bits, corresponding to
+   read (4), write (2), and execute (1) permissions.
+   #+end_quote
+
+3. What file mode corresponds to the octal value =775=, and why is it
+   commonly used?
+   #+begin_quote
+   It corresponds to rwxrwxr-x. It is commonly used for directories
+   because it allows full access for owner and group, and read/execute
+   access for others.
+   #+end_quote
+
+4. In symbolic notation, what does =u+x, go=rx= mean?
+   #+begin_quote
+   It adds execute permission for the user and sets read and execute
+   permissions for group and others, removing any other permissions
+   they had.
+   #+end_quote
+
+5. Why might octal notation be preferred over symbolic notation for
+   setting permissions?
+   #+begin_quote
+   Octal notation is compact, aligns directly with binary
+   representation, and is efficient for setting complete permission
+   sets in one step ("bulk transactions")
+   #+end_quote
+
+6. What are the permissions of a new file ~foo.txt~ when you run =umask
+   0226=?
+   #+begin_src bash :noweb yes :results output
+     <<rm_foo.txt>>
+     umask 0226 # sets umask to new values
+     umask
+     > foo.txt
+     ls -l foo.txt
+     umask 0002
+     umask
+     > qux.txt
+     ls -l qux.txt
+   #+end_src
+
+   #+RESULTS:
+   : removed 'foo.txt'
+   : 0226
+   : -r--r----- 1 marcus marcus 0 Apr  1 13:16 foo.txt
+   : 0002
+   : -rw-rw-r-- 1 marcus marcus 0 Apr  1 13:16 qux.txt
+
+7. What is the corresponding binary code for =umask 0226=?
+   #+begin_example
+   0226 = 000 010 010 110
+   #+end_example
+
+8. Which permissions are masked (removed) by =umask 0224=?
+   #+begin_example
+   0224 = 000 010 010 100
+        = --- -w- -w- r-- (removed)
+        = --- r-- r-- -w- (remaining)
+   #+end_example
+
+9. What about ~umask 0331~ - what does that do?
+   #+begin_src bash
+     umask 0331 # remove 011 010 001 -wx -w- --x
+     > foo.txt
+     ls -l foo.txt
+   #+end_src
+
+   #+RESULTS:
+   : -r--r--rw- 1 marcus marcus 0 Apr  1 13:20 foo.txt
+
+10. Which masks would remove all permissions? Show this.
+    #+begin_src bash
+      rm foo.txt
+      umask 0666 # for regular files (executables: 777)
+      > foo.txt
+      ls -l foo.txt
+    #+end_src
+
+    #+RESULTS:
+    : ---------- 1 marcus marcus 0 Apr  1 13:21 foo.txt
+
+* DONE Week 11: Process management I
+
+- [X] QuizRunner: custom GPT in class (15 min)
+- [X] Review: 2nd Sprint Review
+- [X] Process management
+
+** QuizRunner: File permissions and bash scripting
+
+- Open: [[https://tinyurl.com/quiz-runner-permissions][tinyurl.com/quiz-runner-permissions]]
+- Complete at least 10 questions
+- Upload the URL to Canvas
+
+** 2nd Sprint
+
+- What was this sprint about in your view?
+
+  #+attr_html: :width 400px:
+  [[../img/sprint2.png]]
+
+- Write a (manual) summary paragraph of your main insights during this
+  sprint review (on paper). Sign with your name (pledged) and date.
+  #+attr_html: :width 400px:
+  [[../img/insights.png]]
+
+- Noticed a lot of wide spacing (this can happen when one copies
+  straight from ChatGPT into GDocs).
+
+- What ChatGPT highlighted in its analysis (for every one of you):
+  #+begin_quote
+  1. Benchmark: strongest technical clarity and application
+  2. Very close in technical clarity; slightly less integration
+  3. Strong structure; slightly less technical specificity
+  4. Good direction; compressed and underdeveloped
+  5. Solid effort; needs more development and citations
+  6. Incomplete but shows engagement
+  #+end_quote
+
+- What do you think about me using AI to assess your work?
+
+- Will you read the feedback with the same attention and excitement?
+
+- Do you find it easier or harder to argue with the AI's output?
+
+* DONE Week 12: Process management II / 2nd sprint review
+
+- [X] Finish process management - process control
+- [ ] Environment
+- [ ] Networking
+
+** Review of last session
+
+- Steps necessary to complete literature review
+- ~top~ command: Process overview of CPU and memory resources
+- Using the literature review to revisit own project approach
+- The kernel identifies all processes with a unique PID
+- The whole operation relies on careful schedule management
+- You cannot see the true memory layout, only the virtualized memory
+  (stack, heap, global, data...)
+
+* DONE Week 13: Environment / Networking
+
+- [X] Lecture: Environment variables
+- [X] Lecture: ~bash~ configuration files
+- [X] Quiz 7 available (bash scripting/file permissions) - Apr 24th
+- [X] Live: 3rd sprint review deadline - Apr 30th
+- [X] Lecture:: Networking I
+
+** Review: Environment and bash
+
+1. What is the difference between *shell variables* and *environment
+   variables*?
+  
+   Shell variables are valid only in a shell session, while
+   environment variables are exported (alongside shell functions)
+   and are available in a terminals and applications (~export~).
+
+2. How can you display all environment variables, and how does this
+   differ from using =set=?
+
+   To print all environment variables, use ~printenv~. ~set~ also prints
+   these but also prints all shell variables and functions.
+
+   #+begin_src bash :results output
+     set
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   BASH=/usr/bin/bash
+   BASHOPTS=checkwinsize:cmdhist:complete_fullquote:extquote:force_fignore:globasciiranges:hostcomplete:interactive_comments:progcomp:promptvars:sourcepath
+   BASH_ALIASES=()
+   BASH_ARGC=()
+   BASH_ARGV=()
+   BASH_CMDS=()
+   BASH_LINENO=()
+   BASH_SOURCE=()
+   BASH_VERSINFO=([0]="5" [1]="1" [2]="16" [3]="1" [4]="release" [5]="x86_64-pc-linux-gnu")
+   BASH_VERSION='5.1.16(1)-release'
+   CINNAMON_VERSION=6.0.4
+   CLUTTER_IM_MODULE=ibus
+   COLORTERM=truecolor
+   DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+   DEFAULTS_PATH=/usr/share/gconf/cinnamon.default.path
+   DESKTOP_SESSION=cinnamon
+   DIRSTACK=()
+   DISPLAY=:0
+   EUID=1000
+   GDMSESSION=cinnamon
+   GDM_LANG=en_US
+   GNOME_DESKTOP_SESSION_ID=this-is-deprecated
+   GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/4c79c0a8_11a7_44c6_880f_69e38225f6d7
+   GNOME_TERMINAL_SERVICE=:1.175
+   GPG_AGENT_INFO=/run/user/1000/gnupg/S.gpg-agent:0:1
+   GROUPS=()
+   GTK3_MODULES=xapp-gtk3-module
+   GTK_IM_MODULE=ibus
+   GTK_MODULES=gail:atk-bridge
+   HOME=/home/marcus
+   HOSTNAME=marcus-Precision-5760
+   HOSTTYPE=x86_64
+   IFS=$' \t\n'
+   LANG=en_US.UTF-8
+   LANGUAGE=en_US
+   LESSCLOSE='/usr/bin/lesspipe %s %s'
+   LESSOPEN='| /usr/bin/lesspipe %s'
+   LOGNAME=marcus
+   LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'
+   MACHTYPE=x86_64-pc-linux-gnu
+   MANDATORY_PATH=/usr/share/gconf/cinnamon.mandatory.path
+   OLDPWD=/home/marcus
+   OPTERR=1
+   OPTIND=1
+   OSTYPE=linux-gnu
+   PATH=/home/marcus/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+   PPID=25431
+   PS4='+ '
+   PT8HOME=/opt/pt
+   PWD=/home/marcus/GitHub/admin/spring26/csc420/org
+   QT_ACCESSIBILITY=1
+   QT_IM_MODULE=ibus
+   QT_QPA_PLATFORMTHEME=qt5ct
+   SESSION_MANAGER=local/marcus-Precision-5760:@/tmp/.ICE-unix/1171,unix/marcus-Precision-5760:/tmp/.ICE-unix/1171
+   SHELL=/bin/bash
+   SHELLOPTS=braceexpand:hashall:interactive-comments
+   SHLVL=1
+   SSH_AUTH_SOCK=/run/user/1000/keyring/ssh
+   TERM=dumb
+   UID=1000
+   USER=marcus
+   VTE_VERSION=6800
+   XAUTHORITY=/home/marcus/.Xauthority
+   XDG_CONFIG_DIRS=/etc/xdg/xdg-cinnamon:/etc/xdg
+   XDG_CURRENT_DESKTOP=X-Cinnamon
+   XDG_DATA_DIRS=/usr/share/cinnamon:/usr/share/gnome:/home/marcus/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+   XDG_GREETER_DATA_DIR=/var/lib/lightdm-data/marcus
+   XDG_RUNTIME_DIR=/run/user/1000
+   XDG_SEAT=seat0
+   XDG_SEAT_PATH=/org/freedesktop/DisplayManager/Seat0
+   XDG_SESSION_CLASS=user
+   XDG_SESSION_DESKTOP=cinnamon
+   XDG_SESSION_ID=c1
+   XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session0
+   XDG_SESSION_TYPE=x11
+   XDG_VTNR=7
+   XMODIFIERS=@im=ibus
+   _=/usr/bin/bash
+   #+end_example
+
+3. What is the purpose of an alias, and how would you create one named
+   =dh= for human-readable disk usage (the command is =df
+   --human-readable=)?
+  
+   #+begin_src bash :results output
+     alias dh='df --human-readable'
+     alias
+   #+end_src
+
+   #+RESULTS:
+   : alias dh='df --human-readable'
+
+4. What is a *process ID (PID)*, and how do commands like =ps= and =top=
+   relate to it?
+   
+   A PID is a unique numeric integer identifier for all processes.
+
+   ~ps~ shows the PID
+
+   #+begin_src bash :results output
+     ps
+   #+end_src
+
+   ~top~ shows you a bunch of processes dynamically.
+
+   There is another command that shows you the jobs - ~jobs~
+
+   #+begin_src bash :results output
+     jobs
+   #+end_src
+
+5. What is the role of the "shebang" at the top of a bash script? Can
+   you write it?
+   
+   The shebang gives the shell the program to use when running a
+   shell script.
+
+   #+begin_src bash :results output
+     which bash
+   #+end_src
+
+   #+RESULTS:
+   : /usr/bin/bash
+
+   Shebang that would work on this machine:
+   #+begin_src 
+     #!/usr/bin/bash
+   #+end_src
+
+
+* Week 14: Networking / Compiling
+
+- [X] New quiz: Process + Environment + Networking
+- [X] Prose summary on Networking I available (PDF)
+- [X] Canvas page: Enter the URL to your GDrive with project materials
+- [X] Canvas page: Project schedule (enter your name)
+- [X] Lecture/practice: Networking II
+- [ ] Lecture/practice: Compiling source distributions
+
+** Review what you learnt last session:
+
+1. Why does the Internet exist?
+2. What is packet switching?
+3. What is the client-server model?
+4. What is the network stack?
+5. What do you know about Internet names and addresses?
+6. What are MAC addresses?
+7. What does the DHCP (Dynamic host Configuration Protocol) do?
+8. What is TCP - Transmission Control Protocol?
+
+** Summary Networking II
+
+#+begin_quote
+The internet is a resilient network designed to continue functioning
+even when parts fail, achieved through packet switching, where
+messages are split into small packets that travel independently across
+multiple routes and are reassembled at the destination. Communication
+typically follows a client–server model, where a client (e.g., your
+browser) requests data from a server (e.g., a website), and this
+interaction relies on a layered network stack of protocols that handle
+addressing, routing, and data transmission. When you enter a URL like
+https://google.com, the protocol (HTTPS), port (443), and domain name
+are used, but the system must first translate the domain into an IP
+address via DNS before communication can occur. Devices on networks
+are identified by MAC addresses at a lower level and IP addresses at a
+higher level, with DHCP dynamically assigning IPs. Reliable
+communication over the internet is managed by TCP, and tools like ping
+and traceroute illustrate how packets move across networks and how
+connectivity and latency arise from the underlying infrastructure.
+#+end_quote
+
+
+** Review: Compiling from source I
+
+1. Why might a program not be installable using a package manager like
+   ~apt~?
+   #+begin_quote
+   Because no precompiled binary exists for the specific system or
+   architecture.
+   #+end_quote
+
+2. What is an alternative when no binary is available for a program?
+   #+begin_quote
+   Download the source code and build the program manually.
+   #+end_quote
+
+3. What is another reason (besides availability) to compile software
+   from source?
+   #+begin_quote
+   To obtain newer or specific versions that are not provided as
+   binaries.
+   #+end_quote
+
+4. Why can’t a C source file like =hello.c= be executed directly?
+   #+begin_quote
+   Because it must first be compiled into machine-executable code.
+   #+end_quote
+
+5. What is the name of the common C compiler used in the session?
+   #+begin_quote
+   gcc (or cc, which refers to the same compiler) - this originally
+   only compiled C, but now it compiles around 20 other languages.
+   #+end_quote
+
+6. What is the default output file produced by compiling a C program
+   without specifying a name?
+   #+begin_quote
+   =a.out=
+   #+end_quote
+
+7. What is the role of the preprocessor in the compilation chain?
+   #+begin_quote
+   It processes directives like =#include= or =#define=, or =#ifndef= and
+   expands macros (like =printf=) before compilation.
+   #+end_quote
+
+8. What does the =-E= flag in =gcc= do?
+   #+begin_quote
+   It runs only the preprocessing step and outputs the result.
+   #+end_quote
+
+9. What is produced during the assembly step?
+   #+begin_quote
+   A human-readable assembly file (.s).
+   #+end_quote
+
+10. Why is the assembly file useful to inspect?
+    #+begin_quote
+    It shows how the program interacts with CPU registers (memory) and
+    low-level operations (e.g. moving data around).
+    #+end_quote
+
+11. What is an object file (=.o=), and why is it not executable?
+    #+begin_quote
+    It is compiled machine code without linked libraries, so it cannot
+    run on its own.
+    #+end_quote
+
+12. What step is required to turn an object file into an executable?
+    #+begin_quote
+    Linking with required libraries.
+    #+end_quote
+
+13. Why does making an object file executable with ~chmod~ still not
+    allow it to run?
+    #+begin_quote
+    Because it is missing linked libraries and is not a complete executable.
+    #+end_quote
+
+14. What does the full =gcc= command (without flags) do implicitly?
+    #+begin_quote
+    It runs preprocessing, compilation, assembly, and linking in one
+    step.
+    #+end_quote
+
+15. What is a =tar.gz= file and what does it typically contain?
+    #+begin_quote
+    A compressed archive containing a directory tree of source code
+    files - a "tarball".
+    #+end_quote
+
+** Compiling from source
+
+- [X] Compiler chain
+- [X] Using an FTP server
+- [X] Downloading source
+- Viewing a tarball
+- Unpacking, configuring, building and installing from source
+- Running tests
+
+
+* Week 15: Containerization and Virtualization
+
+* Week 16: Presentations
+
+* Noweb chunks
+
+- Remove ~foo.txt~ if file exists:
+  #+name: rm_foo.txt
+  #+begin_src bash :results silent
+    if [ -e "foo.txt" ]; then
+        rm -rvf foo.txt
+    fi
+  #+end_src
+
+  #+RESULTS: rm_foo.txt
+
+- Remove all files ~foo*.txt~ if they exist:
+  #+name: rm_foo*.txt
+  #+begin_src bash
+    for file in foo*.txt; do
+        if [ -e "$file" ]; then
+            rm -rfv $file
+        fi
+    done
+  #+end_src
+
+- Remove ~empty~ if file exists:
+  #+name: rm_empty
+  #+begin_src bash :results silent
+    if [ -e "empty" ]; then
+        rm -rvf empty
+    fi
+  #+end_src
+
+- Remove ~Empty~ if directory exists:
+  #+name: rm_Empty_dir
+  #+begin_src bash :results silent
+    if [ -d "Empty" ]; then
+        rm -rvf Empty
+    fi
+  #+end_src
