@@ -12,6 +12,11 @@
 - Review questions 1 (overview)
 - Docker demo with Gemini CLI
 - Docker demo on shell
+- Review questions 2 (demo)
+- Docker files (tarball)
+- Glossary
+
+More at https://docs.docker.com/get-started
 
 * Definitions
 
@@ -854,6 +859,14 @@ Caution:
     image. Deleting an image removes the template used to create
     containers.
     #+end_quote
+
+* Docker files for download
+
+- Get the tarball from GitHub:
+  #+begin_example sh
+  url=
+  wget $url
+  #+end_example
 
 * Glossary
 
