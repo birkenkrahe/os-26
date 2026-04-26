@@ -862,10 +862,11 @@ Caution:
 
 * Docker files for download
 
-- Get the tarball from GitHub:
+- Get the tarball from GitHub and view it
   #+begin_example sh
-  url=
-  wget $url
+  url="https://tinyurl.com/docker-demo-tarball"
+  wget -O docker-demos.tar.gz "$url"
+  tar tvzf docker-demos.tar.gz
   #+end_example
 
 * Glossary
