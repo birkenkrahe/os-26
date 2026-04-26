@@ -1475,8 +1475,7 @@ are like stirrups for the horse.
      #!/usr/bin/bash
    #+end_src
 
-
-* Week 14: Networking / Compiling
+* DONE Week 14: Networking / Compiling
 
 - [X] New quiz: Process + Environment + Networking
 - [X] Prose summary on Networking I available (PDF)
@@ -1484,6 +1483,7 @@ are like stirrups for the horse.
 - [X] Canvas page: Project schedule (enter your name)
 - [X] Lecture/practice: Networking II
 - [ ] Lecture/practice: Compiling source distributions
+- [ ] For next week: last assignment (bash scripting)
 
 ** Review what you learnt last session:
 
@@ -1517,11 +1517,10 @@ and traceroute illustrate how packets move across networks and how
 connectivity and latency arise from the underlying infrastructure.
 #+end_quote
 
-
-** NEXT Review: Compiling from source I
+** Review: Compiling from source I
 
 1. Why might a program not be installable using a package manager like
-   apt?
+   ~apt~?
    #+begin_quote
    Because no precompiled binary exists for the specific system or
    architecture.
@@ -1539,29 +1538,30 @@ connectivity and latency arise from the underlying infrastructure.
    binaries.
    #+end_quote
 
-4. Why can’t a C source file like hello.c be executed directly?
+4. Why can’t a C source file like =hello.c= be executed directly?
    #+begin_quote
    Because it must first be compiled into machine-executable code.
    #+end_quote
 
 5. What is the name of the common C compiler used in the session?
    #+begin_quote
-   gcc (or cc, which refers to the same compiler).
+   gcc (or cc, which refers to the same compiler) - this originally
+   only compiled C, but now it compiles around 20 other languages.
    #+end_quote
 
 6. What is the default output file produced by compiling a C program
    without specifying a name?
    #+begin_quote
-   a.out
+   =a.out=
    #+end_quote
 
 7. What is the role of the preprocessor in the compilation chain?
    #+begin_quote
-   It processes directives like #include and expands macros before
-   compilation.
+   It processes directives like =#include= or =#define=, or =#ifndef= and
+   expands macros (like =printf=) before compilation.
    #+end_quote
 
-8. What does the -E flag in gcc do?
+8. What does the =-E= flag in =gcc= do?
    #+begin_quote
    It runs only the preprocessing step and outputs the result.
    #+end_quote
@@ -1573,11 +1573,11 @@ connectivity and latency arise from the underlying infrastructure.
 
 10. Why is the assembly file useful to inspect?
     #+begin_quote
-    It shows how the program interacts with CPU registers and
-    low-level operations.
+    It shows how the program interacts with CPU registers (memory) and
+    low-level operations (e.g. moving data around).
     #+end_quote
 
-11. What is an object file (.o), and why is it not executable?
+11. What is an object file (=.o=), and why is it not executable?
     #+begin_quote
     It is compiled machine code without linked libraries, so it cannot
     run on its own.
@@ -1588,32 +1588,43 @@ connectivity and latency arise from the underlying infrastructure.
     Linking with required libraries.
     #+end_quote
 
-13. Why does making an object file executable with chmod still not
+13. Why does making an object file executable with ~chmod~ still not
     allow it to run?
     #+begin_quote
     Because it is missing linked libraries and is not a complete executable.
     #+end_quote
 
-14. What does the full gcc command (without flags) do implicitly?
+14. What does the full =gcc= command (without flags) do implicitly?
     #+begin_quote
     It runs preprocessing, compilation, assembly, and linking in one
     step.
     #+end_quote
 
-15. What is a tar.gz file and what does it typically contain?
+15. What is a =tar.gz= file and what does it typically contain?
     #+begin_quote
     A compressed archive containing a directory tree of source code
-    files.
+    files - a "tarball".
     #+end_quote
 
 ** Compiling from source
 
-- Compiler chain
-- Using an FTP server
-- Downloading source
+- [X] Compiler chain
+- [X] Using an FTP server
+- [X] Downloading source
 - Viewing a tarball
 - Unpacking, configuring, building and installing from source
 - Running tests
+
+
+<<<<<<< HEAD
+* Week 15: Containerization and Virtualization
+
+- Continued: Compiling
+- Introduction to virtualization and containerization
+- Docker demo in Google Cloud Shell
+- Docker demo in Gemini CLI
+
+* Week 16: Presentations
 
 * Noweb chunks
 

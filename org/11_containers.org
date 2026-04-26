@@ -1,0 +1,891 @@
+#+TITLE:Virtualization, Containerization, Orchestration
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: CSC 420 - Operating Systems - Lyon College Spring 2026
+#+STARTUP: overview hideblocks indent entitiespretty:
+#+OPTIONS: toc:nil num:nil ^:nil:
+* Objectives
+
+- Basic definitions
+- Use cases
+- Pros/cons
+- Comparison table
+- Review questions 1 (overview)
+- Docker demo with Gemini CLI
+- Docker demo on shell
+
+* Definitions
+
+- *Virtualization*
+  #+begin_quote
+  Creating a virtual version of a computing resource (e.g., a full
+  machine). A *virtual machine (VM)* simulates an entire computer
+  system, including its own OS. :contentReference[oaicite:0]{index=0}
+  #+end_quote
+
+- *Containerization*
+  #+begin_quote
+  OS-level virtualization: packaging an application together with its
+  dependencies into an isolated environment called a
+  *container*. Containers share the host OS kernel but isolate user
+  space.
+  #+end_quote
+- *Container*: An isolated runtime environment containing application
+  code, libraries and dependencies.
+
+- *Docker*: A widely used platform for building, distributing, and
+  running containers.
+
+- *Container orchestration*: Automated management of multiple
+  containers: deployment, scaling, coordination.
+
+- *Kubernetes (K8s)*: A system for orchestrating containers across
+  multiple machines: groups containers into logical units (pods);
+  manages distributed systems.
+
+* Use Cases
+
+- *Virtualization*
+  - Server consolidation (run many VMs on one machine)
+  - Running legacy systems
+  - Isolation for testing different OS environments
+
+  *Example:* Running a legacy Windows application on a Linux machine
+  using a virtual machine (~wine~ - see [[https://www.winehq.org/][www.winehq.org/]])
+
+- *Containerization*
+  - Microservices architecture[fn:1]
+  - Reproducible development environments
+  - Running multiple applications on a single host reliably
+
+  *Example:* Packaging a =Node.js= web application (with its exact =Node=
+  version and dependencies) so it runs identically on a developer
+  laptop and a cloud server.
+
+- *Container orchestration*
+  - Managing many containers at scale
+  - Load balancing and scaling applications
+  - Automating deployment pipelines
+
+  *Example:* Automatically scaling a web service (e.g., an online store)
+  from 3 to 30 containers during peak traffic using Kubernetes.
+
+* Pros / Cons
+
+** Virtualization (VMs)
+
+- Advantages
+  - Strong isolation (separate OS)
+  - High flexibility (different OS per VM)
+  - Good security boundaries
+
+- Disadvantages
+  - Heavyweight (full OS per VM)
+  - Slower startup
+  - Higher resource usage
+
+** Containerization
+
+- Advantages
+  - Lightweight (shared kernel)
+  - Fast startup
+  - Portable and reproducible environments
+  - Efficient resource usage
+
+- Disadvantages
+  - Weaker isolation than VMs
+  - Same OS kernel requirement
+  - Security depends on host OS
+
+** Container Orchestration
+
+- Advantages
+  - Scales applications easily (horizontal scaling)
+  - Automates deployment and recovery
+  - Improves system reliability and efficiency
+
+- Disadvantages
+  - High complexity
+  - Steep learning curve
+  - Operational overhead
+
+* Comparison Table
+
+| Feature      | Virtual Machines  | Containers    | Orchestration      |
+|--------------+-------------------+---------------+--------------------|
+| Level        | Hardware          | OS-level      | System-level       |
+| Isolation    | Strong - Full OS  | Shared kernel | Managed at scale   |
+| Startup time | Slow              | Fast          | Depends on cluster |
+| Resources    | High              | Low           | Optimized on nodes |
+| Portability  | Moderate          | High          | High (distributed) |
+| Typical tool | VirtualBox/VMware | Docker        | Kubernetes         |
+| Main purpose | Run multiple OS   | Package apps  | Manage containers  |
+
+* Review Questions 1
+
+1. What is virtualization, and how does a virtual machine differ from
+   a physical machine?
+   #+begin_quote
+   Virtualization creates a virtual version of a computing resource. A
+   virtual machine simulates a full computer system, including its own
+   OS, on top of physical hardware.
+   #+end_quote
+
+2. What does it mean that containers use OS-level virtualization?
+   #+begin_quote
+   Containers share the host OS kernel while isolating user space,
+   meaning they do not include a full OS but still run independently.
+   #+end_quote
+
+3. What problem does containerization solve compared to traditional
+   deployment?
+   #+begin_quote
+   It ensures that applications run consistently across environments
+   by packaging all dependencies together.
+   #+end_quote
+
+4. What is the difference between a container and a virtual machine?
+   #+begin_quote
+   A VM includes a full OS and is heavier, while a container shares
+   the host OS kernel and is lightweight.
+   #+end_quote
+
+5. What is the role of Docker in containerization?
+   #+begin_quote
+   Docker provides tools to build, distribute, and run containers.
+   #+end_quote
+
+6. What is container orchestration?
+   #+begin_quote
+   It is the automated management of multiple containers, including
+   deployment, scaling, and coordination.
+   #+end_quote
+
+7. Why is Kubernetes needed if Docker already exists?
+   #+begin_quote
+   Docker manages individual containers, while Kubernetes manages many
+   containers across multiple machines.
+   #+end_quote
+
+8. What are two advantages of containers over virtual machines?
+   #+begin_quote
+   Faster startup time and lower resource usage.
+   #+end_quote
+
+9. What is a typical use case for virtualization that containers do
+   not address well?
+   #+begin_quote
+   Running different operating systems on the same hardware.
+   #+end_quote
+
+10. What is a key disadvantage of container orchestration systems?
+    #+begin_quote
+    They introduce significant complexity and require additional
+    infrastructure and expertise.
+    #+end_quote
+
+* Docker demonstration
+
+- What is a container?
+  #+begin_quote
+  If a virtual machine (VM) is a whole house (including the plumbing and
+  electrical), while a container is like a shipping crate: it holds
+  everything that an application needs to run: code, libraries, and
+  settings. It shares the host's OS kernel, which is why containers are
+  fast and lightweight.
+  #+end_quote
+
+- When you ask Gemini, it will suggest to run the "official hello-world
+  image". But what's an "image"?
+  #+begin_quote
+  A Docker image is a read-only template that contains a filesystem
+  (files, libraries, binaries) and metadata on how to run a
+  program. It's like a blueprint or snapshot of an environment.
+  #+end_quote
+
+- On my Linux box, I had to
+  #+begin_example
+  sudo apt install docker.io
+  sudo systemctl enable --now
+  #+end_example
+
+- Find the daemon:
+  #+begin_src bash :results output :exports both
+    ps aux | grep docker
+  #+end_src
+
+  #+RESULTS:
+  : root     2048757  0.0  0.1 2868480 90812 ?       SNsl 16:28   0:00 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+  : aletheia 2049700  0.0  0.0  18892  2672 ?        S    16:31   0:00 grep docker
+
+- Now =sudo docker run hello-world= works:
+  #+begin_example
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+4f55086f7dd0: Pull complete
+Digest: sha256:f9078146db2e05e794366b1bfe584a14ea6317f44027d10ef7dad65279026885
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+  #+end_example
+
+- Some docker commands (all ~sudo~ unless ~docker~ is installed locally):
+  #+begin_example
+  docker pull [image] # for example `hello-world`
+  docker run [image]
+  docker ps # processes running now
+  docker ps -a # all processes past and present
+  docker stop [name/id] # stop a running container
+  docker images # list downloaded images
+  #+end_example
+
+* Docker with Gemini CLI
+
+- Ask Gemini to demonstrate Docker. It will run =hello-world=
+- It shows helpful commands (which it can also run).
+- It suggest to teach me how to build my own docker app.
+- It creates a folder =my-docker-app= "to keep things organized".
+
+Steps:
+1. Create a folder =my-docker-app= and =cd= into it
+   #+begin_example sh
+   mkdir -p my-docker-app
+   cd my-docker-app
+   #+end_example
+
+2. Create a simple Python script =hello.py=
+   #+begin_example python
+     import os
+
+     print("Hello from inside a customer Docker container!")
+     print(f"I am running on: {os.uname().sysname}")
+   #+end_example
+
+3. Create the =Dockerfile=:
+   #+begin_src txt :tangle my-docker-app/Dockerfile
+    # Use an official Python runtime as a parent image
+    FROM python:3.9-slim
+    # Set the working directory in the container
+    WORKDIR /app
+    # Copy the current directory contents into the container at /app
+    COPY hello.py .
+    # Run hello.py when the container launches
+    CMD ["python", "hello.py"]
+   #+end_src
+
+4. Build the docker image: Tell Docker to read the =Dockerfile= and turn
+   it into an image named =my-python-app=. The =.= at the end tells Docker
+   to look for the =Dockerfile= in the current directory.
+   #+begin_example sh
+   docker build -t my-python-app .
+   #+end_example
+   Output:
+   #+attr_html: :width 600px :float nil:
+   [[../img/my-python-app.png]]
+
+5. Check that image was created with =docker images=
+
+6. Run the new image:
+   #+begin_example sh
+   docker run my-python-app
+   #+end_example
+   Output:
+   #+begin_example
+   Hello from inside a customer Docker container!
+   I am running on: Linux
+   #+end_example
+
+Summary:
+1. Wrote code =hello.py=
+2. Wrote a configuration =Dockerfile=
+3. Build a reusable environment (image) =my-python-app=
+4. Ran that environment in an isolated box (container).
+
+You can now give =my-python-app= to anyone else with Docker, and it will
+run just the same (portability).
+
+Okay, to* Building a web dashboard
+
+- We're building a web dashboard using Flask (a Python web framework)
+  and Matplotlib (a plotting library).
+
+- Let Gemini do the work, then ask it to print everything it did so
+  that you can run it on a terminal.
+
+- Why is this more fun?
+  + It has external dependencies (Flask, Matplotlib)
+  + It uses networking (you'll access it in your browser)
+  + It runs a service rather than just a script
+
+- Steps:
+  1. Create project directory (=useful-app=)
+     #+begin_example sh
+     mkdir -p useful-app
+     cd useful-app
+     #+end_example
+  2. Define dependencies (=requirements.txt=)
+     #+begin_src txt :tangle useful-app/requirements.txt
+       Flask==3.0.0
+       matplotlib==3.8.0
+     #+end_src
+  3. Create the web app (=app.py=)
+     #+begin_src python :tangle useful-app/app.py
+       from flask import Flask, send_file
+       import matplotlib.pyplot as plt
+       import io
+       import time
+       app = Flask(__name__)
+       @app.route('/')
+       def home():
+           return """
+           <h1>Docker Data Dashboard</h1>
+           <p>This page is being served from inside a Docker container!</p>
+           <img src="/plot.png" alt="Random Trend">
+           <p><a href="/plot.png">Refresh Plot</a></p>
+           """
+       @app.route('/plot.png')
+       def plot_png():
+           # Generate a random plot
+           plt.figure(figsize=(5,4))
+           plt.plot([1,2,3,4],[1,4,9,16], 'r-o')
+           plt.title("Sample Trend (Generated in container)")
+
+           # Save plot to buffer
+           buf = io.BytesIO()
+           plt.savefig(buf, format='png')
+           buf.seek(0)
+           return send_file(buf, mimetype='image/png')
+
+       if __name__ == '__main__':
+           # Listen on all interfaces (0.0.0.0) so we can access it from outside
+           app.run(host='0.0.0.0',port=5000)
+     #+end_src
+  4. Create the =Dockerfile=: We use =RUN pip install= to set up our
+     environment:
+     #+begin_src python :tangle useful-app/Dockerfile :results output :exports both :session *Python* :python python3
+       FROM python:3.9-slim
+       WORKDIR /app
+       # Copy the requirements file first (optimization: Docker caches layers)
+       COPY requirements.txt .
+       # Install dependencies
+       RUN pip install --no-cache-dir -r requirements.txt
+       # Copy the rest of the code
+       COPY . .
+       # Inform Docker that the container listens on port 5000
+       EXPOSE 5000
+       # Start the application
+       CMD ["python","app.py"]
+     #+end_src
+  5. Build and run: build the image =my-dashboard= and run it, mapping
+     port 8080 on the host to port 5000 inside the container.
+     #+begin_example sh
+     cd useful-app
+     # --no-cache forces Docker to build everything from scratch
+     docker build --no-cache -t my-dashboard .
+     # detached run (background) / port mapping
+     docker run -d -p 8080:5000 --name running-dashboard my-dashboard
+     #+end_example
+     #+attr_html: :width 600px :float nil:
+     [[../img/docker_build.png]]
+  6. =Useful App= is now running in the background:
+     #+begin_example sh
+     docker ps
+     #+end_example
+     In Cloud shell, use =Web preview= to =Preview on port 8080=.
+  7. The container =running-dashboard= is currently running:
+     #+attr_html: :width 600px :float nil:
+     [[../img/docker_running.png]]
+  8. Complete =docker stats=:
+     #+attr_html: :width 600px :float nil:
+     [[../img/docker_stats.png]]
+  9. Error message:
+     #+attr_html: :width 600px :float nil:
+     [[../img/gemini_stunned.png]]
+
+     The issue was probably that the Cloud Shell was disconnected and
+     when coming back to the Gemini session, the agent did not know
+     that it had been disconnected.
+  10. Final output:
+      #+attr_html: :width 400px :float nil:
+      [[../img/gemini_result.png]]
+
+Clean up and completely reset environment for demo:
+1. Stop and remove all containers:
+   #+begin_example sh
+   docker stop running-dashboard
+   docker rm $(docker ps -aq)    # removes hello-world container record
+   #+end_example
+2. Remove all Docker images
+   #+begin_example sh
+   docker rmi -f $(docker images -q)
+   #+end_example
+3. Delete the Project folders
+   #+begin_example sh
+   rm -rf ~/my-docker-app ~/useful-app
+   #+end_example
+
+All-in-one:
+#+begin_example sh
+docker stop $(docker ps -q) 2>/dev/null; docker rm $(docker ps -aq) 2>/dev/null;       
+docker rmi -f $(docker images -q) 2>/dev/null; rm -rf ~/my-docker-app ~/useful-app   
+#+end_example
+
+Verification with
+#+begin_example sh
+docker ps -a
+docker images
+ls
+#+end_example
+#+attr_html: :width 600px :float nil:
+[[../img/docker_clean.png]]
+
+* Docker Demo on shell
+
+Assumptions:
+- Students have shell access.
+- Docker is installed or can be started.
+- You run commands with ~sudo docker~ if user permissions are not
+  configured.
+- The demo machine has internet access.
+
+* Check for Docker
+
+#+begin_src bash
+docker --version
+which docker
+#+end_src
+
+Expected result:
+#+begin_example
+Docker version ...
+/usr/bin/docker
+#+end_example
+
+If this fails, Docker client is not installed.
+
+* Check for Docker daemon
+
+#+begin_src bash
+sudo systemctl status docker
+#+end_src
+
+If Docker is not running:
+
+#+begin_src bash
+sudo systemctl start docker
+#+end_src
+
+Verify:
+
+#+begin_src bash
+sudo docker info
+#+end_src
+
+Key point:
+- ~docker~ is the client.
+- ~dockerd~ is the daemon/server.
+- The client talks to the daemon through a socket.
+
+* Check Docker processes
+
+#+begin_src bash
+sudo docker ps
+#+end_src
+
+Expected result:
+#+begin_example
+CONTAINER ID   IMAGE   COMMAND   CREATED   STATUS   PORTS   NAMES
+#+end_example
+
+Also show stopped containers:
+
+#+begin_src bash
+sudo docker ps -a
+#+end_src
+
+Key point:
+- ~docker ps~ shows running containers.
+- ~docker ps -a~ shows all containers.
+
+* Run the hello-world image
+
+#+begin_src bash
+sudo docker run hello-world
+#+end_src
+
+Explain:
+1. Docker checks whether the image exists locally.
+2. If not, Docker pulls it from Docker Hub.
+3. Docker creates a container from the image.
+4. The container runs and exits.
+
+Check afterwards:
+
+#+begin_src bash
+sudo docker ps
+sudo docker ps -a
+sudo docker images
+#+end_src
+
+Key point:
+- The container is no longer running.
+- The image remains cached locally.
+
+* Demo 1: Simple Python app image
+
+** Create project folder
+
+#+begin_src bash
+mkdir my-docker-app
+cd my-docker-app
+#+end_src
+
+** Create Python script
+
+#+begin_src bash
+cat > hello.py <<'EOF'
+print("Hello from inside a Docker container!")
+EOF
+#+end_src
+
+** Create Dockerfile
+
+#+begin_src bash
+cat > Dockerfile <<'EOF'
+FROM python:3.9-slim
+WORKDIR /app
+COPY hello.py .
+CMD ["python", "hello.py"]
+EOF
+#+end_src
+
+** Build image
+
+#+begin_src bash
+sudo docker build -t my-python-app .
+#+end_src
+
+** Run image
+
+#+begin_src bash
+sudo docker run my-python-app
+#+end_src
+
+Expected result:
+#+begin_example
+Hello from inside a Docker container!
+#+end_example
+
+** Inspect
+
+#+begin_src bash
+sudo docker images
+sudo docker ps -a
+#+end_src
+
+Key points:
+- The Dockerfile is the recipe.
+- The image is the built template.
+- The container is the executed instance.
+
+* Demo 2: Useful web app
+
+** Create project folder
+
+#+begin_src bash
+cd ..
+mkdir useful-app
+cd useful-app
+#+end_src
+
+** Create requirements.txt
+
+#+begin_src bash
+cat > requirements.txt <<'EOF'
+Flask==3.0.0
+matplotlib==3.8.0
+EOF
+#+end_src
+
+** Create app.py
+
+#+begin_src bash
+cat > app.py <<'EOF'
+from flask import Flask, send_file
+import matplotlib.pyplot as plt
+import io
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return """
+    <h1>Docker Data Dashboard</h1>
+    <p>This page is being served from inside a Docker container!</p>
+    <img src="/plot.png" alt="Sample Trend">
+    <p><a href="/plot.png">Refresh Plot</a></p>
+    """
+
+@app.route('/plot.png')
+def plot_png():
+    plt.figure(figsize=(5, 4))
+    plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'r-o')
+    plt.title("Sample Trend Generated in Container")
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    plt.close()
+    buf.seek(0)
+
+    return send_file(buf, mimetype='image/png')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+EOF
+#+end_src
+
+** Create Dockerfile
+
+#+begin_src bash
+cat > Dockerfile <<'EOF'
+FROM python:3.9-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY app.py .
+EXPOSE 5000
+CMD ["python", "app.py"]
+EOF
+#+end_src
+
+** Build image
+
+#+begin_src bash
+sudo docker build -t my-dashboard .
+#+end_src
+
+** Run container in background
+
+#+begin_src bash
+sudo docker run -d -p 8080:5000 --name running-dashboard my-dashboard
+#+end_src
+
+Meaning:
+#+begin_example
+-p 8080:5000  host port 8080 -> container port 5000
+-d            detached/background mode
+#+end_example
+
+Open:
+
+#+begin_example
+http://localhost:8080
+#+end_example
+
+** Check logs
+
+#+begin_src bash
+sudo docker logs running-dashboard
+#+end_src
+
+** Check process
+
+#+begin_src bash
+sudo docker ps
+#+end_src
+
+Key point:
+- Unlike ~hello-world~ and ~hello.py~, this container keeps running because it starts a web server.
+
+* Check all Docker processes at the end
+
+#+begin_src bash
+sudo docker ps
+sudo docker ps -a
+sudo docker images
+#+end_src
+
+Explain:
+- running containers
+- stopped containers
+- stored images
+
+* Clean up
+
+** Stop running web container
+
+#+begin_src bash
+sudo docker stop running-dashboard
+#+end_src
+
+** Remove stopped containers
+
+#+begin_src bash
+sudo docker rm running-dashboard
+#+end_src
+
+Optional: remove all stopped containers:
+
+#+begin_src bash
+sudo docker container prune
+#+end_src
+
+** Remove demo images
+
+#+begin_src bash
+sudo docker rmi my-python-app
+sudo docker rmi my-dashboard
+#+end_src
+
+Optional aggressive cleanup:
+
+#+begin_src bash
+sudo docker system prune
+#+end_src
+
+Caution:
+- This removes unused containers, networks, and dangling images.
+
+* Review Questions 2
+
+1. What is the difference between the Docker client and the Docker
+   daemon?
+   #+begin_quote
+   The Docker client is the command-line program the user runs. The
+   Docker daemon is the background service that builds, runs, and
+   manages containers.
+   #+end_quote
+
+2. What does ~docker ps~ show?
+   #+begin_quote
+   It shows currently running containers.
+   #+end_quote
+
+3. What does ~docker ps -a~ show?
+   #+begin_quote
+   It shows all containers, including stopped containers.
+   #+end_quote
+
+4. What happens when you run ~docker run hello-world~?
+   #+begin_quote
+   Docker looks for the ~hello-world~ image, downloads it if needed,
+   creates a container from it, runs it, and then the container exits.
+   #+end_quote
+
+5. What is a Docker image?
+   #+begin_quote
+   A Docker image is a read-only template containing files,
+   dependencies, and instructions needed to create a container.
+   #+end_quote
+
+6. What is a Docker container?
+   #+begin_quote
+   A Docker container is a running or stopped instance created from a
+   Docker image.
+   #+end_quote
+
+7. What does a Dockerfile do?
+   #+begin_quote
+   A Dockerfile is a recipe that tells Docker how to build an image.
+   #+end_quote
+
+8. In the Python demo, what did ~docker build -t my-python-app .~ do?
+   #+begin_quote
+   It built a Docker image from the Dockerfile in the current
+   directory and gave it the name ~my-python-app~.
+   #+end_quote
+
+9. Why did the simple Python container stop immediately?
+   #+begin_quote
+   It ran the Python script, printed its message, and then the process
+   ended. When the main process ends, the container stops.
+   #+end_quote
+
+10. Why did the web app container keep running?
+    #+begin_quote
+    It started a Flask web server, which keeps listening for requests.
+    #+end_quote
+
+11. What does ~-p 8080:5000~ mean?
+    #+begin_quote
+    It maps port 8080 on the host machine to port 5000 inside the
+    container.
+    #+end_quote
+
+12. What does ~-d~ mean?
+    #+begin_quote
+    It runs the container in detached mode, meaning it runs in the
+    background.
+    #+end_quote
+
+13. Why did the web app need ~host='0.0.0.0'~?
+    #+begin_quote
+    It tells Flask to listen on all network interfaces inside the
+    container so that requests from outside the container can reach
+    it.
+    #+end_quote
+
+14. Why do we remove containers during cleanup?
+    #+begin_quote
+    Stopped containers remain on the system until removed. Cleanup
+    avoids clutter and saves disk space.
+    #+end_quote
+
+15. What is the difference between deleting a container and deleting an image?
+    #+begin_quote
+    Deleting a container removes one instance created from an
+    image. Deleting an image removes the template used to create
+    containers.
+    #+end_quote
+
+* Glossary
+
+| Term          | Meaning                                               |
+|---------------+-------------------------------------------------------|
+| Docker        | Platform for building, running, managing containers   |
+| Docker client | The ~docker~ command used at the shell                  |
+| Docker daemon | Background service that performs Docker operations    |
+| Docker socket | Communication endpoint used by client 2 talk 2 daemon |
+| Image         | Read-only template used to create containers          |
+| Container     | Running or stopped instance of an image               |
+| Dockerfile    | Text file containing instructions for building image  |
+| Build context | Directory sent to Docker during ~docker build~          |
+| ~FROM~          | Dockerfile: specifying the base image                 |
+| ~WORKDIR~       | Dockerfile: setting working directory inside image    |
+| ~COPY~          | Dockerfile: copying files into the image              |
+| ~RUN~           | Dockerfile: executing command while building image    |
+| ~CMD~           | Default command executed when the container starts    |
+| ~EXPOSE~        | Documents the port containerized app expects to use   |
+| Port mapping  | Connecting host port to container port, ~8080:5000~     |
+| Detached mode | Running a container in the background with ~-d~         |
+| Docker Hub    | Public registry where Docker images can be downloaded |
+| Registry      | Storage location for Docker images.                   |
+| Tag           | Version or label for an image, e.g. ~python:3.9-slim~   |
+| Base image    | Existing image used as starting point for a new image |
+| Layer         | One cached filesystem change created by Dockerfile    |
+| Cache         | Reused build layers that make repeated builds faster  |
+| ~--no-cache~    | Build option forcing Docker to rebuild every layer    |
+| Logs          | Output produced by the main process inside container  |
+| Cleanup       | Removing stopped containers and unused images         |
+* Footnotes
+
+[fn:1]Example: An online store split into several services: Frontend,
+product catalog, order service, account service, payment service. Each
+communicates via HTTP APIs and can be scaled separately.
