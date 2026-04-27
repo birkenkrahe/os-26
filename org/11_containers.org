@@ -189,6 +189,9 @@ More at https://docs.docker.com/get-started
     #+end_quote
 
 * Docker demonstration
+#+attr_html: :width 600px :float nil:
+#+caption: Source: DataCamp
+[[../img/docker_architecture.png]]
 
 - What is a container?
   #+begin_quote
