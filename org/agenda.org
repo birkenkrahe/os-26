@@ -1619,11 +1619,10 @@ connectivity and latency arise from the underlying infrastructure.
 <<<<<<< HEAD
 * Week 15: Containerization and Virtualization
 
-- [ ] Continued: Compiling
+- [ ] Continued: Compiling from source
 - [ ] Introduction to virtualization and containerization
 - [ ] Docker demo in Google Cloud Shell
 - [ ] Docker demo in Gemini CLI
-
 
 * Week 16: Presentations
 
